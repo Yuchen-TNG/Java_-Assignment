@@ -34,7 +34,7 @@ public class Movie {
 
                 System.out.print("Movie ID : ");
                 String MovieID = cin.nextLine();
-                if (MovieId.lengt<4) {
+                if (MovieID.length()<4) {
                     
                 } 
                 for(char c:MovieID.toCharArray()){
