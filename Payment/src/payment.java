@@ -62,7 +62,16 @@ public class payment {
 
     public void displayticket(){
         System.out.println("The title movie: " + movie);
-        
+        System.out.println("Cinema venue: " + Cinemaven);
+        System.out.println("Number of Hall: " + numofhall);
+
+
+
+    }
+
+    public void calculatetotalprice(){
+        totalprice = paymentamount + (paymentamount*tax);
+
     }
 
 
