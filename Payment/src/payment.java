@@ -60,5 +60,10 @@ public class payment {
         this.paymentstatus=paymentstatus;
     }
 
+    public void displayticket(){
+        System.out.println("The title movie: " + movie);
+        
+    }
+
 
 }
