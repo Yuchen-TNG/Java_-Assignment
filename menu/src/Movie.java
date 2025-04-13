@@ -8,7 +8,7 @@ public class Movie {
     ArrayList<String> ID = new ArrayList<>();
     ArrayList<String> Type = new ArrayList<>();
     ArrayList<String> Language = new ArrayList<>();
-    int money = 50;
+    int count=3;
 
     public Movie() {
         addMovie("Godzilla", "M001", "Action", "English");
@@ -37,18 +37,25 @@ public class Movie {
                     System.out.print("Movie ID : ");
                     String MovieID = cin.nextLine();
                     if (MovieID.length() == 4) {
-                        for (int i = 1; i <= 3;i++) {
+                        for (int i = 1; i <= 3; i++) {
                             if (!Character.isDigit(MovieID.charAt(i))) {
                                 System.out.print("Your Movie ID is wrong format\n");
+                                i=3;
                                 bool = true;
                             } else {
-                                ID.add(MovieID);
-                                bool = false;
+                                if (!Character.isUpperCase(MovieID.charAt(0))) {
+
+                                    System.out.print("Your Movie ID is wrong format\n");
+                                    bool = true;
+                                    i=3;
+                                } else {
+                                    ID.add(MovieID);
+                                    bool = false;
+                                }
                             }
                         }
                     } else {
                         System.out.print("Your Movie ID is wrong format\n");
-
                         bool = true;
                     }
                 } while (bool);
@@ -62,10 +69,12 @@ public class Movie {
                 Language.add(MovieLan);
 
                 System.out.println("\n\nYour Movie has been add");
-                System.out.println("Movie Name= " + Name.get(e));
-                System.out.println("Movie ID= " + Name.get(addMovie));
-                System.out.println("Movie Type= " + MovieType);
-                System.out.println("Movie Japenese= " + MovieLan+"\n");
+                System.out.print(count-2+": ");
+                System.out.println(" Movie Name= " + Name.get(count));
+                System.out.println("   Movie ID= " + ID.get(count));
+                System.out.println("   Movie Type= " + MovieType);
+                System.out.println("   Movie Japenese= " + MovieLan + "\n");
+                count++; 
             }
         } else {
             return;
