@@ -8,6 +8,7 @@ public class Movie {
     ArrayList<String> ID = new ArrayList<>();
     ArrayList<String> Type = new ArrayList<>();
     ArrayList<String> Language = new ArrayList<>();
+    int money = 50;
 
     public Movie() {
         addMovie("Godzilla", "M001", "Action", "English");
@@ -27,21 +28,31 @@ public class Movie {
         int addMovie = cin.nextInt();
         cin.nextLine();
         if (addMovie >= 1) {
-            for (int i = 0; i < addMovie; i++) {
+            for (int e = 0; e < addMovie; e++) {
                 System.out.print("Movie Name : ");
                 String MovieName = cin.nextLine();
                 Name.add(MovieName);
+                boolean bool = false;
+                do {
+                    System.out.print("Movie ID : ");
+                    String MovieID = cin.nextLine();
+                    if (MovieID.length() == 4) {
+                        for (int i = 1; i <= 3;i++) {
+                            if (!Character.isDigit(MovieID.charAt(i))) {
+                                System.out.print("Your Movie ID is wrong format\n");
+                                bool = true;
+                            } else {
+                                ID.add(MovieID);
+                                bool = false;
+                            }
+                        }
+                    } else {
+                        System.out.print("Your Movie ID is wrong format\n");
 
-                System.out.print("Movie ID : ");
-                String MovieID = cin.nextLine();
-                if (MovieID.length()<4) {
-                    
-                } 
-                for(char c:MovieID.toCharArray()){
+                        bool = true;
+                    }
+                } while (bool);
 
-                 }
-
-                 ID.add(MovieID);
                 System.out.print("Movie Type : ");
                 String MovieType = cin.nextLine();
                 Type.add(MovieType);
@@ -51,33 +62,32 @@ public class Movie {
                 Language.add(MovieLan);
 
                 System.out.println("\n\nYour Movie has been add");
-                System.out.println("Movie Name= "+MovieName);
-                System.out.println("Movie Name= "+MovieID);
-                System.out.println("Movie Name= "+MovieType);
-                System.out.println("Movie Name= "+MovieLan);
+                System.out.println("Movie Name= " + Name.get(e));
+                System.out.println("Movie ID= " + Name.get(addMovie));
+                System.out.println("Movie Type= " + MovieType);
+                System.out.println("Movie Japenese= " + MovieLan+"\n");
             }
-        } else
+        } else {
             return;
+        }
     }
 
-    public void clearMovie(String id){
+    public void clearMovie(String id) {
         System.out.println("Delete Movie List");
         System.out.print("Movie ID delete: ");
-        id=cin.nextLine();
-        int index=ID.indexOf(id);
-        if (index!=-1) {
+        id = cin.nextLine();
+        int index = ID.indexOf(id);
+        if (index != -1) {
             Name.remove(index);
             ID.remove(index);
             Type.remove(index);
             Language.remove(index);
-            System.out.println("Movie"+Name.get(index)+"have been deleted");
+            System.out.println("Movie" + Name.get(index) + "have been deleted");
             return;
-        }else{
+        } else {
             System.out.println("System can't find the Movie Details");
             return;
         }
-        
 
-        
     }
 }
