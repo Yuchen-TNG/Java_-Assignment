@@ -8,6 +8,8 @@ public class Movie {
     ArrayList<String> ID = new ArrayList<>();
     ArrayList<String> Type = new ArrayList<>();
     ArrayList<String> Language = new ArrayList<>();
+    int i=0;
+    int e = -1;
 
     public Movie() {
         addMovie("Godzilla", "M001", "Action", "English");
@@ -29,7 +31,7 @@ public class Movie {
         int count = Name.size() - 1;
         int check = 0;
         if (addMovie >= 1) {
-            for (int e = 0; e < addMovie; e++) {
+            for (int i = 0; i < addMovie; i++) {
 
                 System.out.print("\n\nMovie Name : ");
                 String MovieName = cin.nextLine();
@@ -75,7 +77,7 @@ public class Movie {
                         Type.remove(count);
                         Language.remove(count);
                         count--;
-                        e--;
+                        i--;
                         bool = false;
                     } else {
                         System.err.println("\n\nWe can't understand your input, please try again");
@@ -96,12 +98,11 @@ public class Movie {
 
     public void clearMovie() {
         boolean check = true;
-        int e = -1;
         System.out.println("\n\nDelete Movie List");
         System.out.print("Movie ID delete:");
         String id = cin.nextLine();
 
-        for (int i = 0; i < ID.size(); i++) {
+        for (i = 0; i < ID.size(); i++) {
             if (id.equals(ID.get(i))) {
                 e++;
                 check = true;
@@ -139,12 +140,16 @@ public class Movie {
 
     public void getMovie() {
         System.out.printf("\n\n%-3s%-25s%-8s%-15s%-15s\n", "No", "Movie Name", "ID", "Type", "Language");
-        for (int i = 0; i <= Name.size() - 1; i++) {
+        for (i = 0; i <= Name.size() - 1; i++) {
             System.out.printf("%-3d%-25s%-8s%-15s%-15s\n", i + 1, Name.get(i), ID.get(i), Type.get(i), Language.get(i));
         }
     }
 
-    public getID(){
-        return this.ID=ID;
+    public String[] getID(){
+        String[] movieid=new String[ID.size()];
+        for(i=0;i<ID.size();i++){
+            movieid[i]=ID.get(i);
+        }
+        return movieid;
     }
 }
