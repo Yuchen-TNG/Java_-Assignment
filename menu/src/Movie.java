@@ -8,6 +8,8 @@ public class Movie {
     ArrayList<String> ID = new ArrayList<>();
     ArrayList<String> Type = new ArrayList<>();
     ArrayList<String> Language = new ArrayList<>();
+    ArrayList<String> Language = new ArrayList<>();
+    ArrayList<String> Language = new ArrayList<>();
     int i=0;
     int e = -1;
 

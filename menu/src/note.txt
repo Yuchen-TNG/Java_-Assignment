@@ -1,0 +1,5 @@
+Movie add new edit function{
+    
+    change showtime
+    Movie add
+    }
