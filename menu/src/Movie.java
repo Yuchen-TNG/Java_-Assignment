@@ -95,22 +95,46 @@ public class Movie {
     }
 
     public void clearMovie() {
-        System.out.println("Delete Movie List");
-        System.out.print("Movie ID delete: ");
+        boolean check = true;
+        int e = -1;
+        System.out.println("\n\nDelete Movie List");
+        System.out.print("Movie ID delete:");
         String id = cin.nextLine();
-        int index = ID.indexOf(id);
-        if (index != -1) {
-            Name.remove(index);
-            ID.remove(index);
-            Type.remove(index);
-            Language.remove(index);
-            System.out.println("Movie" + Name.get(index) + "have been deleted");
-            return;
-        } else {
-            System.out.println("System can't find the Movie Details");
-            return;
+
+        for (int i = 0; i < ID.size(); i++) {
+            if (id.equals(ID.get(i))) {
+                e++;
+                check = true;
+                i=ID.size()-1;
+            } else {
+                check = false;
+            }
         }
 
+        if (check) {
+
+            do {
+                System.out.println("\nAre you sure you want to delete this Movie : " + Name.get(e));
+                String choice = cin.nextLine();
+                if (choice.equalsIgnoreCase("Yes") || choice.equalsIgnoreCase("y")) {
+                    Name.remove(e);
+                    ID.remove(e);
+                    Type.remove(e);
+                    Language.remove(e);
+                    System.out.println("\n\nMovie " + Name.get(e) + " have been deleted");
+                    check = false;
+
+                } else if (choice.equalsIgnoreCase("No") || choice.equalsIgnoreCase("n")) {
+                    check = false;
+                } else {
+                    System.out.println("We don't understand your input");
+                    check = true;
+                }
+            } while (check);
+        } else {
+            System.out.println("\n\nSystem can't find the Movie Details");
+        }
+        return;
     }
 
     public void getMovie() {
@@ -118,5 +142,9 @@ public class Movie {
         for (int i = 0; i <= Name.size() - 1; i++) {
             System.out.printf("%-3d%-25s%-8s%-15s%-15s\n", i + 1, Name.get(i), ID.get(i), Type.get(i), Language.get(i));
         }
+    }
+
+    public getID(){
+        return this.ID=ID;
     }
 }
