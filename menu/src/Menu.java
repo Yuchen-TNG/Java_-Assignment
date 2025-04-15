@@ -7,7 +7,7 @@ public class Menu {
    
         movie.setMovie();
         movie.getMovie();
-
+        movie.clearMovie();
 
 
 

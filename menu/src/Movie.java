@@ -94,10 +94,10 @@ public class Movie {
         }
     }
 
-    public void clearMovie(String id) {
+    public void clearMovie() {
         System.out.println("Delete Movie List");
         System.out.print("Movie ID delete: ");
-        id = cin.nextLine();
+        String id = cin.nextLine();
         int index = ID.indexOf(id);
         if (index != -1) {
             Name.remove(index);
