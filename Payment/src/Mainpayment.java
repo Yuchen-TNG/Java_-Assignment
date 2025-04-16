@@ -2,15 +2,13 @@ import java.util.Scanner;
 
 public class Mainpayment {
     public static void main(String[] args) throws Exception {
-        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in); 
 
         System.out.print("how many ticket your buy?");
-        int ticketnum = input.nextInt();
-
+        int ticketnum = input.nextInt(); //给user input
+        // .之前是variable, .之后是那个variable要做的operation
 
         System.out.println("Your ticketnum is " + ticketnum);
-        
-
 
         //ClassName objectName = new ClassName();
         payment details = new payment(ticketnum);
@@ -21,9 +19,7 @@ public class Mainpayment {
         details.calculatetotalprice();
 
 
-        System.out.println("Your price is " + details.gettotalprice());
+        System.out.println("Your price is " + details.gettotalprice()); //如果要读data就用get不是直接把function丢下去
 
-        
-        
     }
 }
