@@ -14,7 +14,7 @@ public class payment {
     private String Cinemaven="Kuala Lumpur- Setapak Central";
     private int numofhall= 3;
     private String seatnumber="04A";
-    private int numofticket= 2;
+    private int numofticket;
     private String name= "Yuchen";
     private String email= "eason061221@gmail.com";
 
@@ -78,7 +78,7 @@ public class payment {
 
 
     public void calculatetotalprice(){
-        totalprice = paymentamount + (paymentamount*tax);
+        totalprice = paymentamount*numofticket  + ((paymentamount*numofticket)*tax);
 
     }
 
