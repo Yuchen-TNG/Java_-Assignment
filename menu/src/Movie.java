@@ -8,7 +8,6 @@ public class Movie {
     ArrayList<String> ID = new ArrayList<>();
     ArrayList<String> Type = new ArrayList<>();
     ArrayList<String> Language = new ArrayList<>();
-    int count=3;
 
     public Movie() {
         addMovie("Godzilla", "M001", "Action", "English");
@@ -24,36 +23,26 @@ public class Movie {
     }
 
     public void setMovie() {
-        System.out.println("How many movie you want add?");
+        System.out.println("\n\nHow many movie you want add?");
         int addMovie = cin.nextInt();
         cin.nextLine();
+        int count = Name.size() - 1;
+        int check = 0;
         if (addMovie >= 1) {
             for (int e = 0; e < addMovie; e++) {
-                System.out.print("Movie Name : ");
+
+                System.out.print("\n\nMovie Name : ");
                 String MovieName = cin.nextLine();
                 Name.add(MovieName);
                 boolean bool = false;
                 do {
                     System.out.print("Movie ID : ");
                     String MovieID = cin.nextLine();
-                    if (MovieID.length() == 4) {
-                        for (int i = 1; i <= 3; i++) {
-                            if (!Character.isDigit(MovieID.charAt(i))) {
-                                System.out.print("Your Movie ID is wrong format\n");
-                                i=3;
-                                bool = true;
-                            } else {
-                                if (!Character.isUpperCase(MovieID.charAt(0))) {
-
-                                    System.out.print("Your Movie ID is wrong format\n");
-                                    bool = true;
-                                    i=3;
-                                } else {
-                                    ID.add(MovieID);
-                                    bool = false;
-                                }
-                            }
-                        }
+                    if (MovieID.length() == 4 && Character.isUpperCase(MovieID.charAt(0))
+                            && Character.isDigit(MovieID.charAt(1)) && Character.isDigit(MovieID.charAt(2))
+                            && Character.isDigit(MovieID.charAt(3))) {
+                        ID.add(MovieID);
+                        bool = false;
                     } else {
                         System.out.print("Your Movie ID is wrong format\n");
                         bool = true;
@@ -67,24 +56,48 @@ public class Movie {
                 System.out.print("Movie Language : ");
                 String MovieLan = cin.nextLine();
                 Language.add(MovieLan);
+                count++;
+                do {
+                    System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
+                    System.out.printf("%-25s%-8s%-15s%-15s\n", Name.get(count), ID.get(count), Type.get(count),
+                            Language.get(count));
+                    System.out.println("\n\nAre you sure you want to add into Library? (Yes / No)");
+                    String choice = cin.nextLine().trim();
+                    if (choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")) {
+                        check++;
+                        System.out.println("\n\nYour Movie has been add");
+                        bool = false;
 
-                System.out.println("\n\nYour Movie has been add");
-                System.out.print(count-2+": ");
-                System.out.println(" Movie Name= " + Name.get(count));
-                System.out.println("   Movie ID= " + ID.get(count));
-                System.out.println("   Movie Type= " + MovieType);
-                System.out.println("   Movie Japenese= " + MovieLan + "\n");
-                count++; 
+                    } else if (choice.equalsIgnoreCase("no") || choice.equalsIgnoreCase("n")) {
+
+                        Name.remove(count);
+                        ID.remove(count);
+                        Type.remove(count);
+                        Language.remove(count);
+                        count--;
+                        e--;
+                        bool = false;
+                    } else {
+                        System.err.println("\n\nWe can't understand your input, please try again");
+                        bool = true;
+                    }
+                } while (bool);
+
+                if (check == addMovie) {
+                    getMovie();
+                } else {
+                    continue;
+                }
             }
         } else {
             return;
         }
     }
 
-    public void clearMovie(String id) {
+    public void clearMovie() {
         System.out.println("Delete Movie List");
         System.out.print("Movie ID delete: ");
-        id = cin.nextLine();
+        String id = cin.nextLine();
         int index = ID.indexOf(id);
         if (index != -1) {
             Name.remove(index);
@@ -98,5 +111,12 @@ public class Movie {
             return;
         }
 
+    }
+
+    public void getMovie() {
+        System.out.printf("\n\n%-3s%-25s%-8s%-15s%-15s\n", "No", "Movie Name", "ID", "Type", "Language");
+        for (int i = 0; i <= Name.size() - 1; i++) {
+            System.out.printf("%-3d%-25s%-8s%-15s%-15s\n", i + 1, Name.get(i), ID.get(i), Type.get(i), Language.get(i));
+        }
     }
 }
