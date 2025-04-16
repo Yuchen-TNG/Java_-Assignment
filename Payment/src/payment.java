@@ -44,6 +44,7 @@ public class payment {
     public boolean getpaymentstatus(){
         return paymentstatus;
     }
+    
 
     //set
 
@@ -71,9 +72,6 @@ public class payment {
         System.out.println("The title movie: " + movie);
         System.out.println("Cinema venue: " + Cinemaven);
         System.out.println("Number of Hall: " + numofhall);
-
-
-
     }
 
 

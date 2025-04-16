@@ -20,6 +20,10 @@ public class Mainpayment {
         details.displayticket(); // run void
         details.calculatetotalprice();
 
+
+        System.out.println("Your price is " + details.gettotalprice());
+
+        
         
     }
 }
