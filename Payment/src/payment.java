@@ -2,10 +2,10 @@ import java.util.Date;
 
 public class payment {
     private String paymentID;
-    private double paymentamount = 12.00; // number of price of ticket
-    private String method; // touch n go, cash, credit card
+    private static double paymentamount = 12.00; // number of price of ticket
+    private int method; // touch n go, cash, credit card
     private static double tax = 0.06;
-    private double totalprice;// payment amount + (tax * paymentamount)
+    private static double totalprice;// payment amount + (tax * paymentamount)
     private boolean paymentstatus; // true = success, false = failed
     private String[] paymenthistory;
 
@@ -14,16 +14,15 @@ public class payment {
     private String Cinemaven="Kuala Lumpur- Setapak Central";
     private int numofhall= 3;
     private String seatnumber="04A";
-    private int numofticket;
+    private static int numofticket;
     private String name= "Yuchen";
     private String email= "eason061221@gmail.com";
 
-    public payment(int numofticket){
-        this.numofticket= numofticket;
+    public payment(int numofticket, int method){
+        payment.numofticket= numofticket;
+        this.method= method;
 
     }
-
-
 
     public String getpaymentID(){
         return paymentID;
@@ -33,7 +32,7 @@ public class payment {
         return paymentamount;
     }
 
-    public String getmethod(){
+    public int getmethod(){
         return method;
     }
 
@@ -56,7 +55,7 @@ public class payment {
         this.paymentID= paymentID;
     }
 
-    public void setmethod(String method){
+    public void setmethod(int method){
         this.method=method;
     }
 
@@ -75,8 +74,18 @@ public class payment {
     }
 
 
-    public void calculatetotalprice(){
+    public static void calculatetotalprice(){
         totalprice = paymentamount*numofticket  + ((paymentamount*numofticket)*tax);
+    }
+
+    public static double paymentmethod_cash(double amount){
+        double balance = totalprice - amount;
+        if (balance > 0) {
+            return balance;
+        }
+        return 0;
+        
+    
 
     }
 
