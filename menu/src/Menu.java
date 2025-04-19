@@ -8,7 +8,7 @@ public class Menu {
         Movie movie = new Movie();
         int selection;
 
-        do {
+        do {s
             displayMainMenu();
             while (!cin.hasNextInt()) {
                 System.out.println("Invalid choice! Please select a number between 1 and 2.");
