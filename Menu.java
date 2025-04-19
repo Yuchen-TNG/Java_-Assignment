@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Menu {
+public abstract class Menu {
     public static void main(String[] args) throws Exception {
 
         Scanner cin = new Scanner(System.in);
