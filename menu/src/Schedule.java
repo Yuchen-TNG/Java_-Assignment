@@ -7,6 +7,7 @@ public class Schedule extends Movie {
     ArrayList<String> dura = new ArrayList<>();
     
     public Schedule(){
-
     }
+
+    public void addSchedule()
 }
