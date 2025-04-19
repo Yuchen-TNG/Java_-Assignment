@@ -34,8 +34,8 @@ public class Mainpayment {
        switch(method){
          case 1:
             System.out.print("Please enter your amount: ");
-            double amount = input.nextDouble();
-            double balance = payment.paymentmethod_cash(amount);
+            double amount = input.nextDouble(); //read user input
+            double balance = payment.paymentmethod_cash(amount); 
 
             if(balance >= amount){
                 System.out.print("Payment successful !");

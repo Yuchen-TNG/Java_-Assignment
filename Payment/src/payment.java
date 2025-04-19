@@ -71,6 +71,7 @@ public class payment {
         totalprice = paymentamount*numofticket  + ((paymentamount*numofticket)*tax);
     }
 
+    //cash
     public static double paymentmethod_cash(double amount){
         double balance = totalprice - amount;
         if (balance > 0) {
@@ -79,6 +80,7 @@ public class payment {
         return 0;
     }
 
+    //credit card
     public static boolean paymenthod_creditcard(String cardnumber){
         if (cardnumber.length() == 16){
             return true;
