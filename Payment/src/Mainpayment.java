@@ -12,10 +12,12 @@ public class Mainpayment {
 
         //ClassName objectName = new ClassName();
         payment details = new payment(ticketnum, 0);
+        Booking bill = new Booking ();
+
         //objects = 访问payment（class）里面的variable
         //new payments() 代表调用了payment的class
 
-        details.displayticket(); // run void
+        bill.displayticket(); // run void
         details.calculatetotalprice();
 
 
@@ -28,7 +30,7 @@ public class Mainpayment {
         System.out.println("3. Touch n Go");
 
        int method = input.nextInt();
-
+    
        switch(method){
          case 1:
             System.out.print("Please enter your amount: ");
@@ -41,14 +43,33 @@ public class Mainpayment {
             }else{
                 System.out.print("Payment unsuccessful !");
             }
-            
+            break;
 
-           
+        case 2:
+            System.out.print("Please enter your card numeber");
+            String cardnumber = input.next();
 
-
-
-           
+            if (payment.paymenthod_creditcard(cardnumber)){
+                int CVV = input.nextInt();
+                do {
+                    System.out.print("Please enter your CVV: ");
+                    CVV = input.nextInt();
+                    
+                    // 检查 CVV 是否有效
+                    if (payment.CVV(CVV)) {
+                        System.out.print("Payment successful!");
+                        break; // 跳出循环，继续后续操作
+                    } else {
+                        System.out.println("Invalid CVV. Please enter a valid 3-digit CVV.");
+                    }
+                } while (!payment.CVV(CVV)); 
+            }else {
+                System.out.print("Payment unsuccessful, Please enter the correct credit number");
+            }
+            break;
+            }
         }
+        
 
     }
-}
+

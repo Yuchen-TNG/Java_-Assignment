@@ -67,13 +67,6 @@ public class payment {
         this.paymentstatus=paymentstatus;
     }
 
-    public void displayticket(){
-        System.out.println("The title movie: " + movie);
-        System.out.println("Cinema venue: " + Cinemaven);
-        System.out.println("Number of Hall: " + numofhall);
-    }
-
-
     public static void calculatetotalprice(){
         totalprice = paymentamount*numofticket  + ((paymentamount*numofticket)*tax);
     }
@@ -84,10 +77,25 @@ public class payment {
             return balance;
         }
         return 0;
-        
-    
-
     }
+
+    public static boolean paymenthod_creditcard(String cardnumber){
+        if (cardnumber.length() == 16){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static boolean CVV(int CVV){
+        if (CVV >= 100 && CVV  <= 999){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    
 
 
 }
