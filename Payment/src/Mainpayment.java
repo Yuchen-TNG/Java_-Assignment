@@ -25,9 +25,9 @@ public class Mainpayment {
 
         System.out.println("-----------------------------------");
         System.out.println("Choose a payment method to make payment");
-        System.out.println("1. Cash");
-        System.out.println("2.Credit Card");
-        System.out.println("3. Touch n Go");
+        System.out.println("1| Cash");
+        System.out.println("2| Credit Card");
+        System.out.println("3| Touch n Go");
 
        int method = input.nextInt();
     
@@ -46,15 +46,13 @@ public class Mainpayment {
             break;
 
         case 2:
-            System.out.print("Please enter your card numeber");
+            System.out.print("Please enter your card numeber: ");
             String cardnumber = input.next();
 
             if (payment.paymenthod_creditcard(cardnumber)){
+                System.out.print("Please enter your CVV: ");
                 int CVV = input.nextInt();
                 do {
-                    System.out.print("Please enter your CVV: ");
-                    CVV = input.nextInt();
-                    
                     // 检查 CVV 是否有效
                     if (payment.CVV(CVV)) {
                         System.out.print("Payment successful!");
