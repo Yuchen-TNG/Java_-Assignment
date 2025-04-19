@@ -5,7 +5,7 @@ public class User {
     Scanner cin = new Scanner(System.in);
     int selection;
     private String name;
-    private char gender;
+    private String gender;
     private int age;
     private String password;
     private String email;
@@ -14,7 +14,7 @@ public class User {
 
     }
 
-    public User(String name, char gender, int age, String password, String email) {
+    public User(String name, String gender, int age, String password, String email) {
         this.name = name;
         this.gender = gender;
         this.age = age;
@@ -30,11 +30,11 @@ public class User {
         this.name = name;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -60,6 +60,20 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void Register(){
+        System.out.println("=====Registration=====");
+        System.out.print("Name: ");
+        String name = cin.next();
+        System.out.print("Gender: ");
+        String gender = cin.next();
+        System.out.print("Age: ");
+        int age = cin.nextInt();
+        System.out.print("Password: ");
+        String password = cin.next();
+        System.out.print("Email: ");
+        String email = cin.next();
     }
     
     public void displayUserMenu() {

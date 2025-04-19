@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public abstract class Menu {
+public class Menu {
     public static void main(String[] args) throws Exception {
 
         Scanner cin = new Scanner(System.in);
@@ -20,12 +20,15 @@ public abstract class Menu {
 
             switch (selection) {
                 case 1:
-                user.displayUserMenu();
+               
                     break;
                 case 2:
-                    System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
+                user.displayUserMenu();
                     break;
                 case 3:
+                System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
+                    break;
+                    case 4:
                     System.out.println("Select Your Movie");
                     movie.setMovie();
                     movie.getMovie();
@@ -41,9 +44,10 @@ public abstract class Menu {
 
     public static void displayMainMenu() {
         System.out.println("\n======CINIME TICKET======");
-        System.out.println("1. Login");
-        System.out.println("2. Exit");
-        System.out.println("3. kaizhenPart");
+        System.out.println("1. Register");
+        System.out.println("2. Login");
+        System.out.println("3. Exit");
+        System.out.println("4. kaizhenPart");
         System.out.print("Selection: ");
     }
 }
