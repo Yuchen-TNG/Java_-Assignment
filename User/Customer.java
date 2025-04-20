@@ -7,6 +7,7 @@ public class Customer extends User {
     private String phoneNo;
     private static User[] users = new User[100];
     private static int userCount = 0;
+    boolean validation;
 
     public Customer() {
         this.customerID = nextCustID++;
@@ -34,14 +35,23 @@ public class Customer extends User {
         System.out.println("\n=====Registration=====");
         System.out.print("Name: ");
         String name = cin.next();
-        System.out.print("Gender: ");
+        System.out.print("Gender(M/F): ");
         String gender = cin.next();
         System.out.print("Age: ");
         int age = cin.nextInt();
         System.out.print("Password: ");
         String password = cin.next();
-        System.out.print("Email: ");
-        String email = cin.next();
+        String email;
+
+        while (!validation) {
+            System.out.print("Email: ");
+            email = cin.next();
+            if (email.contains("@")) {
+                validation = true;
+            } else {
+                System.out.println("invalid please include '@'");
+            }
+        }
 
         Customer newUser = new Customer(name, gender, age, password, email, phoneNo);
         if (userCount < users.length) {
@@ -61,7 +71,7 @@ public class Customer extends User {
         System.out.print("Password: ");
         String password = cin.next();
 
-        boolean validation = false;
+        validation = false;
         for (int i = 0; i < userCount; i++) {
             if (users[i] == null)
                 continue;
