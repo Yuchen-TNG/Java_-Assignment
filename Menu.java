@@ -21,12 +21,17 @@ public class Menu {
             switch (selection) {
                 case 1:
                     user.Register();
+                    for(int i = 0;i<Customer.getuserCount();i++){
+                        System.out.println(Customer.getusers()[i].toString());
+                        }
                     break;
                 case 2:
                     user.loginCustAcc();
                     break;
                 case 3:
-
+                for(int i = 0;i<Customer.getuserCount();i++){
+                    System.out.println(Customer.getusers()[i].toString());
+                    }
                     break;
                 case 4:
                     System.out.println("Thank you for using Cinema Ticket System. Goodbye!");

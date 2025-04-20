@@ -5,18 +5,20 @@ public class User {
     Scanner cin = new Scanner(System.in);
     int selection;
     private String name;
-    private String gender;
     private int age;
-    private String password;
+    private String gender;
+    private String phoneNo;
     private String email;
+    private String password;
 
     public User() {
     }
 
-    public User(String name, String gender, int age, String password, String email) {
+    public User(String name, int age, String gender, String phoneNo, String password, String email) {
         this.name = name;
-        this.gender = gender;
         this.age = age;
+        this.gender = gender;
+        this.phoneNo = phoneNo;
         this.password = password;
         this.email = email;
     }
@@ -35,6 +37,14 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getphoneNo(){
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
     public int getAge() {
@@ -60,9 +70,9 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     public String toString() {
-        return String.format("Name: %-8s Gender: %-8c Age: %-8d Email: %-8s", name, gender, age, email);
+        return String.format("\nName: %s\nAge: %d\nGender: %s\nPhoneNo: %s\nEmail: %s", name, age, gender,phoneNo, email);
     }
 
 }

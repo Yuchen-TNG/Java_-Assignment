@@ -1,5 +1,5 @@
 public class Staff extends User {
-    private static int nextStaffID=101;
+    private static int nextStaffID=100;
     private int staffID;
     private String position;
 
@@ -7,8 +7,8 @@ public class Staff extends User {
         this.staffID=nextStaffID++;
     }
 
-    public Staff(String name, String gender, int age, String password, String email, String position) {
-        super(name, gender, age, password, email);
+    public Staff(String name, int age, String gender,String phoneNo, String password, String email, String position) {
+        super(name, age, gender, phoneNo, password, email);
         this.staffID = nextStaffID++;
         this.position = position;
     }
