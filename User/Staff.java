@@ -1,19 +1,18 @@
 public class Staff extends User {
-    private static int nextStaffID=100;
-    private int staffID;
+
+    private String staffID;
     private String position;
 
     public Staff() {
-        this.staffID=nextStaffID++;
     }
 
-    public Staff(String name, int age, String gender,String phoneNo, String password, String email, String position) {
+    public Staff(String name, int age, String gender,String phoneNo, String password, String email,String staffID, String position) {
         super(name, age, gender, phoneNo, password, email);
-        this.staffID = nextStaffID++;
+        this.staffID = staffID;
         this.position = position;
     }
 
-    public int getStaffID() {
+    public String getStaffID() {
         return staffID;
     }
 
@@ -21,8 +20,16 @@ public class Staff extends User {
         return position;
     }
 
+    public void setStaffID(String staffID){
+        this.staffID=staffID;
+    }
+
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public void staffLogin(){
+
     }
 
 }

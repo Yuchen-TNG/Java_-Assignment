@@ -4,7 +4,7 @@ public class Menu {
     public static void main(String[] args) throws Exception {
 
         Scanner cin = new Scanner(System.in);
-        Customer user = new Customer();
+        Customer customer = new Customer();
         Movie movie = new Movie();
         int selection;
 
@@ -20,18 +20,13 @@ public class Menu {
 
             switch (selection) {
                 case 1:
-                    user.Register();
-                    for(int i = 0;i<Customer.getuserCount();i++){
-                        System.out.println(Customer.getusers()[i].toString());
-                        }
+                    customer.Register();
                     break;
                 case 2:
-                    user.loginCustAcc();
+                    customer.loginCustAcc();
                     break;
                 case 3:
-                for(int i = 0;i<Customer.getuserCount();i++){
-                    System.out.println(Customer.getusers()[i].toString());
-                    }
+                customer.showAllCustomer();
                     break;
                 case 4:
                     System.out.println("Thank you for using Cinema Ticket System. Goodbye!");

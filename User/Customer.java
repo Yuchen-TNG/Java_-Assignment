@@ -1,23 +1,30 @@
-import java.util.Scanner;
 
 public class Customer extends User {
-    Scanner cin = new Scanner(System.in);
-    private static int nextCustID = 1000;
+
+    private static int nextCustomerID=1001;
     private int customerID;
-    private static User[] users = new User[100];
-    private static int userCount = 0;
+    private User[] users;
+    private static int customerCount = 0;
 
     public Customer() {
-        this.customerID = nextCustID++;
+        users = new User[3];
     }
 
     public Customer(String name, int age, String gender, String phoneNo, String password, String email) {
         super(name, age, gender, phoneNo, password, email);
-        this.customerID = nextCustID++;
+        this.customerID=nextCustomerID++;
     }
 
     public int getCustomerID() {
         return customerID;
+    }
+
+    public User[] getusers() {
+        return users;
+    }
+
+    public static int getCustomerCount() {
+        return customerCount;
     }
 
     public void Register() {
@@ -30,9 +37,11 @@ public class Customer extends User {
 
         System.out.print("Age: ");
         int age = cin.nextInt();
+        cin.nextLine();
 
         System.out.print("Gender(M/F): ");
         String gender = cin.next();
+        cin.nextLine();
 
         while (true) {
             System.out.print("PhoneNo: ");
@@ -57,27 +66,16 @@ public class Customer extends User {
         cin.nextLine();
 
         Customer newUser = new Customer(name, age, gender, phoneNo, password, email);
-        if (getuserCount() < getusers().length) {
-            users[userCount] = newUser;
-            incretmentUserCount();
+        if (customerCount < users.length) {
+            users[customerCount] = newUser;
+            customerCount++;
             System.out.println("User Registered Successfully! ");
 
         } else {
             System.out.println("User storage is full!");
             System.exit(0);
         }
-    }
-
-    public static void incretmentUserCount(){
-        userCount++;
-    }
-
-    public static User[] getusers() {
-        return users;
-    }
-
-    public static int getuserCount() {
-        return userCount;
+        System.out.println(users[customerCount-1].toString());
     }
 
     public void loginCustAcc() {
@@ -89,7 +87,7 @@ public class Customer extends User {
             System.out.print("Password: ");
             String password = cin.next();
 
-            for (int i = 0; i < userCount; i++) {
+            for (int i = 0; i < customerCount; i++) {
                 if (users[i] == null)
                     continue;
                 if (users[i].getEmail().equals(email) && users[i].getPassword().equals(password)) {
@@ -125,7 +123,13 @@ public class Customer extends User {
         }
     }
 
+    public void showAllCustomer(){
+        for(int i = 0;i<customerCount;i++){
+            System.out.println(users[i].toString());
+            }
+    }
+
     public String toString() {
-        return "\n=====User Details=====" + "\nUserID: " + getCustomerID() + super.toString();
+        return "\n=====User Details=====" + "\nCustomerID: " + customerID + super.toString();
     }
 }
