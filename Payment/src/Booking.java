@@ -10,8 +10,10 @@ public class Booking {
         return movie;
     }
 
+    
+
 public void displayticket(){
-    System.out.println("The title movie: " + movie);
+    System.out.println("The title movie: " + movie); //maybe movie.get()?
     System.out.println("Cinema venue: " + Cinemaven);
     System.out.println("Number of Hall: " + numofhall);
     System.out.println("Your seat number" + seatnumber);
