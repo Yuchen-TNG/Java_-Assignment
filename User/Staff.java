@@ -7,7 +7,7 @@ public class Staff extends User {
     Movie movie = new Movie();
 
     public Staff() {
-        staff = new Staff[3];
+        staff = new Staff[10];
     }
 
     public Staff(String name, int age, String gender, String phoneNo, String password, String email, String staffID,

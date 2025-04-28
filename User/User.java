@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class User {
 
     Scanner cin = new Scanner(System.in);
-    int selection;
     private String name;
     private int age;
     private String gender;

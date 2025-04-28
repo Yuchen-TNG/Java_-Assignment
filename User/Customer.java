@@ -7,7 +7,7 @@ public class Customer extends User {
     private static int customerCount = 0;
 
     public Customer() {
-        users = new User[3];
+        users = new User[100];
     }
 
     public Customer(String name, int age, String gender, String phoneNo, String password, String email) {
