@@ -1,25 +1,23 @@
-import java.util.Scanner;
+public class Staff extends User implements Interface {
 
-public class Staff extends User implements Interface{
-
-    Scanner cin = new Scanner(System.in);
     private String staffID;
     private String position;
     private boolean checkLogin;
     private static Staff[] staff = new Staff[10];
     private static int staffCount = 0;
     Movie movie = new Movie();
+    Customer customer = new Customer();
 
     static {
-        staff[0] = new Staff("Leon", 30, "M", "01110738155", "staff@gmail.com", "password123", "S001", "Manager");
+        staff[0] = new Staff("Leon", 30, "M", "18/6/2006", "01110738155", "staff@gmail.com", "password123", "S001",
+                "Manager");
     }
 
     public Staff() {
     }
 
-    public Staff(String name, int age, String gender, String phoneNo,String email, String password, String staffID,
-            String position) {
-        super(name, age, gender, phoneNo, password, email);
+    public Staff(String name, int age, String gender, String birthday, String phoneNo, String email, String password, String staffID, String position) {
+        super(name, age, gender, birthday, phoneNo, email, password);
         this.staffID = staffID;
         this.position = position;
         staffCount++;
@@ -42,7 +40,6 @@ public class Staff extends User implements Interface{
     }
 
     public void staffLogin() {
-       
 
         while (true) {
             System.out.println("\n=====Staff Login=====");
@@ -57,10 +54,7 @@ public class Staff extends User implements Interface{
                 if (staff[i].getEmail().equals(email) && staff[i].getPassword().equals(password)) {
                     System.out.println("Login Successfully!");
                     checkLogin = true;
-                    System.out.println("Select Your Movie");
-                    movie.setMovie();
-                    movie.getMovie();
-                    movie.clearMovie();
+                    getMenu();
                     return;
                 }
             }
@@ -92,18 +86,54 @@ public class Staff extends User implements Interface{
         }
     }
 
-    public void Logout(){
+    public void Logout() {
         System.out.println("Logout.....");
-if(checkLogin){
-    System.out.println("Logout Successfully.");
-    checkLogin = false;
-}else{
-    System.out.println("No user is currently logged in.");
-}
+        if (checkLogin) {
+            System.out.println("Logout Successfully.");
+            checkLogin = false;
+        } else {
+            System.out.println("No user is currently logged in.");
+        }
     }
 
-    public void getMenu(){
+    public void getMenu() {
+        int selection;
 
+        do {
+            displayStaffMenu();
+            while (!cin.hasNextInt()) {
+                System.out.println("Invalid choice! Please select a number between 1 and 3.");
+                cin.next();
+            }
+            displayStaffMenu();
+            selection = cin.nextInt();
+
+            switch (selection) {
+                case 1:
+                    Customer.showAllCustomer();
+                    break;
+                case 2:
+                    System.out.println("Select Your Movie");
+                    movie.setMovie();
+                    movie.getMovie();
+                    movie.clearMovie();
+                    break;
+                case 3:
+                    Logout();
+                    return;
+                default:
+                    System.out.println("Invalid choice! Please select a number between 1 and 3.");
+            }
+        } while (selection != 3);
+        cin.close();
+    }
+
+    public static void displayStaffMenu() {
+        System.out.println("\n====Staff Menu====");
+        System.out.println("1. View Customer Details");
+        System.out.println("2. Add Movie");
+        System.out.println("3. Logout");
+        System.out.print("Selection: ");
     }
 
 }
