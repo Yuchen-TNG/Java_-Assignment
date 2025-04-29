@@ -26,10 +26,8 @@ public class Menu {
                     System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
                     break;
                 case 3:
-                    System.out.println("Select Your Movie");
-                    movie.setMovie();
-                    movie.getMovie();
-                    movie.clearMovie();
+                    movie.choiceMovie();
+                    
                     break;
                 default:
                     System.out.println("Invalid choice! Please select a number between 1 and 2.");
