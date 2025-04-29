@@ -1,16 +1,23 @@
-public class Staff extends User {
+import java.util.Scanner;
 
+public class Staff extends User implements Interface{
+
+    Scanner cin = new Scanner(System.in);
     private String staffID;
     private String position;
-    private Staff[] staff;
+    private boolean checkLogin;
+    private static Staff[] staff = new Staff[10];
     private static int staffCount = 0;
     Movie movie = new Movie();
 
-    public Staff() {
-        staff = new Staff[10];
+    static {
+        staff[0] = new Staff("Leon", 30, "M", "01110738155", "staff@gmail.com", "password123", "S001", "Manager");
     }
 
-    public Staff(String name, int age, String gender, String phoneNo, String password, String email, String staffID,
+    public Staff() {
+    }
+
+    public Staff(String name, int age, String gender, String phoneNo,String email, String password, String staffID,
             String position) {
         super(name, age, gender, phoneNo, password, email);
         this.staffID = staffID;
@@ -35,11 +42,7 @@ public class Staff extends User {
     }
 
     public void staffLogin() {
-        if (staffCount < staff.length) {
-            this.staff[staffCount] = new Staff("leon", 19, "M", "01110738155", "Ruihern2006.", "staff@gmail.com", "S001",
-                    "senior");
-                    staffCount++;
-        }
+       
 
         while (true) {
             System.out.println("\n=====Staff Login=====");
@@ -49,10 +52,11 @@ public class Staff extends User {
             String password = cin.next();
 
             for (int i = 0; i < staffCount; i++) {
-                if (this.staff[i] == null)
+                if (staff[i] == null)
                     continue;
-                if (this.staff[i].getEmail().equals(email) && this.staff[i].getPassword().equals(password)) {
+                if (staff[i].getEmail().equals(email) && staff[i].getPassword().equals(password)) {
                     System.out.println("Login Successfully!");
+                    checkLogin = true;
                     System.out.println("Select Your Movie");
                     movie.setMovie();
                     movie.getMovie();
@@ -86,6 +90,20 @@ public class Staff extends User {
                 }
             }
         }
+    }
+
+    public void Logout(){
+        System.out.println("Logout.....");
+if(checkLogin){
+    System.out.println("Logout Successfully.");
+    checkLogin = false;
+}else{
+    System.out.println("No user is currently logged in.");
+}
+    }
+
+    public void getMenu(){
+
     }
 
 }

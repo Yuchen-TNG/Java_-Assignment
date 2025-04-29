@@ -1,8 +1,5 @@
-import java.util.Scanner;
-
 public class User {
 
-    Scanner cin = new Scanner(System.in);
     private String name;
     private int age;
     private String gender;

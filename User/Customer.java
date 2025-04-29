@@ -1,10 +1,13 @@
+import java.util.Scanner;
 
-public class Customer extends User {
-
+public class Customer extends User implements Interface{
+    
+    Scanner cin = new Scanner(System.in);
     private static int nextCustomerID=1001;
     private int customerID;
     private User[] users;
     private static int customerCount = 0;
+    private boolean checkLogin;
 
     public Customer() {
         users = new User[100];
@@ -37,7 +40,6 @@ public class Customer extends User {
 
         System.out.print("Age: ");
         int age = cin.nextInt();
-        cin.nextLine();
 
         System.out.print("Gender(M/F): ");
         String gender = cin.next();
@@ -46,6 +48,7 @@ public class Customer extends User {
         while (true) {
             System.out.print("PhoneNo: ");
             phoneNo = cin.next();
+            cin.nextLine();
             if (phoneNo.matches("\\d{3}-\\d{3}-\\d{4}") || phoneNo.matches("\\d{3}-\\d{4}-\\d{4}")) {
                 break;
             } else {
@@ -55,6 +58,7 @@ public class Customer extends User {
         while (true) {
             System.out.print("Email: ");
             email = cin.next();
+            cin.nextLine();
             if (email.contains("@gmail.com")) {
                 break;
             } else {
@@ -92,6 +96,7 @@ public class Customer extends User {
                     continue;
                 if (users[i].getEmail().equals(email) && users[i].getPassword().equals(password)) {
                     System.out.println("Login Successfully!");
+                    checkLogin = true;
                     return;
                 }
             }
@@ -123,10 +128,24 @@ public class Customer extends User {
         }
     }
 
+    public void Logout(){
+        System.out.println("Logout.....");
+        if(checkLogin){
+            System.out.println("Logout Successfully.");
+            checkLogin = false;
+        }else{
+            System.out.println("No user is currently logged in.");
+        }
+    }
+
     public void showAllCustomer(){
         for(int i = 0;i<customerCount;i++){
             System.out.println(users[i].toString());
             }
+    }
+
+    public void getMenu(){
+
     }
 
     public String toString() {
