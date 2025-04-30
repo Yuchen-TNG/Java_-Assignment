@@ -25,7 +25,7 @@ public class Seat {
     }
 
     public void addSeat(String scheduleId, String id, int column, int row) {
-        
+
         this.scheduleId.add(scheduleId);
         this.id.add(id);
         this.row.add(row);
@@ -52,6 +52,9 @@ public class Seat {
                 index++;
             }
         }
+        System.out.print("ha");
     }
+
+
 
 }
