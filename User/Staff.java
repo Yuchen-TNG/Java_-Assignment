@@ -1,3 +1,6 @@
+import Movie.Movie;
+import Movie.Schedule;
+
 public class Staff extends User implements Interface {
 
     private String staffID;

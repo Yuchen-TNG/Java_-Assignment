@@ -1,11 +1,15 @@
 import java.util.Scanner;
 
+import Movie.Movie;
+import Movie.Schedule;
+
 public class Menu {
     public static void main(String[] args) throws Exception {
 
         Scanner cin = new Scanner(System.in);
         Customer customer = new Customer();
         Staff staff = new Staff();
+        Movie mv =new Movie();
         int selection;
         Schedule schedule = new Schedule();
 
@@ -24,7 +28,7 @@ public class Menu {
                     schedule.setSchedule();
                     break;
                 case 1:
-                    customer.Register();
+                mv.choiceMovie();
                     break;
                 case 2:
                     customer.loginCustAcc();
@@ -45,7 +49,7 @@ public class Menu {
 
     public static void displayMainMenu() {
         System.out.println("\n======CINIME TICKET======");
-        System.out.println("1. Register");
+        System.out.println("1. ");
         System.out.println("2. Login Customer");
         System.out.println("3. Login Staff");
         System.out.println("4. Exit");

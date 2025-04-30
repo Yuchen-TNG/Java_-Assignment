@@ -1,4 +1,7 @@
+package Movie;
+
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -10,38 +13,40 @@ public class Schedule {
     ArrayList<String> movieID = new ArrayList<>();
     ArrayList<String> time = new ArrayList<>();
     ArrayList<String> date = new ArrayList<>();
-    ArrayList<Double> duration = new ArrayList<>();
+    ArrayList<String> duration = new ArrayList<>();
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
     Scanner cin = new Scanner(System.in); // 加上Scanner
 
     public Schedule() {
-        addSchedule("S001", "M001", "11:00", "2025-01-28", 2);
-        addSchedule("S002", "M001", "12:00", "2025-02-27", 2);
-        addSchedule("S003", "M001", "13:00", "2025-01-21", 2);
-        addSchedule("S004", "M001", "14:00", "2025-02-01", 2);
-        addSchedule("S005", "M002", "15:00", "2025-03-28", 1.5);
-        addSchedule("S006", "M002", "13:00", "2025-04-28", 2);
-        addSchedule("S007", "M003", "15:00", "2025-05-28", 1.5);
+        addSchedule("M001", "S001", "11:00", "2025-01-28", "2 hours");
+        addSchedule("M001", "S002", "09:00", "2025-01-28", "2 hours");
+        addSchedule("M001", "S003", "08:00", "2025-01-28", "2 hours");
+        addSchedule("M001", "S004", "01:00", "2025-01-28", "2 hours");
+        addSchedule("M001", "S005", "12:00", "2025-02-27", "2 hours");
+        addSchedule("M001", "S006", "13:00", "2025-01-21", "2 hours");
+        addSchedule("M001", "S007", "14:00", "2025-02-01", "2 hours");
+        addSchedule("M002", "S008", "15:00", "2025-03-28", "1.5 hours");
+        addSchedule("M002", "S009", "13:00", "2025-04-28", "2 hours");
+        addSchedule("M003", "S010", "15:00", "2025-05-28", "1.5 hours");
     }
 
-    public void addSchedule(String scheduleId, String movieID, String time, String date, double duration) {
-        this.scheduleId.add(scheduleId);
+    public void addSchedule(String movieID, String scheduleId, String time, String date, String duration) {
         this.movieID.add(movieID);
+        this.scheduleId.add(scheduleId);
         this.time.add(time);
         this.date.add(date);
         this.duration.add(duration);
     }
 
     // ===============================================Get Schedule==============================================================
-    public void getSchedule(String movieID) {
+    public String[] getSchedule(String movieID) {
         ArrayList<String> pendingDate = new ArrayList<>();
         ArrayList<String> pendingTime = new ArrayList<>();
         Movie mv = new Movie();
-
+        Seat se=new Seat();
         System.out.println("\nSchedule for: " + mv.getMovieNameById(movieID));
 
-        // Step 1: 找出此电影的所有日期
         for (int i = 0; i < this.date.size(); i++) {
             if (this.movieID.get(i).equals(movieID)) {
                 if (!pendingDate.contains(date.get(i))) {
@@ -91,6 +96,12 @@ public class Schedule {
             }
         }
 
+        pendingTime.sort((t1, t2) -> {
+            LocalTime time1 = LocalTime.parse(t1, timeFormat);
+            LocalTime time2 = LocalTime.parse(t2, timeFormat);
+            return time1.compareTo(time2);
+        });
+
         // Step 6: 输出时间选项
         System.out.println("Available times:");
         for (int i = 0; i < pendingTime.size(); i++) {
@@ -98,7 +109,7 @@ public class Schedule {
         }
 
         // Step 7: 用户选时间
-        int choiceTime = 0;
+        int choiceTime=0;
         do {
             System.out.print("Which time is preferred? ");
             try {
@@ -108,6 +119,11 @@ public class Schedule {
                     wrong = true;
                 } else {
                     wrong = false;
+                    for(int i=0;i<scheduleId.size();i++){
+                        if(pendingTime.get(choiceTime-1).equals(time.get(i)) && pendingDate.get(choiceDate-1).equals(date.get(i))){
+                            se.showSeat(scheduleId.get(i));
+                        }
+                    }
                 }
             } catch (InputMismatchException e) {
                 cin.next(); // clear buffer
@@ -129,6 +145,7 @@ public class Schedule {
                 break;
             }
         }
+        return new String[]{selectedDate, selectedTime};
     }
 
     // =================================================Set Schedule=======================================================
@@ -139,7 +156,7 @@ public class Schedule {
         String time = "";
         String movieID = "";
         String scheduleID = "";
-        double duration = 0.0;
+        String duration;
 
         showSchedule();
         while (true) {
@@ -168,7 +185,12 @@ public class Schedule {
             while (true) {
                 System.out.print("Choice: ");
                 if (cin.hasNextInt()) {
-                    choice = cin.nextInt();
+                    choice = cin.nextInt();//-------------------------------------
+                    
+
+
+
+
                     if (choice <= 6 && choice > 0) {
                         break;
                     } else {
@@ -239,7 +261,7 @@ public class Schedule {
                     while (true) {
                         System.out.print("Duration: ");
                         if (cin.hasNextDouble() || cin.hasNextInt()) {
-                            duration = cin.nextDouble();
+                            duration = cin.next();
                             break;
                         } else {
                             System.out.println("Invalid, please input the number");
