@@ -1,17 +1,16 @@
-public class Ticket{
-    private String ticketID;
-    private int customerID;
-    private payment payment;
-    private static int idCounter = 1;
+import java.util.UUID;
 
-    public Ticket(int customerID, payment payment) {
-        this.ticketID = generateTicketID();
-        this.customerID = customerID;
-        this.payment = payment;
+public class Ticket {
+    private String ticketID; 
+    private Customer customer; 
+
+    public Ticket(Customer customer) {
+        this.customer = customer;
+        this.ticketID = generateTicketID(); // 自动生成 Ticket ID
     }
 
-    private static String generateTicketID() {
-        return "A" + String.format("%03d", idCounter++); 
+    private String generateTicketID() {
+        return "TICKET-" + UUID.randomUUID().toString().substring(0, 8); // 生成唯一 ID
     }
 
     public String getTicketID() {
@@ -19,24 +18,21 @@ public class Ticket{
     }
 
     public int getCustomerID() {
-        return customerID;
+        return customer.getCustomerID();
     }
 
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
-    }
 
-    public payment getPayment() {
-        return payment;
-    }
 
-    public void setPayment(payment payment) {
-        this.payment = payment;
-
-    }
-
-    @Override
-    public String toString() {
-        return "Ticket" + "\nTicketID : " + ticketID + "\nCustomer : " + getCustomerID() + "\nPayment : " + payment + "";
+    public void printTicket() {
+        System.out.println("========== TICKET ==========");
+        System.out.println("Customer Details : ");
+        System.out.println("Name : " + customer.getName());
+        System.out.println("Customer ID : " + getCustomerID());
+        System.out.println("-----------------------------");
+        System.out.println("Ticket Details : ");
+        System.out.println("Ticket ID : " + getTicketID());
+        System.out.println("-----------------------------");
+        System.out.println("Thank you for your purchase!");
+        System.out.println("=============================");
     }
 }
