@@ -34,7 +34,7 @@ public class Schedule {
     }
 
     // ===============================================Get Schedule==============================================================
-    public void getSchedule(String movieID) {
+    public String[] getSchedule(String movieID) {
         ArrayList<String> pendingDate = new ArrayList<>();
         ArrayList<String> pendingTime = new ArrayList<>();
         Movie mv = new Movie();
@@ -129,6 +129,7 @@ public class Schedule {
                 break;
             }
         }
+        return new String[]{selectedDate, selectedTime};
     }
 
     // =================================================Set Schedule=======================================================
@@ -168,7 +169,12 @@ public class Schedule {
             while (true) {
                 System.out.print("Choice: ");
                 if (cin.hasNextInt()) {
-                    choice = cin.nextInt();
+                    choice = cin.nextInt();//-------------------------------------
+                    
+
+
+
+
                     if (choice <= 6 && choice > 0) {
                         break;
                     } else {

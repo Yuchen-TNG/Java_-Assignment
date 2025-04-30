@@ -6,21 +6,25 @@ public class Booking {
     private static int bookingidCount = 1;
 
         private String movie;
-        private String Cinemaven="Kuala Lumpur- Setapak Central";
         private int numofhall= 3;
         private String seatnumber="04A";
-        private String name= "Yuchen";
         private String email= "eason061221@gmail.com";
         private int numberofperson = 3;
+        private String date;
+        private String time;
+
 
         public Booking(){
             this.bookingID = generateBookingID();
         }
 
-        public Booking(String bookingID,  String movie){
-            this.bookingID = bookingID;
+        public Booking(String movie, String date, String time) {
+            this.bookingID = generateBookingID();
             this.movie = movie;
+            this.date = date;
+            this.time = time;
         }
+        
 
         public Booking(String movie) {
             this.bookingID = generateBookingID();
@@ -52,7 +56,7 @@ public class Booking {
 
         public void userchoice(String choice,  ArrayList<Booking> confirm ){
             if(choice.equals("y" ) || choice.equals("yes")){
-                Booking newbooking = new Booking(this.movie);
+                Booking newbooking = new Booking(this.movie, this.date, this.time);
                 confirm.add(newbooking);
                 System.out.println("Make payment successfully");
     
@@ -70,14 +74,16 @@ public class Booking {
             }
  } 
     
-    public void displayticket(){
-        System.out.println("==============================================");
-        System.out.println("Email " + email);
-        System.out.println("The title movie: " + movie);
-        //System.out.println("The Time: " + schedule);
-        System.out.println("Number of Hall: " + numofhall);
-        System.out.println("Your seat number: " + seatnumber);
-        System.out.println("Number of Person" + numberofperson);
-    }
+ public void displayticket(){
+    System.out.println("==============================================");
+    System.out.println("Email: " + email);
+    System.out.println("The title movie: " + movie);
+    System.out.println("Date: " + date);
+    System.out.println("Time: " + time);
+    System.out.println("Number of Hall: " + numofhall);
+    System.out.println("Your seat number: " + seatnumber);
+    System.out.println("Number of Person: " + numberofperson);
+}
+
     }
 
