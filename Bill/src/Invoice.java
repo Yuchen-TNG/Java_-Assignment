@@ -31,18 +31,18 @@ public class Invoice {
 
     public void printInvoice() {
         System.out.println("========== INVOICE ==========");
-        System.out.println("Invoice ID: " + getInvoiceID());
-        System.out.println("Date: " + getInvoiceDate());
+        System.out.println("Invoice ID : " + getInvoiceID());
+        System.out.println("Date : " + getInvoiceDate());
         System.out.println("-----------------------------");
-        System.out.println("Movie Details:");
-        System.out.println("Movie Name: " + movie.getName());
+        System.out.println("Movie Details :");
+        System.out.println("Movie Name : " + movie.getName());
         System.out.println("-----------------------------");
-        System.out.println("Ticket Details:");
-        System.out.println("Ticket ID: " + ticket.getTicketID());
+        System.out.println("Ticket Details :");
+        System.out.println("Ticket ID : " + ticket.getTicketID());
         System.out.println("-----------------------------");
-        System.out.println("Payment Details:");
-        System.out.println("Total Price: RM " + String.format("%.2f", payment.gettotalPrice()));
-        System.out.println("Total Amount: RM " + String.format("%.2f", payment.gettotalAmount()));
+        System.out.println("Payment Details : ");
+        System.out.println("Total Price : RM " + String.format("%.2f", payment.gettotalPrice()));
+        System.out.println("Total Amount : RM " + String.format("%.2f", payment.gettotalAmount()));
         System.out.println("-----------------------------");
         System.out.println("Thank you for your purchase!");
         System.out.println("=============================");
