@@ -18,13 +18,13 @@ public class Seat {
         addSeat("S001", "SE001", 10, 9, "A1,A2,A3");
         addSeat("S002", "SE002", 10, 9, "B1,B2,B3");
         addSeat("S003", "SE003", 10, 9, "C1,C2,C3");
-        addSeat("S004", "SE004", 10, 9, "A1,A2,A3");
-        addSeat("S005", "SE001", 10, 9, "A1,A2,A3");
-        addSeat("S006", "SE002", 10, 9, "A1,A2,A3");
-        addSeat("S007", "SE003", 10, 9, "A1,A2,A3");
-        addSeat("S008", "SE004", 10, 9, "A1,A2,A3");
-        addSeat("S009", "SE003", 10, 9, "A1,A2,A3");
-        addSeat("S010", "SE004", 10, 9, "A1,A2,A3");
+        addSeat("S004", "SE004", 10, 9, "D1,D2,D3");
+        addSeat("S005", "SE001", 10, 9, "E1,E2,E3");
+        addSeat("S006", "SE002", 10, 9, "F1,F2,F3");
+        addSeat("S007", "SE003", 10, 9, "G1,G2,G3");
+        addSeat("S008", "SE004", 10, 9, "H1,H2,H3");
+        addSeat("S009", "SE003", 10, 9, "I1,I2,I3");
+        addSeat("S010", "SE004", 10, 9, "J1,J2,J3");
 
     }
 
