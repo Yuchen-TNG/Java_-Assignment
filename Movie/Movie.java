@@ -189,5 +189,8 @@ public class Movie {
         }return "System problem";
     }
 
+    public String getName(){
+        return Name.get(i);
+    }
 
 }

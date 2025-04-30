@@ -4,7 +4,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class Payment {
+public class payment {
     private static double paymentamount = 12.00; // number of price of ticket
     private int method; // touch n go, cash, credit card
     private static double tax = 0.06;
@@ -37,6 +37,10 @@ public class Payment {
         return totalprice;
     }
 
+    public double getpaymentamount(){
+        return paymentamount;
+    }
+    
     public void setexpiredMonth(YearMonth expiredMonth){
         this.expiredMonth = expiredMonth;
     }
