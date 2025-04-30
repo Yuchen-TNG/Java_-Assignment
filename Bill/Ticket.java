@@ -1,6 +1,7 @@
+package Bill;
 import java.util.UUID;
 
-public class Ticket {
+public class Ticket<Customer> {
     private String ticketID; 
     private Customer customer; 
 

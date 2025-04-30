@@ -1,15 +1,16 @@
+package Bill;
 import java.time.LocalDate;
 import java.util.UUID;
-import Payment.Payment;
+import Payment.payment;
 import Movie.Movie;
 public class Invoice {
     private String invoiceID; 
     private LocalDate invoiceDate; 
-    private Payment payment;
+    private payment payment;
     private Ticket ticket; 
     private Movie movie; 
 
-    public Invoice(Payment payment, Ticket ticket, Movie movie) {
+    public Invoice(payment payment, Ticket ticket, Movie movie) {
         this.payment = payment;
         this.ticket = ticket;
         this.movie = movie;
