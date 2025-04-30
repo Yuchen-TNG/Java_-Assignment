@@ -1,3 +1,5 @@
+import Movie.Movie;
+
 public class Staff extends User implements Interface {
 
     private String staffID;
@@ -115,8 +117,6 @@ public class Staff extends User implements Interface {
                 case 2:
                     System.out.println("Select Your Movie");
                     movie.setMovie();
-                    movie.getMovie();
-                    movie.clearMovie();
                     break;
                 case 3:
                     Logout();
