@@ -1,3 +1,4 @@
+package Payment;
 import java.text.DecimalFormat;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +17,7 @@ public class Payment {
     private long cardnumber;
     private int CVV;
 
-    public Payment(Booking booking) {
+    public payment(Booking booking) {
         this.booking = booking;
     }
 

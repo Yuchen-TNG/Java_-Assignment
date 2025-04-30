@@ -11,10 +11,9 @@ public class Schedule {
 
     ArrayList<String> scheduleId = new ArrayList<>();
     ArrayList<String> movieID = new ArrayList<>();
-    ArrayList<String> scheduleId = new ArrayList<>();
     ArrayList<String> time = new ArrayList<>();
     ArrayList<String> date = new ArrayList<>();
-    ArrayList<Double> duration = new ArrayList<>();
+    ArrayList<String> duration = new ArrayList<>();
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
     Scanner cin = new Scanner(System.in); // 加上Scanner
@@ -159,7 +158,7 @@ public class Schedule {
         String time = "";
         String movieID = "";
         String scheduleID = "";
-        double duration = 0.0;
+        String duration;
 
         showSchedule();
         while (true) {
@@ -259,7 +258,7 @@ public class Schedule {
                     while (true) {
                         System.out.print("Duration: ");
                         if (cin.hasNextDouble() || cin.hasNextInt()) {
-                            duration = cin.nextDouble();
+                            duration = cin.next();
                             break;
                         } else {
                             System.out.println("Invalid, please input the number");
