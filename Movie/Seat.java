@@ -52,9 +52,11 @@ public class Seat {
                 index++;
             }
         }
-        System.out.print("ha");
+        selectSeat(scheduleId);
     }
 
-
+    public void selectSeat(String scheduleId){
+        
+    }
 
 }
