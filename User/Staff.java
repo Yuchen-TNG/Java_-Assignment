@@ -6,17 +6,18 @@ public class Staff extends User implements Interface {
     private static Staff[] staff = new Staff[10];
     private static int staffCount = 0;
     Movie movie = new Movie();
+    Schedule schedule = new Schedule();
     Customer customer = new Customer();
 
     static {
-        staff[0] = new Staff("Leon", 30, "M", "18/6/2006", "01110738155", "staff@gmail.com", "password123", "S001",
-                "Manager");
+        staff[0] = new Staff("Leon", 30, "M", "18/6/2006", "01110738155", "staff@gmail.com", "password123", "S001", "Manager");
     }
 
     public Staff() {
     }
 
-    public Staff(String name, int age, String gender, String birthday, String phoneNo, String email, String password, String staffID, String position) {
+    public Staff(String name, int age, String gender, String birthday, String phoneNo, String email, String password,
+            String staffID, String position) {
         super(name, age, gender, birthday, phoneNo, email, password);
         this.staffID = staffID;
         this.position = position;
@@ -115,12 +116,15 @@ public class Staff extends User implements Interface {
                 case 2:
                     System.out.println("Select Your Movie");
                     movie.setMovie();
-                    movie.getMovie();
-                    movie.clearMovie();
                     break;
                 case 3:
                     Logout();
                     return;
+                case 4:
+                    System.out.println("Select Your MovieId: ");
+                    String movieId = cin.next();
+                    schedule.getSchedule(movieId);
+                    break;
                 default:
                     System.out.println("Invalid choice! Please select a number between 1 and 3.");
             }
@@ -133,6 +137,7 @@ public class Staff extends User implements Interface {
         System.out.println("1. View Customer Details");
         System.out.println("2. Add Movie");
         System.out.println("3. Logout");
+        System.out.println("4. checkSchedule");
         System.out.print("Selection: ");
     }
 

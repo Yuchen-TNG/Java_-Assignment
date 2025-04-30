@@ -7,6 +7,7 @@ public class Menu {
         Customer customer = new Customer();
         Staff staff = new Staff();
         int selection;
+        Schedule schedule = new Schedule();
 
         do {
             displayMainMenu();
@@ -19,6 +20,9 @@ public class Menu {
             cin.nextLine();
 
             switch (selection) {
+                case 0:
+                    schedule.setSchedule();
+                    break;
                 case 1:
                     customer.Register();
                     break;

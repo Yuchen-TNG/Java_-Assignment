@@ -4,26 +4,29 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Schedule extends Movie {
+public class Schedule {
+
+    ArrayList<String> scheduleId = new ArrayList<>();
     ArrayList<String> movieID = new ArrayList<>();
     ArrayList<String> time = new ArrayList<>();
     ArrayList<String> date = new ArrayList<>();
     ArrayList<String> duration = new ArrayList<>();
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
-    Scanner cin = new Scanner(System.in);  // 加上Scanner
+    Scanner cin = new Scanner(System.in); // 加上Scanner
 
     public Schedule() {
-        addSchedule("M001", "11:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "12:00", "2025-02-27", "2 hours");
-        addSchedule("M001", "13:00", "2025-01-21", "2 hours");
-        addSchedule("M001", "14:00", "2025-02-01", "2 hours");
-        addSchedule("M002", "15:00", "2025-03-28", "1.5 hours");
-        addSchedule("M002", "13:00", "2025-04-28", "2 hours");
-        addSchedule("M003", "15:00", "2025-05-28", "1.5 hours");
+        addSchedule("S001", "M001", "11:00", "2025-01-28", "2 hours");
+        addSchedule("S002", "M001", "12:00", "2025-02-27", "2 hours");
+        addSchedule("S003", "M001", "13:00", "2025-01-21", "2 hours");
+        addSchedule("S004", "M001", "14:00", "2025-02-01", "2 hours");
+        addSchedule("S005", "M002", "15:00", "2025-03-28", "1.5 hours");
+        addSchedule("S006", "M002", "13:00", "2025-04-28", "2 hours");
+        addSchedule("S007", "M003", "15:00", "2025-05-28", "1.5 hours");
     }
 
-    public void addSchedule(String movieID, String time, String date, String duration) {
+    public void addSchedule(String scheduleId, String movieID, String time, String date, String duration) {
+        this.scheduleId.add(scheduleId);
         this.movieID.add(movieID);
         this.time.add(time);
         this.date.add(date);
@@ -128,6 +131,69 @@ public class Schedule extends Movie {
     }
 
     public void setSchedule() {
-        // 留着以后用
+        int selection;
+        String date;
+        String time;
+
+        showSchedule();
+        System.out.print("Selection: ");
+        selection = cin.nextInt();
+        System.out.print("ScheduleId: ");
+        String scheduleID = cin.next();
+        System.out.print("Movie ID: ");
+        String movieID = cin.next();
+        while (true) {
+            System.out.print("Date: ");
+            date = cin.next();
+            if (date.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                break;
+            } else {
+                System.out.println("invalid please follow the format(yyyy-mm-dd)");
+            }
+        }
+        while (true) {
+            System.out.print("Time: ");
+            time = cin.next();
+            if (time.matches("\\d{2}:\\d{2}")) {
+                int hour = Integer.parseInt(time.split(":")[0]);
+                int minute = Integer.parseInt(time.split(":")[1]);
+                if (hour < 24 && minute < 60) {
+                    break;
+                } else {
+                    System.out.println("Invalid please enter the time correctly");
+                }
+            } else {
+                System.out.println("invalid please follow the format(00:00)");
+            }
+        }
+        System.out.print("Duration: ");
+        String duration = cin.next();
+
+        this.scheduleId.set(selection - 1, scheduleID);
+        this.movieID.set(selection - 1, movieID);
+        this.date.set(selection - 1, date);
+        this.time.set(selection - 1, time);
+        this.duration.set(selection - 1, duration);
+
+        showSchedule();
+
+    }
+
+    public void showSchedule() {
+        System.out.println("====================Schedule Details====================");
+        System.out.printf("%-4s %-12s %-10s %-12s %-8s %-10s\n", "No", "ScheduleId", "Movie ID", "Date", "Time",
+                "Duration");
+
+        for (int i = 0; i < scheduleId.size(); i++) {
+
+            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-10s\n",
+                    (i + 1),
+                    this.scheduleId.get(i),
+                    this.movieID.get(i),
+                    this.date.get(i),
+                    this.time.get(i),
+                    this.duration.get(i));
+        }
+
     }
 }
