@@ -3,10 +3,10 @@ import java.util.Scanner;
 public class User {
 
     Scanner cin = new Scanner(System.in);
-    int selection;
     private String name;
     private int age;
     private String gender;
+    private String birthday;
     private String phoneNo;
     private String email;
     private String password;
@@ -14,13 +14,14 @@ public class User {
     public User() {
     }
 
-    public User(String name, int age, String gender, String phoneNo, String password, String email) {
+    public User(String name, int age, String gender, String birthday, String phoneNo, String email, String password) {
         this.name = name;
         this.age = age;
         this.gender = gender;
+        this.birthday = birthday;
         this.phoneNo = phoneNo;
-        this.password = password;
         this.email = email;
+        this.password = password;
     }
 
     public String getName() {
@@ -39,7 +40,15 @@ public class User {
         this.gender = gender;
     }
 
-    public String getphoneNo(){
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getphoneNo() {
         return phoneNo;
     }
 
@@ -72,7 +81,8 @@ public class User {
     }
 
     public String toString() {
-        return String.format("\nName: %s\nAge: %d\nGender: %s\nPhoneNo: %s\nEmail: %s", name, age, gender,phoneNo, email);
+        return String.format("\nName: %s\nAge: %d\nGender: %s\nBirthday: %s\nPhoneNo: %s\nEmail: %s", name, age, gender,
+                birthday, phoneNo, email);
     }
 
 }

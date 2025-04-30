@@ -5,7 +5,7 @@ public class Menu {
 
         Scanner cin = new Scanner(System.in);
         Customer customer = new Customer();
-        Movie movie = new Movie();
+        Staff staff = new Staff();
         int selection;
 
         do {
@@ -26,16 +26,10 @@ public class Menu {
                     customer.loginCustAcc();
                     break;
                 case 3:
-                customer.showAllCustomer();
+                    staff.staffLogin();
                     break;
                 case 4:
                     System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
-                    break;
-                case 5:
-                    System.out.println("Select Your Movie");
-                    movie.setMovie();
-                    movie.getMovie();
-                    movie.clearMovie();
                     break;
                 default:
                     System.out.println("Invalid choice! Please select a number between 1 and 4.");
@@ -51,7 +45,6 @@ public class Menu {
         System.out.println("2. Login Customer");
         System.out.println("3. Login Staff");
         System.out.println("4. Exit");
-        System.out.println("5. kaizhenPart");
         System.out.print("Selection: ");
     }
 }

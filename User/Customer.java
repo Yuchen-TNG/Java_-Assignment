@@ -1,18 +1,18 @@
+public class Customer extends User implements Interface {
 
-public class Customer extends User {
-
-    private static int nextCustomerID=1001;
+    private static int nextCustomerID = 1001;
     private int customerID;
-    private User[] users;
+    private static User[] users = new User[100];
     private static int customerCount = 0;
+    private boolean checkLogin;
 
     public Customer() {
-        users = new User[3];
     }
 
-    public Customer(String name, int age, String gender, String phoneNo, String password, String email) {
-        super(name, age, gender, phoneNo, password, email);
-        this.customerID=nextCustomerID++;
+    public Customer(String name, int age, String gender, String birthday, String phoneNo, String email,
+            String password) {
+        super(name, age, gender, birthday, phoneNo, email, password);
+        this.customerID = nextCustomerID++;
     }
 
     public int getCustomerID() {
@@ -29,32 +29,56 @@ public class Customer extends User {
 
     public void Register() {
         String email = "";
-        String phoneNo;
+        String phoneNo = "";
+        int age;
+        String birthday = null;
 
         System.out.println("\n=====Registration=====");
         System.out.print("Name: ");
         String name = cin.nextLine();
 
-        System.out.print("Age: ");
-        int age = cin.nextInt();
-        cin.nextLine();
+        while (true) {
+            System.out.print("Age: ");
+            if (cin.hasNextInt()) {
+                age = cin.nextInt();
+                break;
+            } else {
+                System.out.println("invalid, please enter your age");
+                cin.next();
+            }
+        }
 
         System.out.print("Gender(M/F): ");
         String gender = cin.next();
         cin.nextLine();
 
-        while (true) {
-            System.out.print("PhoneNo: ");
-            phoneNo = cin.next();
-            if (phoneNo.matches("\\d{3}-\\d{3}-\\d{4}") || phoneNo.matches("\\d{3}-\\d{4}-\\d{4}")) {
-                break;
-            } else {
-                System.out.println("invalid phone No. please follow the format(000-000-0000 or 000-0000-0000)");
-            }
-        }
+        // while (true) {
+        // System.out.print("Birthday(DD/MM/YYYY): ");
+        // birthday = cin.next();
+        // cin.nextLine();
+        // if (birthday.matches("\\d{2}/\\d{2}/\\d{4}")) {
+        // break;
+        // } else {
+        // System.out.println("Invalid Format. please follow the format(DD/MM/YYYY)");
+        // }
+        // }
+
+        // while (true) {
+        // System.out.print("PhoneNo: ");
+        // phoneNo = cin.next();
+        // cin.nextLine();
+        // if (phoneNo.matches("\\d{3}-\\d{3}-\\d{4}") ||
+        // phoneNo.matches("\\d{3}-\\d{4}-\\d{4}")) {
+        // break;
+        // } else {
+        // System.out.println("invalid phone No. please follow the format(000-000-0000
+        // or 000-0000-0000)");
+        // }
+        // }
         while (true) {
             System.out.print("Email: ");
             email = cin.next();
+            cin.nextLine();
             if (email.contains("@gmail.com")) {
                 break;
             } else {
@@ -65,17 +89,16 @@ public class Customer extends User {
         String password = cin.next();
         cin.nextLine();
 
-        Customer newUser = new Customer(name, age, gender, phoneNo, password, email);
+        Customer newUser = new Customer(name, age, gender, birthday, phoneNo, email, password);
         if (customerCount < users.length) {
             users[customerCount] = newUser;
             customerCount++;
             System.out.println("User Registered Successfully! ");
-
         } else {
             System.out.println("User storage is full!");
             System.exit(0);
         }
-        System.out.println(users[customerCount-1].toString());
+        System.out.println(users[customerCount - 1].toString());
     }
 
     public void loginCustAcc() {
@@ -92,6 +115,8 @@ public class Customer extends User {
                     continue;
                 if (users[i].getEmail().equals(email) && users[i].getPassword().equals(password)) {
                     System.out.println("Login Successfully!");
+                    checkLogin = true;
+                    getMenu();
                     return;
                 }
             }
@@ -109,6 +134,7 @@ public class Customer extends User {
                                 verifyinput = true;
                                 break;
                             case 2:
+                                cin.nextLine();
                                 return;
                         }
                     } else {
@@ -123,13 +149,64 @@ public class Customer extends User {
         }
     }
 
-    public void showAllCustomer(){
-        for(int i = 0;i<customerCount;i++){
-            System.out.println(users[i].toString());
+    public void Logout() {
+        System.out.println("Logout.....");
+        if (checkLogin) {
+            System.out.println("Logout Successfully.");
+            checkLogin = false;
+        } else {
+            System.out.println("No user is currently logged in.");
+        }
+    }
+
+    public static void showAllCustomer() {
+        if (customerCount == 0) { 
+            System.out.println("\nNo customers registered yet.");
+            return;
+        }
+        for (int i = 0; i < customerCount; i++) {
+            if (users[i] != null) {
+                System.out.println(users[i].toString());
             }
+        }
+    }
+
+    public void getMenu() {
+        int selection;
+
+        do {
+            displayCustMenu();
+            while (!cin.hasNextInt()) {
+                System.out.println("Invalid choice! Please select a number between 1 and 3.");
+                cin.next();
+            }
+            displayCustMenu();
+            selection = cin.nextInt();
+
+            switch (selection) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    Logout();
+                    return;
+                default:
+                    System.out.println("Invalid choice! Please select a number between 1 and 3.");
+            }
+        } while (selection != 3);
+        cin.close();
     }
 
     public String toString() {
-        return "\n=====User Details=====" + "\nCustomerID: " + customerID + super.toString();
+        return "\n\n=====User Details=====" + "\nCustomerID: " + customerID + super.toString();
+    }
+
+    public static void displayCustMenu() {
+        System.out.println("\n====Customer Menu====");
+        System.out.println("1. View Movie");
+        System.out.println("2. Booking Ticket");
+        System.out.println("3. Logout");
+        System.out.print("Selection: ");
     }
 }
