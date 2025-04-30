@@ -43,8 +43,8 @@ public class Invoice {
         System.out.println("Ticket ID : " + ticket.getTicketID());
         System.out.println("-----------------------------");
         System.out.println("Payment Details : ");
-        System.out.println("Total Price : RM " + String.format("%.2f", payment.gettotalPrice()));
-        System.out.println("Total Amount : RM " + String.format("%.2f", payment.gettotalAmount()));
+        System.out.println("Total Amount : RM " + String.format("%.2f", payment.getpaymentamount()));
+        System.out.println("Total Price : RM " + String.format("%.2f", payment.gettotalprice()));
         System.out.println("-----------------------------");
         System.out.println("Thank you for your purchase!");
         System.out.println("=============================");

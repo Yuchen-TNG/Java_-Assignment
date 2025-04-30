@@ -37,6 +37,10 @@ public class payment {
         return totalprice;
     }
 
+    public double getpaymentamount(){
+        return paymentamount;
+    }
+    
     public void setexpiredMonth(YearMonth expiredMonth){
         this.expiredMonth = expiredMonth;
     }
