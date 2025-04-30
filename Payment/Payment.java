@@ -17,7 +17,7 @@ public class Payment {
     private long cardnumber;
     private int CVV;
 
-    public payment(Booking booking) {
+    public Payment(Booking booking) {
         this.booking = booking;
     }
 
