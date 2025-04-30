@@ -32,7 +32,8 @@ public class Invoice {
         return invoiceDate;
     }
 
-    private String generateLuckyDraw() {
+    private String generateLuckyDraw() { //生成幸运抽奖
+        // 这里可以根据需要生成不同的奖品
         String[] prizes = {"Free Popcorn", "Free Movie Ticket", "Discount Voucher","Free Drink", "Gift Card"};
         Random random = new Random();
         int index = random.nextInt(prizes.length);
