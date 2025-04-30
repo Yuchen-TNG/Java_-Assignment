@@ -72,7 +72,7 @@ public class payment {
     }
 
     //cash
-    public static double paymentmethod_cash(double amount){
+    public static double  paymentmethod_cash(double amount){
         double balance = totalprice - amount;
         if (balance > 0) {
             return balance;
