@@ -1,103 +1,142 @@
-import java.util.Date;
+import java.text.DecimalFormat;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
-public class payment {
-    private String paymentID;
+public class Payment {
     private static double paymentamount = 12.00; // number of price of ticket
     private int method; // touch n go, cash, credit card
     private static double tax = 0.06;
-    private static double totalprice;// payment amount + (tax * paymentamount)
-    private boolean paymentstatus; // true = success, false = failed
+    private double totalprice;
     private String[] paymenthistory;
+    private YearMonth expiredMonth;
 
-    //fakedata
-    private String movie="The minecraft movie";
-    private String Cinemaven="Kuala Lumpur- Setapak Central";
-    private int numofhall= 3;
-    private String seatnumber="04A";
-    private static int numofticket;
-    private String name= "Yuchen";
-    private String email= "eason061221@gmail.com";
+    private Booking booking;
+    private double userpay;
+    private long cardnumber;
+    private int CVV;
 
-    public payment(int numofticket, int method){
-        payment.numofticket= numofticket;
-        this.method= method;
-
+    public Payment(Booking booking) {
+        this.booking = booking;
     }
 
-    public String getpaymentID(){
-        return paymentID;
+    public void setmethod(int method){
+        this.method = method;
     }
 
-    public double getpaymentamount(){
-        return paymentamount;
+    public long getcardnumber(){
+        return cardnumber;
     }
 
-    public int getmethod(){
-        return method;
+    public void calculatetotalprice(){
+        this.totalprice = paymentamount + (paymentamount * booking.getnumberofperson()) * tax; //(12.00 x 3.00)* 0.06;
     }
 
     public double gettotalprice(){
         return totalprice;
     }
 
-    public boolean getpaymentstatus(){
-        return paymentstatus;
-    }
-    
-
-    //set
-
-    public void setpaymentamount(double paymentamount){
-        this.paymentamount=paymentamount;
+    public void setexpiredMonth(YearMonth expiredMonth){
+        this.expiredMonth = expiredMonth;
     }
 
-    public void setpaymentID(String paymentID){
-        this.paymentID= paymentID;
-    }
-
-    public void setmethod(int method){
-        this.method=method;
-    }
-
-    public void settotalprice(double totalprice){
-        this.totalprice=totalprice;
-    }
-
-    public void setpaymentstatus(boolean paymentstatus){
-        this.paymentstatus=paymentstatus;
-    }
-
-    public static void calculatetotalprice(){
-        totalprice = paymentamount*numofticket  + ((paymentamount*numofticket)*tax);
-    }
-
-    //cash
-    public static double  paymentmethod_cash(double amount){
-        double balance = totalprice - amount;
-        if (balance > 0) {
-            return balance;
+    public boolean validExpiredMonth(){
+            YearMonth now = YearMonth.now(); // Get the current month and year
+            System.out.println("Current date: " + now);  // Add this to debug
+            System.out.println("Expired date: " + expiredMonth); // Add this to debug
+            return expiredMonth != null && !expiredMonth.isBefore(now); // Check if the expiredMonth is after or equal to the current month/year
         }
-        return 0;
-    }
 
-    //credit card
-    public static boolean paymenthod_creditcard(String cardnumber){
-        if (cardnumber.length() == 16){
-            return true;
-        }else{
-            return false;
+        public void paymentmethod() {
+            Scanner input = new Scanner(System.in);
+        
+            while (true) {
+                switch (this.method) {
+                    case 1:
+                        System.out.print("Please enter your amount: ");
+                        userpay = input.nextDouble();
+                        input.nextLine();
+                        DecimalFormat df = new DecimalFormat("0.00");
+        
+                        if (userpay >= totalprice) {
+                            System.out.println("Payment successful. Remaining money: " + df.format(userpay - totalprice));
+                            return; // 退出方法
+                        } else {
+                            System.out.println("Payment unsuccessful, please try again.");
+                        }
+                        break;
+        
+                    case 2:
+                        System.out.print("Enter card number (16 digits): ");
+                        cardnumber = input.nextLong();
+                        input.nextLine();
+        
+                        String Cardnumber = String.valueOf(cardnumber); // convert long to string
+                        if (Cardnumber.length() == 16) {
+                            System.out.print("Enter CVV (3 digits): ");
+                            CVV = input.nextInt(); //let user input
+                            input.nextLine();
+        
+                            if (CVV >= 100 && CVV <= 999) {
+                                System.out.print("Enter expiry date (MM/yy): ");
+                                String exp = input.nextLine();
+                                if (exp.length() == 5 && exp.charAt(2) == '/') {
+                                    expiredMonth = YearMonth.parse(exp, DateTimeFormatter.ofPattern("MM/yy"));
+                                    if (validExpiredMonth()) {
+                                        System.out.println("Payment successful");
+                                        return;
+                                    } else {
+                                        System.out.println("Payment unsuccessful, your card is expired.");
+                                    }
+                                } else {
+                                    System.out.println("Invalid format. Please enter date as MM/yy.");
+                                }
+        
+                            } else {
+                                System.out.println("Fail, please enter the correct CVV.");
+                            }
+                        } else {
+                            System.out.println("Payment failed. Card number must be 16 digits.");
+                        }
+                        break;
+        
+                    case 3:
+                        input.nextLine(); // 清除残留换行
+                        System.out.println("This is QR code, scan this to complete your payment");
+                        System.out.println("█████████████████████████");
+                        System.out.println("██  ██  ██      ██  ██ ██");
+                        System.out.println("██  ██  ██████  ████   ██");
+                        System.out.println("██      ██  ██      █  ██");
+                        System.out.println("██  ████  ████  ████   ██");
+                        System.out.println("██  ██      ██  ██  ██ ██");
+                        System.out.println("█████████████████████████");
+                        System.out.println("██                     ██");
+                        System.out.println("██                     ██");
+                        System.out.println("██                     ██");
+                        System.out.println("█████████████████████████");
+        
+                        System.out.print("Did you complete the payment? (y/n): ");
+                        String answer = input.nextLine().toLowerCase();
+        
+                        if (answer.equals("y") || answer.equals("yes")) {
+                            System.out.println("Payment successful");
+                            return;
+                        } else {
+                            System.out.println("Payment failed! Please try again.");
+                        }
+                        break;
+        
+                    default:
+                        System.out.println("Please enter a correct number (1 - 3): ");
+                        if (input.hasNextInt()) {
+                            this.method = input.nextInt();
+                            input.nextLine();
+                        } else {
+                            input.nextLine(); // 清掉无效输入
+                            System.out.println("Invalid input. Please enter a number.");
+                        }
+                        break;
+                }
+            }
+        } //while 的（）；        
         }
-    }
-
-    public static boolean CVV(int CVV){
-        if (CVV >= 100 && CVV  <= 999){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    
-
-
-}
