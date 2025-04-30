@@ -33,6 +33,7 @@ public class Schedule {
         this.duration.add(duration);
     }
 
+    // ===============================================Get Schedule==============================================================
     public void getSchedule(String movieID) {
         ArrayList<String> pendingDate = new ArrayList<>();
         ArrayList<String> pendingTime = new ArrayList<>();
@@ -130,6 +131,7 @@ public class Schedule {
         }
     }
 
+    // =================================================Set Schedule=======================================================
     public void setSchedule() {
         int selection;
         int choice;
@@ -154,7 +156,6 @@ public class Schedule {
                 cin.next();
             }
         }
-        // =========================================================================================================================
         do {
             System.out.println("\n=====Edit Schedule=====");
             System.out.println("1. Schedule Id");
@@ -254,6 +255,7 @@ public class Schedule {
         showSchedule();
 
     }
+    // ================================================Schedule Display==========================================================
 
     public void showSchedule() {
         System.out.println("\n========================SCHEDULE LISTS========================");
@@ -262,14 +264,8 @@ public class Schedule {
         System.out.println("--------------------------------------------------------------");
 
         for (int i = 0; i < scheduleId.size(); i++) {
-
-            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2s hours\n",
-                    (i + 1),
-                    this.scheduleId.get(i),
-                    this.movieID.get(i),
-                    this.date.get(i),
-                    this.time.get(i),
-                    this.duration.get(i));
+            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2s hours\n", (i + 1), this.scheduleId.get(i),
+                    this.movieID.get(i), this.date.get(i), this.time.get(i), this.duration.get(i));
         }
         System.out.println("==============================================================");
     }
