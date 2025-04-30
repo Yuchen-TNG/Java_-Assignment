@@ -11,6 +11,7 @@ public class Menu {
         Staff staff = new Staff();
         Movie mv =new Movie();
         int selection;
+        Schedule schedule = new Schedule();
 
         do {
             displayMainMenu();
@@ -23,6 +24,9 @@ public class Menu {
             cin.nextLine();
 
             switch (selection) {
+                case 0:
+                    schedule.setSchedule();
+                    break;
                 case 1:
                 mv.choiceMovie();
                     break;
@@ -52,3 +56,4 @@ public class Menu {
         System.out.print("Selection: ");
     }
 }
+

@@ -163,6 +163,12 @@ public class Movie {
         System.out.println("Select Your Movie");
         int choice = cin.nextInt();
         choice+=-1;
+
+        String movieName = Name.get(choice);
+        Booking booking = new Booking(movieName);
+        booking.displayticket();
+
+
         Schedule sc=new Schedule();
         sc.getSchedule(ID.get(choice));
     }

@@ -52,29 +52,28 @@ public class Customer extends User implements Interface {
         String gender = cin.next();
         cin.nextLine();
 
-        // while (true) {
-        // System.out.print("Birthday(DD/MM/YYYY): ");
-        // birthday = cin.next();
-        // cin.nextLine();
-        // if (birthday.matches("\\d{2}/\\d{2}/\\d{4}")) {
-        // break;
-        // } else {
-        // System.out.println("Invalid Format. please follow the format(DD/MM/YYYY)");
-        // }
-        // }
+        while (true) {
+        System.out.print("Birthday(DD/MM/YYYY): ");
+        birthday = cin.next();
+        cin.nextLine();
+        if (birthday.matches("\\d{2}/\\d{2}/\\d{4}")) {
+        break;
+        } else {
+        System.out.println("Invalid Format. please follow the format(DD/MM/YYYY)");
+        }
+        }
 
-        // while (true) {
-        // System.out.print("PhoneNo: ");
-        // phoneNo = cin.next();
-        // cin.nextLine();
-        // if (phoneNo.matches("\\d{3}-\\d{3}-\\d{4}") ||
-        // phoneNo.matches("\\d{3}-\\d{4}-\\d{4}")) {
-        // break;
-        // } else {
-        // System.out.println("invalid phone No. please follow the format(000-000-0000
-        // or 000-0000-0000)");
-        // }
-        // }
+        while (true) {
+        System.out.print("PhoneNo: ");
+        phoneNo = cin.next();
+        cin.nextLine();
+        if (phoneNo.matches("\\d{3}-\\d{3}-\\d{4}") ||
+        phoneNo.matches("\\d{3}-\\d{4}-\\d{4}")) {
+        break;
+        } else {
+        System.out.println("invalid phone No. please follow the format(000-000-0000 or 000-0000-0000)");
+        }
+        }
         while (true) {
             System.out.print("Email: ");
             email = cin.next();
