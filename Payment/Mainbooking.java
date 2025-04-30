@@ -15,7 +15,7 @@ public class Mainbooking {
         Booking show = new Booking();
         show.userchoice(choice, confirm);
         show.autoshowbooking(confirm);
-        Payment payment = new Payment(); //call payment function
+        payment payment = new payment(show); //call payment function
 
         payment.calculatetotalprice();
 
