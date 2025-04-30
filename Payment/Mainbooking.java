@@ -1,7 +1,8 @@
+package Payment;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class MainBooking {
+public class Mainbooking {
     public static void main(String[] args){
         //confirm = Array名字
         ArrayList<Booking> confirm = new ArrayList<>();
@@ -14,7 +15,7 @@ public class MainBooking {
         Booking show = new Booking();
         show.userchoice(choice, confirm);
         show.autoshowbooking(confirm);
-        Payment payment = new Payment(show); //call payment function
+        Payment payment = new Payment(); //call payment function
 
         payment.calculatetotalprice();
 

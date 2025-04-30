@@ -1,5 +1,8 @@
+package Movie;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import Payment.Booking;
 
 public class Movie {
 
