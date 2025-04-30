@@ -1,110 +1,50 @@
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
-
+import Payment.Payment;
+import Movie.Movie;
 public class Invoice {
-    private String invoiceID;
-    private String paymentID;
-    private payment payment;
-    private String ticketID;
-    private String customerName;
-    private String seatNumber;
-    private String movieTitle;
-    private Date date;
+    private String invoiceID; 
+    private LocalDate invoiceDate; 
+    private Payment payment;
+    private Ticket ticket; 
+    private Movie movie; 
 
-    public Invoice(String paymentID, payment payment, String ticketID, String customerName, String seatNumber,
-            String movieTitle, Date date) {
-        this.invoiceID = generateUniqueID("INV");
-        this.paymentID = payment.getpaymentID();
+    public Invoice(Payment payment, Ticket ticket, Movie movie) {
         this.payment = payment;
-        this.ticketID = ticketID;
-        this.customerName = customerName;
-        this.seatNumber = seatNumber;
-        this.movieTitle = movieTitle;
-        this.date = (date != null) ? date : new Date(); 
+        this.ticket = ticket;
+        this.movie = movie;
+        this.invoiceID = generateInvoiceID(); 
+        this.invoiceDate = LocalDate.now();
     }
 
-    private String generateUniqueID(String prefix) {
-        return prefix + "-" + UUID.randomUUID().toString();
+    private String generateInvoiceID() {
+        return "INVOICE-" + UUID.randomUUID().toString().substring(0, 8); 
     }
 
     public String getInvoiceID() {
         return invoiceID;
     }
 
-    public void setInvoiceID(String invoiceID) {
-        this.invoiceID = invoiceID;
+    public LocalDate getInvoiceDate() {
+        return invoiceDate;
     }
 
-    public String getPaymentID() {
-        return paymentID;
-    }
-
-    public void setPaymentID(String paymentID) {
-        this.paymentID = paymentID;
-    }
-
-    public payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(payment payment) {
-        this.payment = payment;
-    }
-
-    public String getTicketID() {
-        return ticketID;
-    }
-
-    public void setTicketID(String ticketID) {
-        this.ticketID = ticketID;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getSeatNumber() {
-        return seatNumber;
-    }
-
-    public void setSeatNumber(String seatNumber) {
-        this.seatNumber = seatNumber;
-    }
-
-    public String getMovieTitle() {
-        return movieTitle;
-    }
-
-    public void setMovieTitle(String movieTitle) {
-        this.movieTitle = movieTitle;
-    }
-
-    public double getTotalPrice() {
-        return payment.gettotalprice(); 
-    }
-
-    public double getFinalAmount() {
-        return payment.getpaymentamount(); 
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "Invoice" + "\nInvoiceID : " + invoiceID + "\nPayment ID : " + getPaymentID() +
-                "\nTicket ID" + getTicketID() + "\nCustomer Name : " + customerName +
-                "\nSeat Number : " + seatNumber + "\nMovie Title : " + movieTitle + 
-                "\nTotal Price : " + payment.gettotalprice() + "\nFinal Amount (6%Tax) : " + payment.getpaymentamount() + "\nDate : " + date + 
-                "\nPayment Status : " + (payment.getpaymentstatus() ? "Success" : "Failed")  + "";
+    public void printInvoice() {
+        System.out.println("========== INVOICE ==========");
+        System.out.println("Invoice ID: " + getInvoiceID());
+        System.out.println("Date: " + getInvoiceDate());
+        System.out.println("-----------------------------");
+        System.out.println("Movie Details:");
+        System.out.println("Movie Name: " + movie.getName());
+        System.out.println("-----------------------------");
+        System.out.println("Ticket Details:");
+        System.out.println("Ticket ID: " + ticket.getTicketID());
+        System.out.println("-----------------------------");
+        System.out.println("Payment Details:");
+        System.out.println("Total Price: RM " + String.format("%.2f", payment.gettotalPrice()));
+        System.out.println("Total Amount: RM " + String.format("%.2f", payment.gettotalAmount()));
+        System.out.println("-----------------------------");
+        System.out.println("Thank you for your purchase!");
+        System.out.println("=============================");
     }
 }

@@ -40,7 +40,7 @@ public class Schedule {
     }
 
     // ===============================================Get Schedule==============================================================
-    public void getSchedule(String movieID) {
+    public String[] getSchedule(String movieID) {
         ArrayList<String> pendingDate = new ArrayList<>();
         ArrayList<String> pendingTime = new ArrayList<>();
         Movie mv = new Movie();
@@ -132,22 +132,20 @@ public class Schedule {
             }
         } while (wrong);
 
-        /*
-         * String selectedTime = pendingTime.get(choiceTime - 1);
-         * 
-         * Step 8: 打印最终确认信息
-         * for (int i = 0; i < this.movieID.size(); i++) {
-         * if (this.movieID.get(i).equals(movieID)
-         * && this.date.get(i).equals(selectedDate)
-         * && this.time.get(i).equals(selectedTime)) {
-         * System.out.println("\n Your selected schedule:");
-         * System.out.printf(" Movie ID: %s\n Date: %s\n Time: %s\n Duration: %s\n",
-         * this.movieID.get(i), this.date.get(i), this.time.get(i),
-         * this.duration.get(i));
-         * break;
-         * }
-         * }
-         */
+        String selectedTime = pendingTime.get(choiceTime - 1);
+
+        // Step 8: 打印最终确认信息
+        for (int i = 0; i < this.movieID.size(); i++) {
+            if (this.movieID.get(i).equals(movieID)
+                    && this.date.get(i).equals(selectedDate)
+                    && this.time.get(i).equals(selectedTime)) {
+                System.out.println("\n Your selected schedule:");
+                System.out.printf(" Movie ID: %s\n Date: %s\n Time: %s\n Duration: %s\n",
+                        this.movieID.get(i), this.date.get(i), this.time.get(i), this.duration.get(i));
+                break;
+            }
+        }
+        return new String[]{selectedDate, selectedTime};
     }
 
     // =================================================Set Schedule=======================================================
@@ -187,7 +185,12 @@ public class Schedule {
             while (true) {
                 System.out.print("Choice: ");
                 if (cin.hasNextInt()) {
-                    choice = cin.nextInt();
+                    choice = cin.nextInt();//-------------------------------------
+                    
+
+
+
+
                     if (choice <= 6 && choice > 0) {
                         break;
                     } else {
