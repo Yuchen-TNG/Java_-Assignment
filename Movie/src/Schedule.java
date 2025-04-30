@@ -29,6 +29,7 @@ public class Schedule extends Movie {
         this.date.add(date);
         this.duration.add(duration);
     }
+<<<<<<< HEAD:menu/src/Schedule.java
 
     public void getSchedule(String movieID) {
         ArrayList<String> pendingDate = new ArrayList<>();
@@ -130,4 +131,6 @@ public class Schedule extends Movie {
     public void setSchedule() {
         // 留着以后用
     }
+=======
+>>>>>>> bcadd8dd832b23f3093aa05bdc99910264818b9c:Movie/src/Schedule.java
 }
