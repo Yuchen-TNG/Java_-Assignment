@@ -26,15 +26,10 @@ public class Menu {
                     customer.loginCustAcc();
                     break;
                 case 3:
-<<<<<<< HEAD:menu/src/Menu.java
-                    movie.choiceMovie();
-                    
-=======
                     staff.staffLogin();
                     break;
                 case 4:
                     System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
->>>>>>> bcadd8dd832b23f3093aa05bdc99910264818b9c:Menu.java
                     break;
                 default:
                     System.out.println("Invalid choice! Please select a number between 1 and 4.");
