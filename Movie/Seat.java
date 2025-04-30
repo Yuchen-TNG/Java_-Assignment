@@ -3,12 +3,14 @@ package Movie;
 import java.util.ArrayList;
 
 public class Seat {
+
     ArrayList<String> scheduleId = new ArrayList<>();
     ArrayList<String> id = new ArrayList<>();
     ArrayList<Integer> row = new ArrayList<>();
     ArrayList<Integer> column = new ArrayList<>();
 
     public Seat() {
+
         addSeat("S001", "SE001", 10, 9);
         addSeat("S002", "SE002", 10, 9);
         addSeat("S003", "SE003", 10, 9);
@@ -23,6 +25,7 @@ public class Seat {
     }
 
     public void addSeat(String scheduleId, String id, int column, int row) {
+        
         this.scheduleId.add(scheduleId);
         this.id.add(id);
         this.row.add(row);

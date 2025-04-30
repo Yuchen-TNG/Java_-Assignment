@@ -134,14 +134,11 @@ public class Schedule {
 
         String selectedTime = pendingTime.get(choiceTime - 1);
 
-        // Step 8: 打印最终确认信息
+
         for (int i = 0; i < this.movieID.size(); i++) {
             if (this.movieID.get(i).equals(movieID)
                     && this.date.get(i).equals(selectedDate)
                     && this.time.get(i).equals(selectedTime)) {
-                System.out.println("\n Your selected schedule:");
-                System.out.printf(" Movie ID: %s\n Date: %s\n Time: %s\n Duration: %s\n",
-                        this.movieID.get(i), this.date.get(i), this.time.get(i), this.duration.get(i));
                 break;
             }
         }
