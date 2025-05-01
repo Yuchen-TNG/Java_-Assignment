@@ -18,6 +18,7 @@ public class Booking {
 
         public Booking(){
             this.bookingID = generateBookingID();
+            this.seatNumbers = new ArrayList<>();
         }
 
         public Booking(String movie, String date, String time) {
