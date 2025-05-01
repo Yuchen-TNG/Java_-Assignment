@@ -235,8 +235,8 @@ public class Customer extends User implements Interface {
     }
 
     public void viewProfile() {
-        users[0] = new Customer("Leon chang rui hern", 19, "Mddd", "18/06/2006", "011-1073-8155", "Leon@gmail.com", null);
-            System.out.println(users[0].toString());
+        
+            System.out.println(users[custProfile].toString());
         
     }
 
