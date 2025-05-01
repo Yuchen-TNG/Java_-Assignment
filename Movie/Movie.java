@@ -130,8 +130,8 @@ public class Movie {
         int choice = cin.nextInt();
         choice += -1;
 
-        String movieName = db.getMovieNameBySomethingInt(choice);
-        String movieID = db.getMovieIdBySomethingInt(choice);
+        String movieName = db.getMovieNameBySomethingIntFromMovie(choice);
+        String movieID = db.getMovieIdBySomethingIntFromMovie(choice);
         Schedule sc = new Schedule();
         sc.getSchedule(movieID);
         String[] schedule = sc.getDateAndTime();

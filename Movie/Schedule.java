@@ -170,7 +170,7 @@ public class Schedule {
         String selectedTime = pendingTime.get(choiceTime - 1);
 
         for (int i = 0; i < db.movieIdSize(); i++) {
-            if (db.getMovieIdBySomethingInt(i).equals(movieID)
+            if (db.getMovieIdBySomethingIntFromMovie(i).equals(movieID)
                     && db.getScheduleDateBySomthing(i).equals(selectedDate)
                     && db.getScheduleTimeBySomthing(i).equals(selectedTime)) {
                 break;
@@ -311,8 +311,8 @@ public class Schedule {
         System.out.println("--------------------------------------------------------------");
 
         for (int i = 0; i < db.scheduleIdSize(); i++) {
-            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2.1f hours\n", (i + 1), this.scheduleId.get(i),
-                    this.movieID.get(i), this.date.get(i), this.time.get(i), this.duration.get(i));
+            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2.1f hours\n", (i + 1), db.getScheduleDateBySomthing(i),
+                    db.getMovieIdBySomthingFromSchedule(i), this.date.get(i), this.time.get(i), this.duration.get(i));
         }
         System.out.println("==============================================================");
     }

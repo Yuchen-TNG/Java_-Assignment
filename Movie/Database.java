@@ -103,11 +103,11 @@ public class Database {
         return "Can't find the data";
     }
 
-    public String getMovieNameBySomethingInt(int choice) {
+    public String getMovieNameBySomethingIntFromMovie(int choice) {
         return movieData.get(choice).getName();
     }
 
-    public String getMovieIdBySomethingInt(int choice) {
+    public String getMovieIdBySomethingIntFromMovie(int choice) {
         return movieData.get(choice).getMovieId();
     }
 
@@ -141,5 +141,13 @@ public class Database {
 
     public String getScheduleIdBySomthing(int something){
         return scheduleData.get(something).getScheduleId();
+    }
+
+    public String getMovieIdBySomthingFromSchedule(int something){
+        return scheduleData.get(something).getMovieId();
+    }
+
+    public String getScheduleDateBySomthing(int something){
+        return scheduleData.get(something).getDate();
     }
 }

@@ -17,7 +17,7 @@ public class Seat {
 
     public Seat() {}
 
-    public Seat(String scheduleId, String seatId, int column, int row, String bookedSeat) {}
+    public Seat(String scheduleId, String seatId, int column, int row, String bookedSeat) {    }
 
 
     public void showSeat(String scheduleId) {
