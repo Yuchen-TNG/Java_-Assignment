@@ -1,5 +1,6 @@
 package Payment;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Booking {
 
@@ -8,9 +9,9 @@ public class Booking {
 
         private String movie;
         private int numofhall= 3;
-        private String seatnumber="04A";
+        private List<String> seatNumbers; 
         private String email;
-        private int numberofperson = 3;
+        private int numberofperson;
         private String date;
         private String time;
 
@@ -33,6 +34,18 @@ public class Booking {
 
         public void setEmail(String email) {
             this.email = email;
+        }
+
+        public void setnumberofperson(int numberofperson){
+            this.numberofperson = numberofperson;
+        }
+
+        public void setseatnumber(String seatnumber){
+            seatNumbers.add(seatnumber);
+        }
+
+        public String getseatnumber(){
+            return String.join(",", seatNumbers);
         }
     
         public String getmovie(){
@@ -66,6 +79,10 @@ public class Booking {
         }
                 Booking newbooking = new Booking(this.movie, this.date, this.time);
                 newbooking.setEmail(this.email);
+                newbooking.setnumberofperson(this.numberofperson); // 复制 numberofperson
+                for (String seat : seatNumbers) {
+                    newbooking.setseatnumber(seat); // 复制所有座位
+                }
                 confirm.add(newbooking);
                 System.out.println("Make payment successfully");
     
@@ -90,9 +107,9 @@ public class Booking {
     System.out.println("Date: " + date);
     System.out.println("Time: " + time);
     System.out.println("Number of Hall: " + numofhall);
-    System.out.println("Your seat number: " + seatnumber);
+    System.out.println("Your seat number: " + getseatnumber());
     System.out.println("Number of Person: " + numberofperson);
-    
+
 }
 
 }
