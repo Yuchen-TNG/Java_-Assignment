@@ -111,7 +111,7 @@ public class Database {
         return movieData.get(choice).getMovieId();
     }
 
-    public String getPendingDateByMovieID(String movieID, int index) {
+    public String getPendingDateByMovieIDFromSchedule(String movieID, int index) {
         if (scheduleData.get(index).getMovieId().equals(movieID)) {
             String pendingDate = scheduleData.get(index).getDate();
             return pendingDate;
