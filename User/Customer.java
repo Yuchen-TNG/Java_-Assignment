@@ -3,6 +3,7 @@ import Payment.Booking;
 public class Customer extends User implements Interface {
 
     private static int nextCustomerID = 1001;
+    private int custProfile;
     private int customerID;
     private static User[] users = new User[100];
     private static int customerCount = 0;
@@ -22,14 +23,6 @@ public class Customer extends User implements Interface {
         return customerID;
     }
 
-    public User[] getusers() {
-        return users;
-    }
-
-    public static int getCustomerCount() {
-        return customerCount;
-    }
-
     public void Register() {
         String email = "";
         String phoneNo = "";
@@ -39,7 +32,6 @@ public class Customer extends User implements Interface {
         System.out.println("\n=====Registration=====");
         System.out.print("Name: ");
         String name = cin.nextLine();
-
 
         while (true) {
             System.out.print("Age: ");
@@ -57,26 +49,26 @@ public class Customer extends User implements Interface {
         cin.nextLine();
 
         while (true) {
-        System.out.print("Birthday(DD/MM/YYYY): ");
-        birthday = cin.next();
-        cin.nextLine();
-        if (birthday.matches("\\d{2}/\\d{2}/\\d{4}")) {
-        break;
-        } else {
-        System.out.println("Invalid Format. please follow the format(DD/MM/YYYY)");
-        }
+            System.out.print("Birthday(DD/MM/YYYY): ");
+            birthday = cin.next();
+            cin.nextLine();
+            if (birthday.matches("\\d{2}/\\d{2}/\\d{4}")) {
+                break;
+            } else {
+                System.out.println("Invalid Format. please follow the format(DD/MM/YYYY)");
+            }
         }
 
         while (true) {
-        System.out.print("PhoneNo: ");
-        phoneNo = cin.next();
-        cin.nextLine();
-        if (phoneNo.matches("\\d{3}-\\d{3}-\\d{4}") ||
-        phoneNo.matches("\\d{3}-\\d{4}-\\d{4}")) {
-        break;
-        } else {
-        System.out.println("invalid phone No. please follow the format(000-000-0000 or 000-0000-0000)");
-        }
+            System.out.print("PhoneNo: ");
+            phoneNo = cin.next();
+            cin.nextLine();
+            if (phoneNo.matches("\\d{3}-\\d{3}-\\d{4}") ||
+                    phoneNo.matches("\\d{3}-\\d{4}-\\d{4}")) {
+                break;
+            } else {
+                System.out.println("invalid phone No. please follow the format(000-000-0000 or 000-0000-0000)");
+            }
         }
         while (true) {
             System.out.print("Email: ");
@@ -101,17 +93,21 @@ public class Customer extends User implements Interface {
             System.out.println("User storage is full!");
             System.exit(0);
         }
-        System.out.println(users[customerCount - 1].toString());
     }
 
     public void loginCustAcc() {
         Booking booking = new Booking();
 
+        if (customerCount == 0) {
+            System.out.println("No customers registered yet.");
+            return;
+        }else
+
         while (true) {
             System.out.println("\n=====Customer Login=====");
             System.out.print("Email: ");
             String email = cin.next();
-            
+
             System.out.print("Password: ");
             String password = cin.next();
 
@@ -120,6 +116,7 @@ public class Customer extends User implements Interface {
                     continue;
                 if (users[i].getEmail().equals(email) && users[i].getPassword().equals(password)) {
                     System.out.println("Login Successfully!");
+                    this.custProfile = i;
                     checkLogin = true;
                     loggedInEmail = email;
                     booking.setEmail(loggedInEmail);
@@ -167,14 +164,33 @@ public class Customer extends User implements Interface {
     }
 
     public static void showAllCustomer() {
-        if (customerCount == 0) { 
-            System.out.println("\nNo customers registered yet.");
+
+        if (customerCount == 0) {
+            System.out.println("No customers registered yet.");
             return;
-        }
-        for (int i = 0; i < customerCount; i++) {
-            if (users[i] != null) {
-                System.out.println(users[i].toString());
+        } else {
+            System.out.println(
+                    "\n+=========================================================================================================================+");
+            System.out.println(
+                    "|                                                      CUSTOMER LISTS                                                     |");
+            System.out.println(
+                    "|=========================================================================================================================|");
+            System.out.printf("%-3s %-15s %-25s %-8s %-10s %-13s %-17s %-23s %-2s\n", "|", "Customer ID", "Name", "Age",
+                    "Gender", "Birthday", "PhoneNo", "Email", "|");
+            System.out.println(
+                    "|-------------------------------------------------------------------------------------------------------------------------|");
+            for (int i = 0; i < customerCount; i++) {
+                Customer customer = (Customer) users[i];
+                if (users[i] != null) {
+                    System.out.printf("%-3s %-15d %-25s %-8d %-10s %-13s %-17s %-23s %-2s\n", "|",
+                            customer.getCustomerID(),
+                            customer.getName(),
+                            customer.getAge(), customer.getGender(), customer.getBirthday(), customer.getPhoneNo(),
+                            customer.getEmail(), "|");
+                }
             }
+            System.out.println(
+                    "+=========================================================================================================================+");
         }
     }
 
@@ -182,38 +198,54 @@ public class Customer extends User implements Interface {
         int selection;
 
         do {
-            displayCustMenu();
-            while (!cin.hasNextInt()) {
-                System.out.println("Invalid choice! Please select a number between 1 and 3.");
-                cin.next();
-            }
+            
             displayCustMenu();
             selection = cin.nextInt();
 
             switch (selection) {
+                case 0:
+                    Logout();
+                    return;
                 case 1:
+                    viewProfile();
                     break;
                 case 2:
                     break;
                 case 3:
-                    Logout();
-                    return;
+                    break;
                 default:
-                    System.out.println("Invalid choice! Please select a number between 1 and 3.");
+                    System.out.println("Invalid choice! Please select a number 0 to 3.");
             }
-        } while (selection != 3);
+        } while (selection != 0);
         cin.close();
     }
 
-    public String toString() {
-        return "\n\n=====User Details=====" + "\nCustomerID: " + customerID + super.toString();
+    public void viewProfile() {
+        
+            System.out.println(users[custProfile].toString());
+        
     }
 
-    public static void displayCustMenu() {
-        System.out.println("\n====Customer Menu====");
-        System.out.println("1. View Movie");
-        System.out.println("2. Booking Ticket");
-        System.out.println("3. Logout");
-        System.out.print("Selection: ");
+    public String toString() {
+        return "\n\n+==============================+"+"\n|         User Profile         |" +"\n|==============================|"+ "\n| CustomerID: " + customerID +"             |"+ super.toString()+"\n+==============================+";
+    }
+
+    public void displayCustMenu() {
+
+        System.out.println("\n+=======================+");
+        System.out.println("|     CUSTOMER MENU     |");
+        System.out.println("|=======================|");
+        System.out.println("| 1. View Profile       |");
+        System.out.println("| 2. View Movie         |");
+        System.out.println("| 3. Booking Ticket     |");
+        System.out.println("| 0. Logout             |");
+        System.out.println("+=======================+");
+        System.out.print("Selection(0-3): ");
+        while (!cin.hasNextInt()) {
+            System.out.println("Invalid choice! Please select a number 0 to 3.");
+            cin.next();
+            System.out.print("Selection(0-3): ");
+        }
+
     }
 }

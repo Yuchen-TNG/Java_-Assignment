@@ -13,7 +13,7 @@ public class Schedule {
     ArrayList<String> movieID = new ArrayList<>();
     ArrayList<String> time = new ArrayList<>();
     ArrayList<String> date = new ArrayList<>();
-    ArrayList<String> duration = new ArrayList<>();
+    ArrayList<Double> duration = new ArrayList<>();
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
     Scanner cin = new Scanner(System.in); // 加上Scanner
@@ -21,19 +21,19 @@ public class Schedule {
     String selectedDate2;
 
     public Schedule() {
-        addSchedule("M001", "S001", "11:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "S002", "09:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "S003", "08:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "S004", "01:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "S005", "12:00", "2025-02-27", "2 hours");
-        addSchedule("M001", "S006", "13:00", "2025-01-21", "2 hours");
-        addSchedule("M001", "S007", "14:00", "2025-02-01", "2 hours");
-        addSchedule("M002", "S008", "15:00", "2025-03-28", "1.5 hours");
-        addSchedule("M002", "S009", "13:00", "2025-04-28", "2 hours");
-        addSchedule("M003", "S010", "15:00", "2025-05-28", "1.5 hours");
+        addSchedule("M001", "S001", "11:00", "2025-01-28", 2);
+        addSchedule("M001", "S002", "09:00", "2025-01-28", 2);
+        addSchedule("M001", "S003", "08:00", "2025-01-28", 2);
+        addSchedule("M001", "S004", "01:00", "2025-01-28", 2);
+        addSchedule("M001", "S005", "12:00", "2025-02-27", 2);
+        addSchedule("M001", "S006", "13:00", "2025-01-21", 2);
+        addSchedule("M001", "S007", "14:00", "2025-02-01", 2);
+        addSchedule("M002", "S008", "15:00", "2025-03-28", 1.5);
+        addSchedule("M002", "S009", "13:00", "2025-04-28", 2);
+        addSchedule("M003", "S010", "15:00", "2025-05-28", 1.5);
     }
 
-    public void addSchedule(String movieID, String scheduleId, String time, String date, String duration) {
+    public void addSchedule(String movieID, String scheduleId, String time, String date, double duration) {
         this.movieID.add(movieID);
         this.scheduleId.add(scheduleId);
         this.time.add(time);
@@ -153,11 +153,11 @@ public class Schedule {
         String time = "";
         String movieID = "";
         String scheduleID = "";
-        String duration;
+        double duration;
 
         showSchedule();
         while (true) {
-            System.out.print("Selection: ");
+            System.out.print("Selection(No): ");
             if (cin.hasNextInt()) {
                 selection = cin.nextInt();
                 if (selection <= scheduleId.size() && selection > 0) {
@@ -179,21 +179,13 @@ public class Schedule {
             System.out.println("5. Duration");
             System.out.println("6. Save");
             System.out.println("=======================");
-            while (true) {
+            System.out.print("Choice(1-6): ");
+            while (!cin.hasNextInt()) {
+                System.out.println("Invalid, please enter the number");
+                cin.next();
                 System.out.print("Choice: ");
-                if (cin.hasNextInt()) {
-                    choice = cin.nextInt();// -------------------------------------
-
-                    if (choice <= 6 && choice > 0) {
-                        break;
-                    } else {
-                        System.out.println("Invalid, please input the range of the choice ");
-                    }
-                } else {
-                    System.out.println("Invalid, please enter the number");
-                    cin.next();
-                }
             }
+            choice = cin.nextInt();
 
             switch (choice) {
                 case 1:
@@ -254,7 +246,7 @@ public class Schedule {
                     while (true) {
                         System.out.print("Duration: ");
                         if (cin.hasNextDouble() || cin.hasNextInt()) {
-                            duration = cin.next();
+                            duration = cin.nextDouble();
                             break;
                         } else {
                             System.out.println("Invalid, please input the number");
@@ -264,7 +256,10 @@ public class Schedule {
                     this.duration.set(selection - 1, duration);
                     break;
                 case 6:
+                System.out.println("Save successfully");
                     break;
+                default:
+                    System.out.println("Invalid, please input the range of the choice ");
             }
         } while (choice != 6);
         showSchedule();
@@ -280,27 +275,23 @@ public class Schedule {
         System.out.println("--------------------------------------------------------------");
 
         for (int i = 0; i < scheduleId.size(); i++) {
-            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2s hours\n", (i + 1), this.scheduleId.get(i),
+            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2.1f hours\n", (i + 1), this.scheduleId.get(i),
                     this.movieID.get(i), this.date.get(i), this.time.get(i), this.duration.get(i));
         }
         System.out.println("==============================================================");
     }
 
-
-    public void setDate_Time(String selectedDate,String selectedTime){
-        this.selectedDate2=selectedDate;
-        this.selectedTime2=selectedTime;
+    public void setDate_Time(String selectedDate, String selectedTime) {
+        this.selectedDate2 = selectedDate;
+        this.selectedTime2 = selectedTime;
     }
 
-    public String[] getDateAndTime(){
-        return new String[]{selectedDate2,selectedTime2};
+    public String[] getDateAndTime() {
+        return new String[] { selectedDate2, selectedTime2 };
     }
 
-    public String getDateAndTime2(){
-        return selectedDate2+selectedTime2;
+    public String getDateAndTime2() {
+        return selectedDate2 + selectedTime2;
     }
-
-    
 
 }
-
