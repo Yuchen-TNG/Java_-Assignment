@@ -1,17 +1,18 @@
 package Bill;
 import java.time.LocalDate;
 import java.util.UUID;
-import Payment.payment;
+import Payment.Payment;
 import Movie.Movie;
+import java.util.Random; 
 
 public class Invoice {
     private String invoiceID; 
     private LocalDate invoiceDate; 
-    private payment payment;
+    private Payment payment;
     private Ticket ticket; 
     private Movie movie; 
 
-    public Invoice(payment payment, Ticket ticket, Movie movie) {
+    public Invoice(Payment payment, Ticket ticket, Movie movie) {
         this.payment = payment;
         this.ticket = ticket;
         this.movie = movie;
@@ -31,6 +32,14 @@ public class Invoice {
         return invoiceDate;
     }
 
+    private String generateLuckyDraw() { //生成幸运抽奖
+        // 这里可以根据需要生成不同的奖品
+        String[] prizes = {"Free Popcorn", "Free Movie Ticket", "Discount Voucher","Free Drink", "Gift Card"};
+        Random random = new Random();
+        int index = random.nextInt(prizes.length);
+        return prizes[index];
+    }
+
     public void printInvoice() {
         System.out.println("========== INVOICE ==========");
         System.out.println("Invoice ID : " + getInvoiceID());
@@ -45,6 +54,8 @@ public class Invoice {
         System.out.println("Payment Details : ");
         System.out.println("Total Amount : RM " + String.format("%.2f", payment.getpaymentamount()));
         System.out.println("Total Price : RM " + String.format("%.2f", payment.gettotalprice()));
+        System.out.println("-----------------------------");
+        System.out.println("Lucky Draw Result : " + generateLuckyDraw());
         System.out.println("-----------------------------");
         System.out.println("Thank you for your purchase!");
         System.out.println("=============================");
