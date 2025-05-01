@@ -59,18 +59,18 @@ public class Database {
         return scheduleData.size();
     }
 
-    public void addMovie(Movie movie) {
+    public void addMovieFromMovie(Movie movie) {
         movieData.add(movie);
     }
 
-    public void showMovie(int count) {
+    public void showMovieFromMovie(int count) {
         System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
         Movie movie = movieData.get(count);
         System.out.printf("%-25s%-8s%-15s%-15s\n", movie.getName(), movie.getMovieId(), movie.getType(),
                 movie.getLanguage());
     }
 
-    public void showAllMovie() {
+    public void showAllMovieFromMovie() {
         System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
         for (int i = 0; i < movieData.size(); i++) {
             Movie movie = movieData.get(i);
@@ -80,7 +80,7 @@ public class Database {
         }
     }
 
-    public void clearMovie(String movieId) {
+    public void clearMovieFromMovie(String movieId) {
         for (int i = 0; i < movieData.size(); i++) {
             if (movieData.get(i).getMovieId().equals(movieId)) {
                 movieData.remove(i);
@@ -89,7 +89,7 @@ public class Database {
         }
     }
 
-    public String getMovieNameByMovieId(String movieId) {
+    public String getMovieNameByMovieIdFromMovie(String movieId) {
         for (int i = 0; i < movieData.size(); i++) {
             if (movieData.get(i).getMovieId().equals(movieId)) {
                 return movieData.get(i).getName();
@@ -98,15 +98,15 @@ public class Database {
         return "Can't find the data";
     }
 
-    public String getMovieNameBySomethingInt(int choice) {
+    public String getMovieNameBySomethingIntFromMovie(int choice) {
         return movieData.get(choice).getName();
     }
 
-    public String getMovieIdBySomethingInt(int choice) {
+    public String getMovieIdBySomethingIntFromMovie(int choice) {
         return movieData.get(choice).getMovieId();
     }
 
-    public String getPendingDateByMovieID(String movieID, int index) {
+    public String getPendingDateByMovieIDFromSchedule(String movieID, int index) {
         if (scheduleData.get(index).getMovieId().equals(movieID)) {
             String pendingDate = scheduleData.get(index).getDate();
             return pendingDate;
@@ -114,12 +114,5 @@ public class Database {
             return null;
     }
 
-    public String getPendingDateByMovieID(String movieID, int index) {
-        if (scheduleData.get(index).getMovieId().equals(movieID)) {
-            String pendingDate = scheduleData.get(index).getDate();
-            return pendingDate;
-        } else
-            return null;
-    }
-
+   
 }

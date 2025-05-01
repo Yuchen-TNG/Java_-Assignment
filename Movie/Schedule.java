@@ -48,15 +48,15 @@ public class Schedule {
         ArrayList<String> pendingTime = new ArrayList<>();
         Movie mv = new Movie();
         Seat se = new Seat();
-        System.out.println("\nSchedule for: " + db.getMovieNameByMovieId(movieID));
+        System.out.println("\nSchedule for: " + db.getMovieNameByMovieIdFromMovie(movieID));
 
         for (int i = 0; i < db.scheduleIdSize(); i++) {
 
-            if (db.getPendingDateByMovieID(movieID, i) == null) {
+            if (db.getPendingDateByMovieIDFromSchedule(movieID, i) == null) {
 
             } else {
                 int e = 0;
-                pendingDate.set(e, db.getPendingDateByMovieID(movieID, i));
+                pendingDate.set(e, db.getPendingDateByMovieIDFromSchedule(movieID, i));
                 e++;
             }
 
@@ -105,11 +105,11 @@ public class Schedule {
 
         for (int i = 0; i < db.scheduleIdSize(); i++) {
 
-            if (db.getPendingDateByMovieIDAndSelectedDate(movieID, i) == null) {
+            if (db.getPendingDateByMovieIDFromScheduleAndSelectedDate(movieID, i) == null) {
 
             } else {
                 int e = 0;
-                pendingDate.set(e, db.getPendingDateByMovieID(movieID, i));
+                pendingDate.set(e, db.getPendingDateByMovieIDFromSchedule(movieID, i));
                 e++;
             }
 
