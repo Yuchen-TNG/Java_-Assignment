@@ -1,0 +1,125 @@
+package Movie;
+
+import java.util.ArrayList;
+
+public class Database {
+    ArrayList<Movie> movieData;
+    ArrayList<Schedule> scheduleData;
+    ArrayList<Seat> seatData;
+    Movie mv = new Movie();
+
+    public Database() {
+        movieData = new ArrayList<>();
+        scheduleData = new ArrayList<>();
+        seatData = new ArrayList<>();
+        loadMovieData();
+        loadScheduleData();
+    }
+
+    public void loadMovieData() {
+        movieData.add(new Movie("Godzilla", "M001", "Action", "English"));
+        movieData.add(new Movie("Titanic", "M002", "Romance", "English"));
+        movieData.add(new Movie("Titanic", "M003", "Romance", "English"));
+        movieData.add(new Movie("Doraemon", "M004", "Animation", "Japanese"));
+    }
+
+    public void loadScheduleData() {
+        scheduleData.add(new Schedule("M001", "S001", "11:00", "2025-01-28", "2 hours"));
+        scheduleData.add(new Schedule("M001", "S002", "09:00", "2025-01-28", "2 hours"));
+        scheduleData.add(new Schedule("M001", "S003", "08:00", "2025-01-28", "2 hours"));
+        scheduleData.add(new Schedule("M001", "S004", "01:00", "2025-01-28", "2 hours"));
+        scheduleData.add(new Schedule("M001", "S005", "12:00", "2025-02-27", "2 hours"));
+        scheduleData.add(new Schedule("M001", "S006", "13:00", "2025-01-21", "2 hours"));
+        scheduleData.add(new Schedule("M001", "S007", "14:00", "2025-02-01", "2 hours"));
+        scheduleData.add(new Schedule("M002", "S008", "15:00", "2025-03-28", "1.5 hours"));
+        scheduleData.add(new Schedule("M002", "S009", "13:00", "2025-04-28", "2 hours"));
+        scheduleData.add(new Schedule("M003", "S010", "15:00", "2025-05-28", "1.5 hours"));
+    }
+
+    public void loadSeatData() {
+        seatData.add(new Seat("S001", "SE001", 10, 9, "A1,A2,A3"));
+        seatData.add(new Seat("S001", "SE001", 10, 9, "A1,A2,A3"));
+        seatData.add(new Seat("S001", "SE001", 10, 9, "A1,A2,A3"));
+        seatData.add(new Seat("S002", "SE002", 10, 9, "B1,B2,B3"));
+        seatData.add(new Seat("S003", "SE003", 10, 9, "C1,C2,C3"));
+        seatData.add(new Seat("S004", "SE004", 10, 9, "D1,D2,D3"));
+        seatData.add(new Seat("S005", "SE001", 10, 9, "E1,E2,E3"));
+        seatData.add(new Seat("S006", "SE002", 10, 9, "F1,F2,F3"));
+        seatData.add(new Seat("S007", "SE003", 10, 9, "G1,G2,G3"));
+        seatData.add(new Seat("S008", "SE004", 10, 9, "H1,H2,H3"));
+        seatData.add(new Seat("S009", "SE003", 10, 9, "I1,I2,I3"));
+        seatData.add(new Seat("S010", "SE004", 10, 9, "J1,J2,J3"));
+    }
+
+    public int movieIdSize() {
+        return movieData.size();
+    }
+
+    public int scheduleIdSize() {
+        return scheduleData.size();
+    }
+
+    public void addMovie(Movie movie) {
+        movieData.add(movie);
+    }
+
+    public void showMovie(int count) {
+        System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
+        Movie movie = movieData.get(count);
+        System.out.printf("%-25s%-8s%-15s%-15s\n", movie.getName(), movie.getMovieId(), movie.getType(),
+                movie.getLanguage());
+    }
+
+    public void showAllMovie() {
+        System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
+        for (int i = 0; i < movieData.size(); i++) {
+            Movie movie = movieData.get(i);
+
+            System.out.printf("%-25s%-8s%-15s%-15s\n", movie.getName(), movie.getMovieId(), movie.getType(),
+                    movie.getLanguage());
+        }
+    }
+
+    public void clearMovie(String movieId) {
+        for (int i = 0; i < movieData.size(); i++) {
+            if (movieData.get(i).getMovieId().equals(movieId)) {
+                movieData.remove(i);
+                return;
+            }
+        }
+    }
+
+    public String getMovieNameByMovieId(String movieId) {
+        for (int i = 0; i < movieData.size(); i++) {
+            if (movieData.get(i).getMovieId().equals(movieId)) {
+                return movieData.get(i).getName();
+            }
+        }
+        return "Can't find the data";
+    }
+
+    public String getMovieNameBySomethingInt(int choice) {
+        return movieData.get(choice).getName();
+    }
+
+    public String getMovieIdBySomethingInt(int choice) {
+        return movieData.get(choice).getMovieId();
+    }
+
+    public String getPendingDateByMovieID(String movieID, int index) {
+        if (scheduleData.get(index).getMovieId().equals(movieID)) {
+            String pendingDate = scheduleData.get(index).getDate();
+            return pendingDate;
+        } else
+            return null;
+    }
+
+    public String getPendingDateByMovieID(String movieID, int index) {
+        if (scheduleData.get(index).getMovieId().equals(movieID)) {
+            String pendingDate = scheduleData.get(index).getDate();
+            return pendingDate;
+        } else
+            return null;
+    }
+
+}
