@@ -9,36 +9,25 @@ import java.util.Scanner;
 
 public class Schedule {
 
-    ArrayList<String> scheduleId = new ArrayList<>();
-    ArrayList<String> movieID = new ArrayList<>();
-    ArrayList<String> time = new ArrayList<>();
-    ArrayList<String> date = new ArrayList<>();
-    ArrayList<String> duration = new ArrayList<>();
+    String scheduleId ;
+    String movieID ;
+    String time ;
+    String date ;
+    double duration ;
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
     Scanner cin = new Scanner(System.in); // 加上Scanner
-    String selectedTime2;
-    String selectedDate2;
+    private String selectedTime2;
+    private String selectedDate2;
 
     public Schedule() {
-        addSchedule("M001", "S001", "11:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "S002", "09:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "S003", "08:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "S004", "01:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "S005", "12:00", "2025-02-27", "2 hours");
-        addSchedule("M001", "S006", "13:00", "2025-01-21", "2 hours");
-        addSchedule("M001", "S007", "14:00", "2025-02-01", "2 hours");
-        addSchedule("M002", "S008", "15:00", "2025-03-28", "1.5 hours");
-        addSchedule("M002", "S009", "13:00", "2025-04-28", "2 hours");
-        addSchedule("M003", "S010", "15:00", "2025-05-28", "1.5 hours");
     }
 
-    public void addSchedule(String movieID, String scheduleId, String time, String date, String duration) {
-        this.movieID.add(movieID);
-        this.scheduleId.add(scheduleId);
-        this.time.add(time);
-        this.date.add(date);
-        this.duration.add(duration);
+    public Schedule(String movieID, String scheduleId, String date, String time, String duration) {
+        this.movieID = movieID;
+        this.scheduleId = scheduleId;
+        this.date = date;
+        this.duration = duration;
     }
 
     // ===============================================Get
@@ -286,21 +275,18 @@ public class Schedule {
         System.out.println("==============================================================");
     }
 
-
-    public void setDate_Time(String selectedDate,String selectedTime){
-        this.selectedDate2=selectedDate;
-        this.selectedTime2=selectedTime;
+    public void setDate_Time(String selectedDate, String selectedTime) {
+        this.selectedDate2 = selectedDate;
+        this.selectedTime2 = selectedTime;
     }
 
-    public String[] getDateAndTime(){
-        return new String[]{selectedDate2,selectedTime2};
+    public String[] getDateAndTime() {
+        return new String[] { selectedDate2, selectedTime2 };
     }
 
-    public String getDateAndTime2(){
-        return selectedDate2+selectedTime2;
+    public String getDateAndTime2() {
+        return selectedDate2 + selectedTime2;
     }
-
-    
 
 }
 
