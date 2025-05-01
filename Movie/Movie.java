@@ -170,12 +170,14 @@ public class Movie {
         String movieID = ID.get(choice);
 
         Schedule sc=new Schedule();
-        sc.getSchedule(ID.get(choice));
-        String[] schedule = sc.getSchedule(movieID); // 返回 [selectedDate, selectedTime]
-        String selectedDate = schedule[0];
-        String selectedTime = schedule[1];
-
-        Booking booking = new Booking(movieName, selectedDate, selectedTime);
+        Seat se=new Seat();
+        sc.getSchedule(movieID);
+        String[] schedule = sc.getDateAndTime(); 
+        String selectedDate2 = schedule[0];
+        String selectedTime2 = schedule[1];
+        se.showSeat("S006");
+        Booking booking = new Booking(movieName, selectedDate2, selectedTime2);
+        booking.displayticket();
     }
 
     public String getMovieNameById(String movieId){
