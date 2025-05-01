@@ -16,9 +16,9 @@ public class Menu {
         do {
             displayMainMenu();
             while (!cin.hasNextInt()) {
-                System.out.println("Invalid choice! Please select a number between 1 and 4.");
+                System.out.println("Invalid choice! Please select a number 0 to 3.");
                 cin.next();
-                displayMainMenu();
+                System.out.print("Selection(0-3): ");
             }
             selection = cin.nextInt();
             cin.nextLine();
@@ -40,7 +40,7 @@ public class Menu {
                     schedule.setSchedule();
                     break;
                 default:
-                    System.out.println("Invalid choice! Please select a number between 1 and 4.");
+                    System.out.println("Invalid choice! Please select a number 0 to 3.");
             }
         } while (selection != 0);
 
@@ -56,6 +56,6 @@ public class Menu {
         System.out.println("| 3. Login Staff               |");
         System.out.println("| 0. Exit                      |");
         System.out.println("+==============================+");
-        System.out.print("Selection: ");
+        System.out.print("Selection(0-3): ");
     }
 }

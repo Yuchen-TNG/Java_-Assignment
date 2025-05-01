@@ -98,6 +98,11 @@ public class Customer extends User implements Interface {
     public void loginCustAcc() {
         Booking booking = new Booking();
 
+        if (customerCount == 0) {
+            System.out.println("No customers registered yet.");
+            return;
+        }else
+
         while (true) {
             System.out.println("\n=====Customer Login=====");
             System.out.print("Email: ");
@@ -160,15 +165,8 @@ public class Customer extends User implements Interface {
 
     public static void showAllCustomer() {
 
-        users[0] = new Customer("Leon chang rui hern", 19, "M", "18/06/2006", "011-1073-8155", "Leon@gmail.com", null);
-        customerCount++;
-        users[1] = new Customer("rui hern", 19, "M", "18/06/2006", "011-1073-8155", "Leon123@gmail.com", null);
-        customerCount++;
-        users[2] = new Customer("Leon chang rui", 19, "M", "18/06/2006", "011-1073-8155", "@gmail.com", "1");
-        customerCount++;
-
         if (customerCount == 0) {
-            System.out.println("\nNo customers registered yet.");
+            System.out.println("No customers registered yet.");
             return;
         } else {
             System.out.println(
@@ -200,11 +198,7 @@ public class Customer extends User implements Interface {
         int selection;
 
         do {
-            displayCustMenu();
-            while (!cin.hasNextInt()) {
-                System.out.println("Invalid choice! Please select a number 0 to 3.");
-                cin.next();
-            }
+            
             displayCustMenu();
             selection = cin.nextInt();
 
@@ -233,10 +227,10 @@ public class Customer extends User implements Interface {
     }
 
     public String toString() {
-        return "\n+==============================+"+"\n|         User Profile         |" +"\n|==============================|"+ "\n| CustomerID: " + customerID +"             |"+ super.toString()+"\n+==============================+";
+        return "\n\n+==============================+"+"\n|         User Profile         |" +"\n|==============================|"+ "\n| CustomerID: " + customerID +"             |"+ super.toString()+"\n+==============================+";
     }
 
-    public static void displayCustMenu() {
+    public void displayCustMenu() {
 
         System.out.println("\n+=======================+");
         System.out.println("|     CUSTOMER MENU     |");
@@ -246,7 +240,12 @@ public class Customer extends User implements Interface {
         System.out.println("| 3. Booking Ticket     |");
         System.out.println("| 0. Logout             |");
         System.out.println("+=======================+");
-        System.out.print("Selection: ");
+        System.out.print("Selection(0-3): ");
+        while (!cin.hasNextInt()) {
+            System.out.println("Invalid choice! Please select a number 0 to 3.");
+            cin.next();
+            System.out.print("Selection(0-3): ");
+        }
 
     }
 }
