@@ -1,12 +1,17 @@
 package Bill;
 import java.util.UUID;
 
+import Payment.Booking;
+import User.Customer;
+
 public class Ticket {
     private String ticketID; 
     private Customer customer; 
+    private Booking booking; 
 
-    public Ticket(Customer customer) {
+    public Ticket(Customer customer, Booking booking) {
         this.customer = customer;
+        this.booking = booking;
         this.ticketID = generateTicketID(); // 自动生成 Ticket ID
     }
 
@@ -32,6 +37,7 @@ public class Ticket {
         System.out.println("-----------------------------");
         System.out.println("Ticket Details : ");
         System.out.println("Ticket ID : " + getTicketID());
+        System.out.println("Seat : " + booking.getseatnumber());
         System.out.println("-----------------------------");
         System.out.println("Thank you for your purchase!");
         System.out.println("=============================");
