@@ -9,7 +9,7 @@ public class Menu {
         Scanner cin = new Scanner(System.in);
         Customer customer = new Customer();
         Staff staff = new Staff();
-        Movie mv =new Movie();
+        Movie mv = new Movie();
         int selection;
         Schedule schedule = new Schedule();
 
@@ -25,7 +25,7 @@ public class Menu {
 
             switch (selection) {
                 case 0:
-                System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
+                    System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
                     break;
                 case 1:
                     customer.Register();
@@ -34,7 +34,7 @@ public class Menu {
                     customer.loginCustAcc();
                     break;
                 case 3:
-                Customer.showAllCustomer();
+                    staff.staffLogin();
                     break;
                 case 4:
                     schedule.setSchedule();
@@ -59,4 +59,3 @@ public class Menu {
         System.out.print("Selection: ");
     }
 }
-
