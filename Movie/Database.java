@@ -51,16 +51,16 @@ public class Database {
         seatData.add(new Seat("S010", "SE004", 10, 9, "J1,J2,J3"));
     }
 
-    public int getMovieCount() {
+    public int movieIdSize() {
         return movieData.size();
+    }
+
+    public int scheduleIdSize() {
+        return scheduleData.size();
     }
 
     public void addMovie(Movie movie) {
-        movieData.add(movie); // 将新的电影添加到 movies 列表中
-    }
-
-    public int movieIdSize() {
-        return movieData.size();
+        movieData.add(movie);
     }
 
     public void showMovie(int count) {
@@ -98,12 +98,20 @@ public class Database {
         return "Can't find the data";
     }
 
-    public String getMovieNameBySomethingInt(int choice){
+    public String getMovieNameBySomethingInt(int choice) {
         return movieData.get(choice).getName();
     }
 
-    
-    public String getMovieIdBySomethingInt(int choice){
+    public String getMovieIdBySomethingInt(int choice) {
         return movieData.get(choice).getMovieId();
     }
+
+    public String getPendingDateByMovieID(String movieID, int index) {
+        if (scheduleData.get(index).getMovieId().equals(movieID)) {
+            String pendingDate = scheduleData.get(index).getDate();
+            return pendingDate;
+        } else
+            return null;
+    }
+
 }

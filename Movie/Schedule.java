@@ -9,16 +9,17 @@ import java.util.Scanner;
 
 public class Schedule {
 
-    String scheduleId ;
-    String movieID ;
-    String time ;
-    String date ;
-    double duration ;
+    String scheduleId;
+    String movieID;
+    String time;
+    String date;
+    String duration;
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
     Scanner cin = new Scanner(System.in); // 加上Scanner
     private String selectedTime2;
     private String selectedDate2;
+    Database db = new Database();
 
     public Schedule() {
     }
@@ -30,21 +31,35 @@ public class Schedule {
         this.duration = duration;
     }
 
-    // ===============================================Get
-    // Schedule==============================================================
+    public String getScheduleId() {
+        return scheduleId;
+    }
+
+    public String getMovieId() {
+        return movieID;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
     public void getSchedule(String movieID) {
         ArrayList<String> pendingDate = new ArrayList<>();
         ArrayList<String> pendingTime = new ArrayList<>();
         Movie mv = new Movie();
         Seat se = new Seat();
-        System.out.println("\nSchedule for: " + mv.getMovieNameById(movieID));
+        System.out.println("\nSchedule for: " + db.getMovieNameByMovieId(movieID));
 
-        for (int i = 0; i < this.date.size(); i++) {
-            if (this.movieID.get(i).equals(movieID)) {
-                if (!pendingDate.contains(date.get(i))) {
-                    pendingDate.add(date.get(i));
-                }
+        for (int i = 0; i < db.scheduleIdSize(); i++) {
+
+            if (db.getPendingDateByMovieID(movieID, i) == null) {
+
+            } else {
+                int e = 0;
+                pendingDate.set(e, db.getPendingDateByMovieID(movieID, i));
+                e++;
             }
+
         }
 
         // Step 2: 日期排序
@@ -289,4 +304,3 @@ public class Schedule {
     }
 
 }
-

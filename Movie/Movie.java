@@ -47,7 +47,7 @@ public class Movie {
         System.out.println("\n\nHow many movie you want add?");
         int addMovie = cin.nextInt();
         cin.nextLine();
-        int count = db.getMovieCount() - 1;
+        int count = db.movieIdSize() - 1;
         int check = 0;
         if (addMovie >= 1) {
             for (int i = 0; i < addMovie; i++) {
