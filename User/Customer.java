@@ -23,14 +23,6 @@ public class Customer extends User implements Interface {
         return customerID;
     }
 
-    public User[] getusers() {
-        return users;
-    }
-
-    public static int getCustomerCount() {
-        return customerCount;
-    }
-
     public void Register() {
         String email = "";
         String phoneNo = "";
