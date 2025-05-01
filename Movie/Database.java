@@ -63,9 +63,9 @@ public class Database {
         movieData.add(movie);
     }
 
-    public void addScheduleIdBySomething(int something,String scheduleId){
-   
-        scheduleData.get(something).set(something,scheduleId);
+    public void addScheduleIdBySomething(int something, String scheduleId) {
+
+        scheduleData.get(something).set(something, scheduleId);
     }
 
     public void showMovie(int count) {
@@ -119,35 +119,36 @@ public class Database {
             return null;
     }
 
-    public String getPendingDateByMovieIDAndSelectedDate(String movieID, int index,String selectedDate) {
-        if (scheduleData.get(index).getMovieId().equals(movieID)&&scheduleData.get(index).getDate().equals(selectedDate)) {
+    public String getPendingDateByMovieIDAndSelectedDate(String movieID, int index, String selectedDate) {
+        if (getMovieIdBySomthingFromSchedule(index).equals(movieID)
+                && scheduleData.get(index).getDate().equals(selectedDate)) {
             String pendingTime = scheduleData.get(index).getTime();
             return pendingTime;
         } else
             return null;
     }
 
-    public Schedule getSchedule(int index){
+    public Schedule getSchedule(int index) {
         return scheduleData.get(index);
     }
 
-    public String getScheduleTimeBySomthing(int something){
-        return scheduleData.get(something).getTime();
-    }
-
-    public String getScheduleDateBySomthing(int something){
-        return scheduleData.get(something).getDate();
-    }
-
-    public String getScheduleIdBySomthing(int something){
+    public String getScheduleIdBySomthing(int something) {
         return scheduleData.get(something).getScheduleId();
     }
 
-    public String getMovieIdBySomthingFromSchedule(int something){
+    public String getMovieIdBySomthingFromSchedule(int something) {
         return scheduleData.get(something).getMovieId();
     }
 
-    public String getScheduleDateBySomthing(int something){
+    public String getDateBySomthingFromSchedule(int something) {
         return scheduleData.get(something).getDate();
+    }
+
+    public String getTimeBySomthingFromSchedule(int something) {
+        return scheduleData.get(something).getTime();
+    }
+
+    public String getDurationBySomthingFromSchedule(int something) {
+        return scheduleData.get(something).getDuration();
     }
 }

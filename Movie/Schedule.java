@@ -47,6 +47,10 @@ public class Schedule {
         return time;
     }
 
+    public String getDuration(){
+        return duration;
+    }
+
     public void setScheduleId(String scheduleId) {
         this.scheduleId=scheduleId;
     }
@@ -158,8 +162,8 @@ public class Schedule {
             } else {
                 wrong = false;
                 for (int i = 0; i < db.scheduleIdSize(); i++) {
-                    if (pendingTime.get(choiceTime - 1).equals(db.getScheduleTimeBySomthing(i))
-                            && pendingDate.get(choiceDate - 1).equals(db.getScheduleDateBySomthing(i))) {
+                    if (pendingTime.get(choiceTime - 1).equals(db.getTimeBySomthingFromSchedule(i))
+                            && pendingDate.get(choiceDate - 1).equals(db.getDateBySomthingFromSchedule(i))) {
                         index = i;
                     }
                 }
@@ -171,8 +175,8 @@ public class Schedule {
 
         for (int i = 0; i < db.movieIdSize(); i++) {
             if (db.getMovieIdBySomethingIntFromMovie(i).equals(movieID)
-                    && db.getScheduleDateBySomthing(i).equals(selectedDate)
-                    && db.getScheduleTimeBySomthing(i).equals(selectedTime)) {
+                    && db.getDateBySomthingFromSchedule(i).equals(selectedDate)
+                    && db.getTimeBySomthingFromSchedule(i).equals(selectedTime)) {
                 break;
             }
         }
@@ -188,7 +192,7 @@ public class Schedule {
         String time = "";
         String movieID = "";
         String scheduleID = "";
-        double duration;
+        String duration;
 
         showSchedule();
         while (true) {
@@ -311,8 +315,8 @@ public class Schedule {
         System.out.println("--------------------------------------------------------------");
 
         for (int i = 0; i < db.scheduleIdSize(); i++) {
-            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2.1f hours\n", (i + 1), db.getScheduleDateBySomthing(i),
-                    db.getMovieIdBySomthingFromSchedule(i), this.date.get(i), this.time.get(i), this.duration.get(i));
+            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2.1f hours\n", (i + 1), db.getDateBySomthingFromSchedule(i),
+                    db.getMovieIdBySomthingFromSchedule(i), db.getDateBySomthingFromSchedule(i), db.getTimeBySomthingFromSchedule(i), db.getDurationBySomthingFromSchedule(i));
         }
         System.out.println("==============================================================");
     }
