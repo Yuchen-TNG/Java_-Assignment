@@ -43,6 +43,30 @@ public class Schedule {
         return date;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setScheduleId(String scheduleId) {
+        this.scheduleId=scheduleId;
+    }
+
+    public void setMovieId(String movieID) {
+        this.movieID=movieID;
+    }
+
+    public void setDate(String date) {
+        this.date=date;
+    }
+
+    public void setTime(String time) {
+        this.time=time;
+    }
+
+    public void setDuration(String duration) {
+        this.duration=duration;
+    }
+
     public void getSchedule(String movieID) {
         ArrayList<String> pendingDate = new ArrayList<>();
         ArrayList<String> pendingTime = new ArrayList<>();
@@ -97,30 +121,18 @@ public class Schedule {
         String selectedDate = pendingDate.get(choiceDate - 1);
 
         // Step 5: 找出该日期对应的时间
-        for (int i = 0; i < this.time.size(); i++) {
-            if (this.movieID.get(i).equals(movieID) && this.date.get(i).equals(selectedDate)) {
-                pendingTime.add(this.time.get(i));
-            }
-        }
 
         for (int i = 0; i < db.scheduleIdSize(); i++) {
 
-            if (db.getPendingDateByMovieIDAndSelectedDate(movieID, i) == null) {
+            if (db.getPendingDateByMovieIDAndSelectedDate(movieID, i, selectedDate) == null) {
 
             } else {
                 int e = 0;
-                pendingDate.set(e, db.getPendingDateByMovieID(movieID, i));
+                pendingTime.set(e, db.getPendingDateByMovieIDAndSelectedDate(movieID, i, selectedDate));
                 e++;
             }
 
         }
-
-
-
-
-
-
-
 
         pendingTime.sort((t1, t2) -> {
             LocalTime time1 = LocalTime.parse(t1, timeFormat);
@@ -145,22 +157,22 @@ public class Schedule {
                 wrong = true;
             } else {
                 wrong = false;
-                for (int i = 0; i < scheduleId.size(); i++) {
-                    if (pendingTime.get(choiceTime - 1).equals(time.get(i))
-                            && pendingDate.get(choiceDate - 1).equals(date.get(i))) {
+                for (int i = 0; i < db.scheduleIdSize(); i++) {
+                    if (pendingTime.get(choiceTime - 1).equals(db.getScheduleTimeBySomthing(i))
+                            && pendingDate.get(choiceDate - 1).equals(db.getScheduleDateBySomthing(i))) {
                         index = i;
                     }
                 }
 
             }
         } while (wrong);
-        se.showSeat(scheduleId.get(index));
+        se.showSeat(db.getScheduleIdBySomthing(index));
         String selectedTime = pendingTime.get(choiceTime - 1);
 
-        for (int i = 0; i < this.movieID.size(); i++) {
-            if (this.movieID.get(i).equals(movieID)
-                    && this.date.get(i).equals(selectedDate)
-                    && this.time.get(i).equals(selectedTime)) {
+        for (int i = 0; i < db.movieIdSize(); i++) {
+            if (db.getMovieIdBySomethingInt(i).equals(movieID)
+                    && db.getScheduleDateBySomthing(i).equals(selectedDate)
+                    && db.getScheduleTimeBySomthing(i).equals(selectedTime)) {
                 break;
             }
         }
@@ -170,7 +182,7 @@ public class Schedule {
     // =================================================Set
     // Schedule=======================================================
     public void setSchedule() {
-        int selection;
+        int selection=0;
         int choice;
         String date = "";
         String time = "";
@@ -183,7 +195,7 @@ public class Schedule {
             System.out.print("Selection(No): ");
             if (cin.hasNextInt()) {
                 selection = cin.nextInt();
-                if (selection <= scheduleId.size() && selection > 0) {
+                if (selection <= db.scheduleIdSize() && selection > 0) {
                     break;
                 } else {
                     System.out.println("Invalid, please input the range of schedule lists");
@@ -193,6 +205,7 @@ public class Schedule {
                 cin.next();
             }
         }
+        Schedule slectionSchdule=db.getSchedule(selection-1);
         do {
             System.out.println("\n=====Edit Schedule=====");
             System.out.println("1. Schedule Id");
@@ -215,7 +228,7 @@ public class Schedule {
                     System.out.println("\n=====Edit Schedule Id=====");
                     System.out.print("Schedule Id: ");
                     scheduleID = cin.next();
-                    this.scheduleId.set(selection - 1, scheduleID);
+                    slectionSchdule.setScheduleId(scheduleID);
                     break;
                 case 2:
                     System.out.println("\n=====Edit Movie Id=====");
@@ -230,7 +243,7 @@ public class Schedule {
                                             "inavalid please follow the format : (M000),first character must be M and Uppercase");
                         }
                     }
-                    this.movieID.set(selection - 1, movieID);
+                    slectionSchdule.setMovieId(movieID);
                     break;
                 case 3:
                     System.out.println("\n=====Edit Date=====");
@@ -243,7 +256,7 @@ public class Schedule {
                             System.out.println("invalid please follow the format(yyyy-mm-dd)");
                         }
                     }
-                    this.date.set(selection - 1, date);
+                    slectionSchdule.setDate(date);
                     break;
                 case 4:
                     System.out.println("\n=====Edit Time=====");
@@ -262,7 +275,7 @@ public class Schedule {
                             System.out.println("invalid please follow the format(00:00)");
                         }
                     }
-                    this.time.set(selection - 1, time);
+                    slectionSchdule.setTime(time);
                     break;
                 case 5:
                     System.out.println("\n=====Edit Duration=====");
@@ -276,10 +289,10 @@ public class Schedule {
                             cin.next();
                         }
                     }
-                    this.duration.set(selection - 1, duration);
+                    slectionSchdule.setDuration(duration);
                     break;
                 case 6:
-                System.out.println("Save successfully");
+                    System.out.println("Save successfully");
                     break;
                 default:
                     System.out.println("Invalid, please input the range of the choice ");
@@ -297,7 +310,7 @@ public class Schedule {
                 "Duration");
         System.out.println("--------------------------------------------------------------");
 
-        for (int i = 0; i < scheduleId.size(); i++) {
+        for (int i = 0; i < db.scheduleIdSize(); i++) {
             System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2.1f hours\n", (i + 1), this.scheduleId.get(i),
                     this.movieID.get(i), this.date.get(i), this.time.get(i), this.duration.get(i));
         }

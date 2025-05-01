@@ -12,8 +12,7 @@ public class Seat {
     ArrayList<Integer> row = new ArrayList<>();
     ArrayList<Integer> column = new ArrayList<>();
     ArrayList<String> bookedSeat = new ArrayList<>();
-    String totalPendingSeat;
-    String pendingScheduleId;
+    
     Scanner cin = new Scanner(System.in);
 
     public Seat() {}

@@ -63,6 +63,11 @@ public class Database {
         movieData.add(movie);
     }
 
+    public void addScheduleIdBySomething(int something,String scheduleId){
+   
+        scheduleData.get(something).set(something,scheduleId);
+    }
+
     public void showMovie(int count) {
         System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
         Movie movie = movieData.get(count);
@@ -114,12 +119,27 @@ public class Database {
             return null;
     }
 
-    public String getPendingDateByMovieID(String movieID, int index) {
-        if (scheduleData.get(index).getMovieId().equals(movieID)) {
-            String pendingDate = scheduleData.get(index).getDate();
-            return pendingDate;
+    public String getPendingDateByMovieIDAndSelectedDate(String movieID, int index,String selectedDate) {
+        if (scheduleData.get(index).getMovieId().equals(movieID)&&scheduleData.get(index).getDate().equals(selectedDate)) {
+            String pendingTime = scheduleData.get(index).getTime();
+            return pendingTime;
         } else
             return null;
     }
 
+    public Schedule getSchedule(int index){
+        return scheduleData.get(index);
+    }
+
+    public String getScheduleTimeBySomthing(int something){
+        return scheduleData.get(something).getTime();
+    }
+
+    public String getScheduleDateBySomthing(int something){
+        return scheduleData.get(something).getDate();
+    }
+
+    public String getScheduleIdBySomthing(int something){
+        return scheduleData.get(something).getScheduleId();
+    }
 }

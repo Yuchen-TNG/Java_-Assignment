@@ -1,5 +1,6 @@
 import Payment.Booking;
 
+
 public class Customer extends User implements Interface {
 
     private static int nextCustomerID = 1001;
