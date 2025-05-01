@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
 public class Seat {
-    Database db=new Database();
+    Database db = new Database();
     private String scheduleId;
     private String seatId;
     private int row;
     private int column;
     private String bookedSeat;
-    Seat selectBookedSeat=db.getSeat;
     Scanner cin = new Scanner(System.in);
+    String totalPendingSeat;
+    String pendingScheduleId;
 
-    public Seat() {}
+    public Seat() {
+    }
 
     public Seat(String scheduleId, String seatId, int column, int row, String bookedSeat) {
         this.scheduleId = scheduleId;
@@ -73,14 +74,15 @@ public class Seat {
         // 找到对应的 schedule index
         for (int i = 0; i < db.scheduleIdSize(); i++) {
             if (db.getScheduleIdBySomthingFromSeat(i).equals(scheduleId)) {
+                pendingScheduleId=db.getScheduleIdBySomthingFromSeat(i);
                 index = i;
                 break;
             }
         }
 
         // 把 "A1,B3,D6" 变成 List<String>
-        ArrayList<String> bookedList = new ArrayList<>(Arrays.asList(db.getBookedSeatBySomthingFromSeat(index).split(",")));
-        
+        ArrayList<String> bookedList = new ArrayList<>(
+                Arrays.asList(db.getBookedSeatBySomthingFromSeat(index).split(",")));
 
         for (int j = 0; j < getColumn(); j++) {
             for (int e = 0; e < getRow(); e++) {
@@ -110,8 +112,6 @@ public class Seat {
         Scanner cin = new Scanner(System.in);
         boolean bool = true;
 
-
-  
         do {
             try {
                 System.out.print("How many seats do you want to choose? ");
@@ -123,6 +123,7 @@ public class Seat {
                 cin.nextLine();
             }
         } while (bool);
+        totalPendingSeat=Integer.toString(people);
 
         // 查找对应的排期
         System.out.println("Which seat you want? ");
@@ -138,7 +139,8 @@ public class Seat {
                 do {
                     String pendingSeat = cin.nextLine();
                     if (pendingSeat.matches("[A-J][1-9]")) {
-                        bookedSeat.set(index, db.getBookedSeatBySomthingFromSeat(index) + "," + pendingSeat);
+                        Seat selectBookedSeat = db.getSeat(index);
+                        selectBookedSeat.setBookedSeat(pendingSeat);
                         bool = false;
                     } else {
                         bool = true;
@@ -153,13 +155,9 @@ public class Seat {
         }
     }
 
-    public void setPendingSeat(String totalPendingSeat,String scheduleId){
-        this.totalPendingSeat=totalPendingSeat;
-        this.pendingScheduleId=scheduleId;
-    }
 
-    public String[] storeAllValue(){
-        Schedule sc=new Schedule();
-        return new String[]{pendingScheduleId,totalPendingSeat,sc.getDateAndTime2()};
+    public String[] storeAllValue() {
+        Schedule sc = new Schedule();
+        return new String[] { pendingScheduleId, totalPendingSeat, sc.getDateAndTime2() };
     }
 }

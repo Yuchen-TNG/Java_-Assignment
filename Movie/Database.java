@@ -131,7 +131,7 @@ public class Database {
         return scheduleData.get(index);
     }
 
-    public Schedule getSeat(int index) {
+    public Seat getSeat(int index) {
         return seatData.get(index);
     }
 

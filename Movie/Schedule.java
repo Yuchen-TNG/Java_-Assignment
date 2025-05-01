@@ -284,7 +284,7 @@ public class Schedule {
                     while (true) {
                         System.out.print("Duration: ");
                         if (cin.hasNextDouble() || cin.hasNextInt()) {
-                            duration = cin.nextDouble();
+                            duration = cin.next();
                             break;
                         } else {
                             System.out.println("Invalid, please input the number");
