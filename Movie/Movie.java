@@ -168,8 +168,6 @@ public class Movie {
 
         String movieName = Name.get(choice);
         String movieID = ID.get(choice);
-       
-
 
         Schedule sc=new Schedule();
         sc.getSchedule(ID.get(choice));

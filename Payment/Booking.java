@@ -9,7 +9,7 @@ public class Booking {
         private String movie;
         private int numofhall= 3;
         private String seatnumber="04A";
-        private String email= "eason061221@gmail.com";
+        private String email;
         private int numberofperson = 3;
         private String date;
         private String time;
@@ -25,11 +25,14 @@ public class Booking {
             this.date = date;
             this.time = time;
         }
-        
 
         public Booking(String movie) {
             this.bookingID = generateBookingID();
             this.movie = movie;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
         }
     
         public String getmovie(){
@@ -57,13 +60,18 @@ public class Booking {
 
         public void userchoice(String choice,  ArrayList<Booking> confirm ){
             if(choice.equals("y" ) || choice.equals("yes")){
+        if (this.movie == null || this.date == null || this.time == null) {
+            System.out.println("Error: Movie, date, or time is not set.");
+            return;
+        }
                 Booking newbooking = new Booking(this.movie, this.date, this.time);
+                newbooking.setEmail(this.email);
                 confirm.add(newbooking);
                 System.out.println("Make payment successfully");
     
             }else{
                 System.out.println("Booking cancelled");
-                System.exit(0); //must modify !
+                return;
             }
         }
 
@@ -77,14 +85,15 @@ public class Booking {
     
  public void displayticket(){
     System.out.println("==============================================");
-    System.out.println("Email: " + email);
+    System.out.println("Email: " + email); //d
     System.out.println("The title movie: " + movie);
     System.out.println("Date: " + date);
     System.out.println("Time: " + time);
     System.out.println("Number of Hall: " + numofhall);
     System.out.println("Your seat number: " + seatnumber);
     System.out.println("Number of Person: " + numberofperson);
+    
 }
 
-    }
+}
 
