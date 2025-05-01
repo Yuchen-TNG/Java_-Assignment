@@ -178,10 +178,10 @@ public class Movie {
         se.showSeat("S006");
 
         String[] seatInfo = se.storeAllValue();
-    String scheduleId = seatInfo[0];
-    String totalPendingSeat = seatInfo[1]; // 格式为 ,A1,A2,...
-    String[] seats = totalPendingSeat.split(",");
-    int numberOfPeople = seats.length - 1; 
+        String scheduleId = seatInfo[0];
+        String totalPendingSeat = seatInfo[1]; // 格式为 ,A1,A2,...
+        String[] seats = totalPendingSeat.split(",");
+        int numberOfPeople = seats.length - 1; 
 
 
         Booking booking = new Booking();
