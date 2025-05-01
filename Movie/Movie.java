@@ -176,8 +176,22 @@ public class Movie {
         String selectedDate2 = schedule[0];
         String selectedTime2 = schedule[1];
         se.showSeat("S006");
-        Booking booking = new Booking(movieName, selectedDate2, selectedTime2);
-        booking.displayticket();
+
+        String[] seatInfo = se.storeAllValue();
+    String scheduleId = seatInfo[0];
+    String totalPendingSeat = seatInfo[1]; // 格式为 ,A1,A2,...
+    String[] seats = totalPendingSeat.split(",");
+    int numberOfPeople = seats.length - 1; 
+
+
+        Booking booking = new Booking();
+        booking.setMovie(movieName);
+        booking.setdate(selectedDate2);
+        booking.settime(selectedTime2);
+        booking.setnumberofperson(numberOfPeople);
+        booking.setseatnumber(totalPendingSeat);
+            
+        
     }
 
     public String getMovieNameById(String movieId){
