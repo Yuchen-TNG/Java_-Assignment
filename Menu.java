@@ -48,14 +48,14 @@ public class Menu {
     }
 
     public static void displayMainMenu() {
-        System.out.println("\n+========================================================================+");
-        System.out.println("|                          CINIME TICKET SYSTEM                          |");
-        System.out.println("+========================================================================+");
-        System.out.println("| 1. Register                                                            |");
-        System.out.println("| 2. Login Customer                                                      |");
-        System.out.println("| 3. Login Staff                                                         |");
-        System.out.println("| 0. Exit                                                                |");
-        System.out.println("+========================================================================+");
+        System.out.println("\n+==============================+");
+        System.out.println("|     CINIME TICKET SYSTEM     |");
+        System.out.println("|==============================|");
+        System.out.println("| 1. Register                  |");
+        System.out.println("| 2. Login Customer            |");
+        System.out.println("| 3. Login Staff               |");
+        System.out.println("| 0. Exit                      |");
+        System.out.println("+==============================+");
         System.out.print("Selection: ");
     }
 }

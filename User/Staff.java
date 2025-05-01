@@ -136,11 +136,14 @@ public class Staff extends User implements Interface {
     }
 
     public static void displayStaffMenu() {
-        System.out.println("\n====Staff Menu====");
-        System.out.println("1. View Customer Details");
-        System.out.println("2. Add Movie");
-        System.out.println("3. checkSchedule");
-        System.out.println("0. Logout");
+        System.out.println("\n+============================+");
+        System.out.println("|         STAFF MENU         |");
+        System.out.println("|============================|");
+        System.out.println("| 1. View Customer Details   |");
+        System.out.println("| 2. Add Movie               |");
+        System.out.println("| 3. Check Schedule          |");
+        System.out.println("| 0. Logout                  |");
+        System.out.println("+============================+");
         System.out.print("Selection: ");
     }
 

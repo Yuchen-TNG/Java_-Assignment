@@ -81,7 +81,7 @@ public class User {
     }
 
     public String toString() {
-        return String.format("\nName: %s\nAge: %d\nGender: %s\nBirthday: %s\nPhoneNo: %s\nEmail: %s", name, age, gender,
+        return String.format("\n| Name: %-22s |\n| Age: %-23d |\n| Gender: %-20s |\n| Birthday: %-18s |\n| PhoneNo: %-19s |\n| Email: %-21s |", name, age, gender,
                 birthday, phoneNo, email);
     }
 

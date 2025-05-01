@@ -235,21 +235,26 @@ public class Customer extends User implements Interface {
     }
 
     public void viewProfile() {
-        for (int i = 0; i < 1; i++) {
-            System.out.println(users[custProfile].toString());
-        }
+        users[0] = new Customer("Leon chang rui hern", 19, "Mddd", "18/06/2006", "011-1073-8155", "Leon@gmail.com", null);
+            System.out.println(users[0].toString());
+        
     }
 
     public String toString() {
-        return "\n\n=====User Profile=====" + "\nCustomerID: " + customerID + super.toString();
+        return "\n+==============================+"+"\n|         User Profile         |" +"\n|==============================|"+ "\n| CustomerID: " + customerID +"             |"+ super.toString()+"\n+==============================+";
     }
 
     public static void displayCustMenu() {
-        System.out.println("\n====Customer Menu====");
-        System.out.println("1. View Profile");
-        System.out.println("2. View Movie");
-        System.out.println("3. Booking Ticket");
-        System.out.println("0. Logout");
+
+        System.out.println("\n+=======================+");
+        System.out.println("|     CUSTOMER MENU     |");
+        System.out.println("|=======================|");
+        System.out.println("| 1. View Profile       |");
+        System.out.println("| 2. View Movie         |");
+        System.out.println("| 3. Booking Ticket     |");
+        System.out.println("| 0. Logout             |");
+        System.out.println("+=======================+");
         System.out.print("Selection: ");
+
     }
 }
