@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import Payment.Booking;
+
 public class Seat {
 
     ArrayList<String> scheduleId = new ArrayList<>();
@@ -79,7 +81,10 @@ public class Seat {
         int index = -1;
         System.out.print("How many seat you want to choose?");
         int people = cin.nextInt();
+        Booking booking = new Booking();
+        booking.setnumberofperson(people);
         System.out.print("Which seat you want?");
+        
         for (int i = 0; i < this.scheduleId.size(); i++) {
             if (this.scheduleId.get(i).equals(scheduleId)) {
                 index = i;
@@ -89,7 +94,9 @@ public class Seat {
 
         for (int i = 0; i < people; i++) {
             String pendingSeat = cin.nextLine();
-            cin.next();
+            booking.setseatnumber(pendingSeat);
+
+            cin.nextLine();
             bookedSeat.add(index, "," + pendingSeat);
         }
 

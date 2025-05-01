@@ -8,9 +8,9 @@ public class Booking {
 
         private String movie;
         private int numofhall= 3;
-        private String seatnumber="04A";
+        private String seatnumber;
         private String email;
-        private int numberofperson = 3;
+        private int numberofperson;
         private String date;
         private String time;
 
@@ -33,6 +33,14 @@ public class Booking {
 
         public void setEmail(String email) {
             this.email = email;
+        }
+
+        public void setnumberofperson(int numberofperson){
+            this.numberofperson = numberofperson;
+        }
+
+        public void setseatnumber(String seatnumber){
+            this.seatnumber = seatnumber;
         }
     
         public String getmovie(){
@@ -66,6 +74,8 @@ public class Booking {
         }
                 Booking newbooking = new Booking(this.movie, this.date, this.time);
                 newbooking.setEmail(this.email);
+                newbooking.setnumberofperson(this.numberofperson); // 复制 numberofperson
+                newbooking.setseatnumber(this.seatnumber); 
                 confirm.add(newbooking);
                 System.out.println("Make payment successfully");
     
@@ -92,7 +102,7 @@ public class Booking {
     System.out.println("Number of Hall: " + numofhall);
     System.out.println("Your seat number: " + seatnumber);
     System.out.println("Number of Person: " + numberofperson);
-    
+
 }
 
 }
