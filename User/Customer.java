@@ -1,3 +1,5 @@
+import Payment.Booking;
+
 public class Customer extends User implements Interface {
 
     private static int nextCustomerID = 1001;
@@ -5,6 +7,7 @@ public class Customer extends User implements Interface {
     private static User[] users = new User[100];
     private static int customerCount = 0;
     private boolean checkLogin;
+    private String loggedInEmail;
 
     public Customer() {
     }
@@ -36,6 +39,7 @@ public class Customer extends User implements Interface {
         System.out.println("\n=====Registration=====");
         System.out.print("Name: ");
         String name = cin.nextLine();
+
 
         while (true) {
             System.out.print("Age: ");
@@ -101,11 +105,13 @@ public class Customer extends User implements Interface {
     }
 
     public void loginCustAcc() {
+        Booking booking = new Booking();
 
         while (true) {
             System.out.println("\n=====Customer Login=====");
             System.out.print("Email: ");
             String email = cin.next();
+            
             System.out.print("Password: ");
             String password = cin.next();
 
@@ -115,6 +121,8 @@ public class Customer extends User implements Interface {
                 if (users[i].getEmail().equals(email) && users[i].getPassword().equals(password)) {
                     System.out.println("Login Successfully!");
                     checkLogin = true;
+                    loggedInEmail = email;
+                    booking.setEmail(loggedInEmail);
                     getMenu();
                     return;
                 }
