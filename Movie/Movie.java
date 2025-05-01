@@ -124,7 +124,7 @@ public class Movie {
     }
 
     public void choiceMovie() {
-
+        Seat se=new Seat();
         db.showAllMovie();
         System.out.println("Select Your Movie");
         int choice = cin.nextInt();
@@ -137,7 +137,7 @@ public class Movie {
         String[] schedule = sc.getDateAndTime();
         String selectedDate2 = schedule[0];
         String selectedTime2 = schedule[1];
-        se.showSeat("S006");
+   
 
         String[] seatInfo = se.storeAllValue();
         String scheduleId = seatInfo[0];
@@ -154,18 +154,6 @@ public class Movie {
         booking.setseatnumber(totalPendingSeat);
             
         
-    }
-
-    public String getMovieNameById(String movieId){
-        for(int i=0;i<this.ID.size();i++){
-            if (this.ID.get(i).equals(movieId)) {
-                return Name.get(i);
-            }
-        }return "System problem";
-    }
-
-    public String getName(){
-        return Name.get(i);
     }
 
 }

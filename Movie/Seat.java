@@ -12,6 +12,8 @@ public class Seat {
     ArrayList<Integer> row = new ArrayList<>();
     ArrayList<Integer> column = new ArrayList<>();
     ArrayList<String> bookedSeat = new ArrayList<>();
+    String totalPendingSeat;
+    String pendingScheduleId;
     Scanner cin = new Scanner(System.in);
 
     public Seat() {}
@@ -107,4 +109,13 @@ public class Seat {
         }
     }
 
+    public void setPendingSeat(String totalPendingSeat,String scheduleId){
+        this.totalPendingSeat=totalPendingSeat;
+        this.pendingScheduleId=scheduleId;
+    }
+
+    public String[] storeAllValue(){
+        Schedule sc=new Schedule();
+        return new String[]{pendingScheduleId,totalPendingSeat,sc.getDateAndTime2()};
+    }
 }
