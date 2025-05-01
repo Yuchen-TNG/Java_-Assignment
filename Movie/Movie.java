@@ -14,7 +14,6 @@ public class Movie {
     private String Type;
     private String Language;
 
-    Database db = new Database();
 
     public Movie() {
     }
@@ -43,6 +42,8 @@ public class Movie {
     }
 
     public void setMovie() {
+        
+    Database db = new Database();
         String movieID = "";
         System.out.println("\n\nHow many movie you want add?");
         int addMovie = cin.nextInt();
@@ -100,6 +101,8 @@ public class Movie {
     }
 
     public void clearMovie() {
+        
+    Database db = new Database();
         boolean check = true;
         System.out.println("\n\nDelete Movie List");
         System.out.print("Movie ID delete:");
@@ -124,9 +127,11 @@ public class Movie {
     }
 
     public void choiceMovie() {
+        
+    Database db = new Database();
         Seat se=new Seat();
         db.showAllMovieFromMovie();
-        System.out.println("Select Your Movie");
+        System.out.println("Select Your Movie Number");
         int choice = cin.nextInt();
         choice += -1;
 

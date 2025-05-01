@@ -19,12 +19,11 @@ public class Schedule {
     Scanner cin = new Scanner(System.in); // 加上Scanner
     private String selectedTime2;
     private String selectedDate2;
-    Database db = new Database();
 
     public Schedule() {
     }
 
-    public Schedule(String movieID, String scheduleId, String date, String time, String duration) {
+    public Schedule(String movieID, String scheduleId, String time, String date, String duration) {
         this.movieID = movieID;
         this.scheduleId = scheduleId;
         this.date = date;
@@ -47,44 +46,45 @@ public class Schedule {
         return time;
     }
 
-    public String getDuration(){
+    public String getDuration() {
         return duration;
     }
 
     public void setScheduleId(String scheduleId) {
-        this.scheduleId=scheduleId;
+        this.scheduleId = scheduleId;
     }
 
     public void setMovieId(String movieID) {
-        this.movieID=movieID;
+        this.movieID = movieID;
     }
 
     public void setDate(String date) {
-        this.date=date;
+        this.date = date;
     }
 
     public void setTime(String time) {
-        this.time=time;
+        this.time = time;
     }
 
     public void setDuration(String duration) {
-        this.duration=duration;
+        this.duration = duration;
     }
 
     public void getSchedule(String movieID) {
+        int e = 0;
+
+        Database db = new Database();
         ArrayList<String> pendingDate = new ArrayList<>();
         ArrayList<String> pendingTime = new ArrayList<>();
         Movie mv = new Movie();
         Seat se = new Seat();
         System.out.println("\nSchedule for: " + db.getMovieNameByMovieIdFromMovie(movieID));
+        System.out.println("This is available date");
 
         for (int i = 0; i < db.scheduleIdSize(); i++) {
-
             if (db.getPendingDateByMovieIDFromSchedule(movieID, i) == null) {
-
             } else {
-                int e = 0;
-                pendingDate.set(e, db.getPendingDateByMovieIDFromSchedule(movieID, i));
+                pendingDate.add(e, db.getPendingDateByMovieIDFromSchedule(movieID, i));
                 e++;
             }
 
@@ -115,7 +115,7 @@ public class Schedule {
                 } else {
                     wrong = false;
                 }
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException p) {
                 cin.next(); // clear buffer
                 System.out.println("Only numbers are allowed. Try again.");
                 wrong = true;
@@ -125,17 +125,14 @@ public class Schedule {
         String selectedDate = pendingDate.get(choiceDate - 1);
 
         // Step 5: 找出该日期对应的时间
-
+        e = 0;
         for (int i = 0; i < db.scheduleIdSize(); i++) {
-
-            if (db.getPendingDateByMovieIDAndSelectedDate(movieID, i,selectedDate) == null) {
-
-            } else {
-                int e = 0;
-                pendingDate.set(e, db.getPendingDateByMovieIDFromSchedule(movieID, i));
+            boolean bool=false;
+            if (bool=db.getPendingDateByMovieIDAndSelectedDate(movieID, i, selectedDate)) {
+                pendingTime.add(db.getPendingTimeByMovieIDFromSchedule(movieID, i));
+                System.out.print(pendingTime.get(e));
                 e++;
-            }
-
+            } 
         }
 
         pendingTime.sort((t1, t2) -> {
@@ -162,6 +159,15 @@ public class Schedule {
             } else {
                 wrong = false;
                 for (int i = 0; i < db.scheduleIdSize(); i++) {
+
+                    
+                    System.out.println(pendingTime.get(choiceTime - 1));
+                    System.out.println(db.getTimeBySomthingFromSchedule(i));
+                    System.out.println(pendingDate.get(choiceDate - 1));
+                    System.out.println(db.getDateBySomthingFromSchedule(i));
+
+
+
                     if (pendingTime.get(choiceTime - 1).equals(db.getTimeBySomthingFromSchedule(i))
                             && pendingDate.get(choiceDate - 1).equals(db.getDateBySomthingFromSchedule(i))) {
                         index = i;
@@ -170,6 +176,7 @@ public class Schedule {
 
             }
         } while (wrong);
+        System.out.println(index);
         se.showSeat(db.getScheduleIdBySomthingFromSchedule(index));
         String selectedTime = pendingTime.get(choiceTime - 1);
 
@@ -186,7 +193,9 @@ public class Schedule {
     // =================================================Set
     // Schedule=======================================================
     public void setSchedule() {
-        int selection=0;
+
+        Database db = new Database();
+        int selection = 0;
         int choice;
         String date = "";
         String time = "";
@@ -209,7 +218,7 @@ public class Schedule {
                 cin.next();
             }
         }
-        Schedule slectionSchdule=db.getSchedule(selection-1);
+        Schedule slectionSchdule = db.getSchedule(selection - 1);
         do {
             System.out.println("\n=====Edit Schedule=====");
             System.out.println("1. Schedule Id");
@@ -242,7 +251,8 @@ public class Schedule {
                         if (movieID.matches("^[M]\\d{3}")) {
                             break;
                         } else {
-                            System.out.println("inavalid please follow the format : (M000),first character must be M and Uppercase");
+                            System.out.println(
+                                    "inavalid please follow the format : (M000),first character must be M and Uppercase");
                         }
                     }
                     slectionSchdule.setMovieId(movieID);
@@ -307,14 +317,18 @@ public class Schedule {
     // Display==========================================================
 
     public void showSchedule() {
+
+        Database db = new Database();
         System.out.println("\n========================SCHEDULE LISTS========================");
         System.out.printf("%-4s %-12s %-10s %-12s %-8s %-10s\n", "No", "ScheduleId", "Movie ID", "Date", "Time",
                 "Duration");
         System.out.println("--------------------------------------------------------------");
 
         for (int i = 0; i < db.scheduleIdSize(); i++) {
-            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2.1f hours\n", (i + 1), db.getDateBySomthingFromSchedule(i),
-                    db.getMovieIdBySomthingFromSchedule(i), db.getDateBySomthingFromSchedule(i), db.getTimeBySomthingFromSchedule(i), db.getDurationBySomthingFromSchedule(i));
+            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2.1f hours\n", (i + 1),
+                    db.getDateBySomthingFromSchedule(i),
+                    db.getMovieIdBySomthingFromSchedule(i), db.getDateBySomthingFromSchedule(i),
+                    db.getTimeBySomthingFromSchedule(i), db.getDurationBySomthingFromSchedule(i));
         }
         System.out.println("==============================================================");
     }

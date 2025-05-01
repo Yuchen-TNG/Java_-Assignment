@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Seat {
-    Database db = new Database();
     private String scheduleId;
     private String seatId;
     private int row;
@@ -67,6 +66,8 @@ public class Seat {
     }
 
     public void showSeat(String scheduleId) {
+        
+    Database db = new Database();
         int index = -1;
         char letter = 'A';
         System.out.println(scheduleId);
@@ -107,6 +108,8 @@ public class Seat {
     }
 
     public void selectSeat(String scheduleId) {
+        
+    Database db = new Database();
         int index = -1;
         int people = 0;
         Scanner cin = new Scanner(System.in);

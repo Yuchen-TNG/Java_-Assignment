@@ -59,7 +59,7 @@ public class Database {
         return scheduleData.size();
     }
 
-    public int bookedSeatSize(){
+    public int bookedSeatSize() {
         return seatData.size();
     }
 
@@ -75,11 +75,12 @@ public class Database {
     }
 
     public void showAllMovieFromMovie() {
-        System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
+        System.out.printf("\n\n%-5s%-25s%-8s%-15s%-15s\n", "No", "Movie Name", "ID", "Type", "Language");
         for (int i = 0; i < movieData.size(); i++) {
             Movie movie = movieData.get(i);
 
-            System.out.printf("%-25s%-8s%-15s%-15s\n", movie.getName(), movie.getMovieId(), movie.getType(),
+            System.out.printf("%-5s%-25s%-8s%-15s%-15s\n", (i + 1), movie.getName(), movie.getMovieId(),
+                    movie.getType(),
                     movie.getLanguage());
         }
     }
@@ -112,19 +113,28 @@ public class Database {
 
     public String getPendingDateByMovieIDFromSchedule(String movieID, int index) {
         if (scheduleData.get(index).getMovieId().equals(movieID)) {
-            String pendingDate = scheduleData.get(index).getDate();
+            String pendingDate = "";
+            pendingDate = scheduleData.get(index).getDate();
             return pendingDate;
         } else
             return null;
     }
 
-    public String getPendingDateByMovieIDAndSelectedDate(String movieID, int index, String selectedDate) {
-        if (getMovieIdBySomthingFromSchedule(index).equals(movieID)
-                && scheduleData.get(index).getDate().equals(selectedDate)) {
-            String pendingTime = scheduleData.get(index).getTime();
+    public String getPendingTimeByMovieIDFromSchedule(String movieID, int index) {
+        if (scheduleData.get(index).getMovieId().equals(movieID)) {
+            String pendingTime = "";
+            pendingTime = scheduleData.get(index).getTime();
             return pendingTime;
         } else
             return null;
+    }
+
+    public boolean getPendingDateByMovieIDAndSelectedDate(String movieID, int index, String selectedDate) {
+        if (getMovieIdBySomthingFromSchedule(index).equals(movieID)
+                && scheduleData.get(index).getDate().equals(selectedDate)) {
+            return true;
+        } else
+            return false;
     }
 
     public Schedule getSchedule(int index) {
