@@ -7,17 +7,62 @@ import java.util.Scanner;
 
 public class Seat {
 
-    ArrayList<String> scheduleId = new ArrayList<>();
-    ArrayList<String> seatId = new ArrayList<>();
-    ArrayList<Integer> row = new ArrayList<>();
-    ArrayList<Integer> column = new ArrayList<>();
-    ArrayList<String> bookedSeat = new ArrayList<>();
+    private String scheduleId;
+    private String seatId;
+    private int row;
+    private int column;
+    private String bookedSeat;
     Scanner cin = new Scanner(System.in);
 
     public Seat() {}
 
-    public Seat(String scheduleId, String seatId, int column, int row, String bookedSeat) {}
+    public Seat(String scheduleId, String seatId, int column, int row, String bookedSeat) {
+        this.scheduleId = scheduleId;
+        this.seatId = seatId;
+        this.row = row;
+        this.column = column;
+        this.bookedSeat = bookedSeat;
+    }
 
+    public String getScheduleId() {
+        return scheduleId;
+    }
+
+    public void setScheduleId(String scheduleId) {
+        this.scheduleId = scheduleId;
+    }
+
+    public String getSeatId() {
+        return seatId;
+    }
+
+    public void setSeatId(String seatId) {
+        this.seatId = seatId;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    public String getBookedSeat() {
+        return bookedSeat;
+    }
+
+    public void setBookedSeat(String bookedSeat) {
+        this.bookedSeat = bookedSeat;
+    }
 
     public void showSeat(String scheduleId) {
         int index = -1;
@@ -36,8 +81,8 @@ public class Seat {
         ArrayList<String> bookedList = new ArrayList<>(Arrays.asList(bookedSeat.get(index).split(",")));
         
 
-        for (int j = 0; j < column.get(index); j++) {
-            for (int e = 0; e < row.get(index); e++) {
+        for (int j = 0; j < getColumn(); j++) {
+            for (int e = 0; e < getRow(); e++) {
                 String seatCode = "" + letter + (e + 1); // 生成座位编号，如 A1, A2, B1...
                 if (bookedList.contains(seatCode)) {
                     System.out.print("[X]");
@@ -50,7 +95,7 @@ public class Seat {
         }
 
         // 输出列号
-        for (int r = 0; r < row.get(index); r++) {
+        for (int r = 0; r < getRow(); r++) {
             System.out.print(" " + (r + 1) + " ");
         }
         System.out.println();
@@ -101,7 +146,7 @@ public class Seat {
                 } while (bool);
 
             }
-            System.out.print(bookedSeat.get(index)); // 打印更新后的座位信息
+            System.out.print(getBookedSeat()); // 打印更新后的座位信息
         } else {
             System.out.println("Invalid schedule or no seats available.");
         }
