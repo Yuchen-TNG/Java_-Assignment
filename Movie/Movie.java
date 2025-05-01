@@ -77,11 +77,11 @@ public class Movie {
                 Movie newMovie = new Movie(MovieName, movieID, MovieType, MovieLan);
 
                 do {
-                    db.showMovie(count);
+                    db.showMovieFromMovie(count);
                     System.out.println("\n\nAre you sure you want to add into Library? (Yes / No)");
                     String choice = cin.nextLine().trim();
                     if (choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")) {
-                        db.addMovie(newMovie);
+                        db.addMovieFromMovie(newMovie);
                         check++;
                         count++;
                         System.out.println("\n\nYour Movie has been add");
@@ -105,12 +105,12 @@ public class Movie {
         System.out.print("Movie ID delete:");
         String movieId = cin.nextLine();
         System.out.println("");
-        String pendingName = db.getMovieNameByMovieId(movieId);
+        String pendingName = db.getMovieNameByMovieIdFromMovie(movieId);
         do {
             System.out.println("\nAre you sure you want to delete this Movie : " + pendingName);
             String choice = cin.nextLine();
             if (choice.equalsIgnoreCase("Yes") || choice.equalsIgnoreCase("y")) {
-                db.clearMovie(movieId);
+                db.clearMovieFromMovie(movieId);
                 System.out.println("\n\nMovie " + pendingName + " have been deleted");
                 check = false;
             } else if (choice.equalsIgnoreCase("No") || choice.equalsIgnoreCase("n")) {
@@ -124,8 +124,8 @@ public class Movie {
     }
 
     public void choiceMovie() {
-        Seat se=new Seat();
-        db.showAllMovie();
+
+        db.showAllMovieFromMovie();
         System.out.println("Select Your Movie");
         int choice = cin.nextInt();
         choice += -1;
