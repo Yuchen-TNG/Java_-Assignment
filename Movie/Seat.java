@@ -88,6 +88,8 @@ public class Seat {
             System.out.print("How many seats do you want to choose? ");
             try {
                 people = cin.nextInt();
+                Booking booking = new Booking();
+                booking.setnumberofperson(people);
                 cin.nextLine();  // 清除换行符
                 bool = false;  // 继续下一步，因为输入是有效数字
             } catch (Exception e) {
@@ -111,6 +113,8 @@ public class Seat {
             // 选择座位
             for (int i = 0; i < people; i++) {
                 String pendingSeat = cin.nextLine();
+                Booking booking = new Booking();
+                booking.setseatnumber(pendingSeat);
                 // 如果想要添加到座位字符串中，应该是拼接而不是插入
                 bookedSeat.set(index, bookedSeat.get(index) + "," + pendingSeat);
             }
