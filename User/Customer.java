@@ -163,7 +163,7 @@ public class Customer extends User implements Interface {
         }
     }
 
-    public static void showAllCustomer() {
+    public void showAllCustomer() {
 
         if (customerCount == 0) {
             System.out.println("No customers registered yet.");
