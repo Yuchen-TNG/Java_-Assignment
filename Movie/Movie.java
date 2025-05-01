@@ -155,17 +155,4 @@ public class Movie {
             
         
     }
-
-    public String getMovieNameById(String movieId){
-        for(int i=0;i<this.ID.size();i++){
-            if (this.ID.get(i).equals(movieId)) {
-                return Name.get(i);
-            }
-        }return "System problem";
-    }
-
-    public String getName(){
-        return Name.get(i);
-    }
-
 }
