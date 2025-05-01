@@ -6,13 +6,13 @@ import java.util.Scanner;
 
 
 public class Seat {
-
+    Database db=new Database();
     private String scheduleId;
     private String seatId;
     private int row;
     private int column;
     private String bookedSeat;
-    
+    Seat selectBookedSeat=db.getSeat;
     Scanner cin = new Scanner(System.in);
 
     public Seat() {}
@@ -71,15 +71,15 @@ public class Seat {
         System.out.println(scheduleId);
 
         // 找到对应的 schedule index
-        for (int i = 0; i < this.scheduleId.size(); i++) {
-            if (this.scheduleId.get(i).equals(scheduleId)) {
+        for (int i = 0; i < db.scheduleIdSize(); i++) {
+            if (db.getScheduleIdBySomthingFromSeat(i).equals(scheduleId)) {
                 index = i;
                 break;
             }
         }
 
         // 把 "A1,B3,D6" 变成 List<String>
-        ArrayList<String> bookedList = new ArrayList<>(Arrays.asList(bookedSeat.get(index).split(",")));
+        ArrayList<String> bookedList = new ArrayList<>(Arrays.asList(db.getBookedSeatBySomthingFromSeat(index).split(",")));
         
 
         for (int j = 0; j < getColumn(); j++) {
@@ -126,19 +126,19 @@ public class Seat {
 
         // 查找对应的排期
         System.out.println("Which seat you want? ");
-        for (int i = 0; i < this.scheduleId.size(); i++) {
-            if (this.scheduleId.get(i).equals(scheduleId)) {
+        for (int i = 0; i < db.scheduleIdSize(); i++) {
+            if (db.getScheduleIdBySomthingFromSeat(i).equals(scheduleId)) {
                 index = i;
                 break;
             }
         }
         cin.nextLine();
-        if (index != -1 && bookedSeat.size() > index) {
+        if (index != -1 && db.bookedSeatSize() > index) {
             for (int i = 0; i < people; i++) {
                 do {
                     String pendingSeat = cin.nextLine();
                     if (pendingSeat.matches("[A-J][1-9]")) {
-                        bookedSeat.set(index, bookedSeat.get(index) + "," + pendingSeat);
+                        bookedSeat.set(index, db.getBookedSeatBySomthingFromSeat(index) + "," + pendingSeat);
                         bool = false;
                     } else {
                         bool = true;

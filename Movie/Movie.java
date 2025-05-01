@@ -124,7 +124,7 @@ public class Movie {
     }
 
     public void choiceMovie() {
-
+        Seat se=new Seat();
         db.showAllMovieFromMovie();
         System.out.println("Select Your Movie");
         int choice = cin.nextInt();

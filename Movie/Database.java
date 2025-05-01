@@ -59,20 +59,15 @@ public class Database {
         return scheduleData.size();
     }
 
+    public int bookedSeatSize(){
+        return seatData.size();
+    }
+
     public void addMovieFromMovie(Movie movie) {
         movieData.add(movie);
     }
 
-<<<<<<< HEAD
-    public void addScheduleIdBySomething(int something, String scheduleId) {
-
-        scheduleData.get(something).set(something, scheduleId);
-    }
-
-    public void showMovie(int count) {
-=======
     public void showMovieFromMovie(int count) {
->>>>>>> 1dc77b3bdb6da087033c088fb107160122009734
         System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
         Movie movie = movieData.get(count);
         System.out.printf("%-25s%-8s%-15s%-15s\n", movie.getName(), movie.getMovieId(), movie.getType(),
@@ -136,7 +131,11 @@ public class Database {
         return scheduleData.get(index);
     }
 
-    public String getScheduleIdBySomthing(int something) {
+    public Schedule getSeat(int index) {
+        return seatData.get(index);
+    }
+
+    public String getScheduleIdBySomthingFromSchedule(int something) {
         return scheduleData.get(something).getScheduleId();
     }
 
@@ -154,5 +153,13 @@ public class Database {
 
     public String getDurationBySomthingFromSchedule(int something) {
         return scheduleData.get(something).getDuration();
+    }
+
+    public String getScheduleIdBySomthingFromSeat(int something) {
+        return seatData.get(something).getScheduleId();
+    }
+
+    public String getBookedSeatBySomthingFromSeat(int something) {
+        return seatData.get(something).getBookedSeat();
     }
 }

@@ -128,7 +128,7 @@ public class Schedule {
 
         for (int i = 0; i < db.scheduleIdSize(); i++) {
 
-            if (db.getPendingDateByMovieIDFromScheduleAndSelectedDate(movieID, i) == null) {
+            if (db.getPendingDateByMovieIDAndSelectedDate(movieID, i,selectedDate) == null) {
 
             } else {
                 int e = 0;
@@ -170,7 +170,7 @@ public class Schedule {
 
             }
         } while (wrong);
-        se.showSeat(db.getScheduleIdBySomthing(index));
+        se.showSeat(db.getScheduleIdBySomthingFromSchedule(index));
         String selectedTime = pendingTime.get(choiceTime - 1);
 
         for (int i = 0; i < db.movieIdSize(); i++) {
@@ -242,9 +242,7 @@ public class Schedule {
                         if (movieID.matches("^[M]\\d{3}")) {
                             break;
                         } else {
-                            System.out
-                                    .println(
-                                            "inavalid please follow the format : (M000),first character must be M and Uppercase");
+                            System.out.println("inavalid please follow the format : (M000),first character must be M and Uppercase");
                         }
                     }
                     slectionSchdule.setMovieId(movieID);
