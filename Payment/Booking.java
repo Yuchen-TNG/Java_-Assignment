@@ -1,5 +1,6 @@
 package Payment;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Booking {
 
@@ -8,7 +9,7 @@ public class Booking {
 
         private String movie;
         private int numofhall= 3;
-        private StringBuilder seatnumber;
+        private List<String> seatNumbers; 
         private String email;
         private int numberofperson;
         private String date;
@@ -17,7 +18,6 @@ public class Booking {
 
         public Booking(){
             this.bookingID = generateBookingID();
-            this.seatnumber = new StringBuilder();
         }
 
         public Booking(String movie, String date, String time) {
@@ -25,13 +25,11 @@ public class Booking {
             this.movie = movie;
             this.date = date;
             this.time = time;
-            this.seatnumber = new StringBuilder();
         }
 
         public Booking(String movie) {
             this.bookingID = generateBookingID();
             this.movie = movie;
-            this.seatnumber = new StringBuilder(); 
         }
 
         public void setEmail(String email) {
@@ -42,15 +40,12 @@ public class Booking {
             this.numberofperson = numberofperson;
         }
 
-        public void setseatnumber(StringBuilder seatnumber){
-            if (seatnumber.length() > 0) {
-                seatnumber.append(","); // 在座位间添加逗号
-            }
-            seatnumber.append(seatnumber);
+        public void setseatnumber(String seatnumber){
+            seatNumbers.add(seatnumber);
         }
 
-        public String getseatnumber() {
-            return seatnumber.toString(); // 返回所有座位编号
+        public String getseatnumber(){
+            return String.join(",", seatNumbers);
         }
     
         public String getmovie(){
@@ -85,7 +80,9 @@ public class Booking {
                 Booking newbooking = new Booking(this.movie, this.date, this.time);
                 newbooking.setEmail(this.email);
                 newbooking.setnumberofperson(this.numberofperson); // 复制 numberofperson
-                newbooking.setseatnumber(this.getseatnumber()); 
+                for (String seat : seatNumbers) {
+                    newbooking.setseatnumber(seat); // 复制所有座位
+                }
                 confirm.add(newbooking);
                 System.out.println("Make payment successfully");
     
