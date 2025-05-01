@@ -157,11 +157,11 @@ public class Schedule {
         String time = "";
         String movieID = "";
         String scheduleID = "";
-        String duration;
+        double duration;
 
         showSchedule();
         while (true) {
-            System.out.print("Selection: ");
+            System.out.print("Selection(No): ");
             if (cin.hasNextInt()) {
                 selection = cin.nextInt();
                 if (selection <= scheduleId.size() && selection > 0) {
@@ -183,21 +183,13 @@ public class Schedule {
             System.out.println("5. Duration");
             System.out.println("6. Save");
             System.out.println("=======================");
-            while (true) {
+            System.out.print("Choice(1-6): ");
+            while (!cin.hasNextInt()) {
+                System.out.println("Invalid, please enter the number");
+                cin.next();
                 System.out.print("Choice: ");
-                if (cin.hasNextInt()) {
-                    choice = cin.nextInt();// -------------------------------------
-
-                    if (choice <= 6 && choice > 0) {
-                        break;
-                    } else {
-                        System.out.println("Invalid, please input the range of the choice ");
-                    }
-                } else {
-                    System.out.println("Invalid, please enter the number");
-                    cin.next();
-                }
             }
+            choice = cin.nextInt();
 
             switch (choice) {
                 case 1:
@@ -258,7 +250,7 @@ public class Schedule {
                     while (true) {
                         System.out.print("Duration: ");
                         if (cin.hasNextDouble() || cin.hasNextInt()) {
-                            duration = cin.next();
+                            duration = cin.nextDouble();
                             break;
                         } else {
                             System.out.println("Invalid, please input the number");
@@ -268,7 +260,10 @@ public class Schedule {
                     this.duration.set(selection - 1, duration);
                     break;
                 case 6:
+                System.out.println("Save successfully");
                     break;
+                default:
+                    System.out.println("Invalid, please input the range of the choice ");
             }
         } while (choice != 6);
         showSchedule();
@@ -284,7 +279,7 @@ public class Schedule {
         System.out.println("--------------------------------------------------------------");
 
         for (int i = 0; i < scheduleId.size(); i++) {
-            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2s hours\n", (i + 1), this.scheduleId.get(i),
+            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2.1f hours\n", (i + 1), this.scheduleId.get(i),
                     this.movieID.get(i), this.date.get(i), this.time.get(i), this.duration.get(i));
         }
         System.out.println("==============================================================");

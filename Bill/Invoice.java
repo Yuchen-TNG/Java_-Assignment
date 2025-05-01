@@ -20,7 +20,7 @@ public class Invoice {
         this.invoiceDate = LocalDate.now();
     }
 
-    private String generateInvoiceID() {
+    private String generateInvoiceID() { //Universally Unique Identifier 把UUID变成string substring是写提取几个就几个
         return "INVOICE-" + UUID.randomUUID().toString().substring(0, 8); 
     }
 

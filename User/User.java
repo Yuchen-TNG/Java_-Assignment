@@ -28,60 +28,32 @@ public class User {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getGender() {
         return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getphoneNo() {
+    public String getPhoneNo() {
         return phoneNo;
-    }
-
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String toString() {
-        return String.format("\nName: %s\nAge: %d\nGender: %s\nBirthday: %s\nPhoneNo: %s\nEmail: %s", name, age, gender,
+        return String.format("\n| Name: %-22s |\n| Age: %-23d |\n| Gender: %-20s |\n| Birthday: %-18s |\n| PhoneNo: %-19s |\n| Email: %-21s |", name, age, gender,
                 birthday, phoneNo, email);
     }
 

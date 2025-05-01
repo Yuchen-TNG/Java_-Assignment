@@ -9,7 +9,6 @@ public class Payment {
     private int method; // touch n go, cash, credit card
     private static double tax = 0.06;
     private double totalprice;
-    private String[] paymenthistory;
     private YearMonth expiredMonth;
 
     private Booking booking;

@@ -15,25 +15,29 @@ public class Booking {
         private String date;
         private String time;
 
-
         public Booking(){
             this.bookingID = generateBookingID();
         }
 
-        public Booking(String movie, String date, String time) {
+        public Booking(String movie, String date, String time, int numberofperson) {
             this.bookingID = generateBookingID();
             this.movie = movie;
             this.date = date;
             this.time = time;
-        }
-
-        public Booking(String movie) {
-            this.bookingID = generateBookingID();
-            this.movie = movie;
+            this.numberofperson = numberofperson;
+            this.seatNumbers = new ArrayList<>();
         }
 
         public void setEmail(String email) {
             this.email = email;
+        }
+
+        public void setdate(String date){
+            this.date = date;
+        }
+
+        public void settime(String time){
+            this.time = time;
         }
 
         public void setnumberofperson(int numberofperson){
@@ -68,7 +72,6 @@ public class Booking {
             String id = String.format("B%03d",bookingidCount);
             bookingidCount++;
             return id;
-
         }
 
         public void userchoice(String choice,  ArrayList<Booking> confirm ){
@@ -77,7 +80,10 @@ public class Booking {
             System.out.println("Error: Movie, date, or time is not set.");
             return;
         }
-                Booking newbooking = new Booking(this.movie, this.date, this.time);
+                Booking newbooking = new Booking();
+                newbooking.setdate(this.date);
+                newbooking.settime(this.time);
+                newbooking.setMovie(this.movie);
                 newbooking.setEmail(this.email);
                 newbooking.setnumberofperson(this.numberofperson); // 复制 numberofperson
                 for (String seat : seatNumbers) {
