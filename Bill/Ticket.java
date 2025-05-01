@@ -2,7 +2,6 @@ package Bill;
 import java.util.UUID;
 
 import Payment.Booking;
-import User.Customer;
 
 public class Ticket {
     private String ticketID; 
@@ -16,7 +15,7 @@ public class Ticket {
     }
 
     private String generateTicketID() {
-        return "TICKET-" + UUID.randomUUID().toString().substring(0, 8); // 生成唯一 ID
+        return "TICKET-" + UUID.randomUUID().toString().substring(0, 16); // 生成唯一 ID
     }
 
     public String getTicketID() {
