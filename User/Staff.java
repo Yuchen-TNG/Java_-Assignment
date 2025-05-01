@@ -13,7 +13,7 @@ public class Staff extends User implements Interface {
     Customer customer = new Customer();
 
     static {
-        staff[0] = new Staff("Leon", 30, "M", "18/6/2006", "01110738155", "staff@gmail.com", "password123", "S001", "Manager");
+        staff[0] = new Staff("Leon", 30, "M", "18/6/2006", "01110738155", "@gmail.com", "1", "S001", "Manager");
     }
 
     public Staff() {
@@ -106,13 +106,16 @@ public class Staff extends User implements Interface {
         do {
             displayStaffMenu();
             while (!cin.hasNextInt()) {
-                System.out.println("Invalid choice! Please select a number between 1 and 3.");
+                System.out.println("Invalid choice! Please select a number 0 to 3.");
                 cin.next();
             }
             displayStaffMenu();
             selection = cin.nextInt();
 
             switch (selection) {
+                case 0:
+                Logout();
+                return;
                 case 1:
                     Customer.showAllCustomer();
                     break;
@@ -121,17 +124,14 @@ public class Staff extends User implements Interface {
                     movie.setMovie();
                     break;
                 case 3:
-                    Logout();
-                    return;
-                case 4:
-                    System.out.println("Select Your MovieId: ");
-                    String movieId = cin.next();
-                    schedule.getSchedule(movieId);
+                System.out.println("Select Your MovieId: ");
+                String movieId = cin.next();
+                schedule.getSchedule(movieId);
                     break;
                 default:
-                    System.out.println("Invalid choice! Please select a number between 1 and 3.");
+                    System.out.println("Invalid choice! Please select a number 0 to 3.");
             }
-        } while (selection != 3);
+        } while (selection != 0);
         cin.close();
     }
 
@@ -139,8 +139,8 @@ public class Staff extends User implements Interface {
         System.out.println("\n====Staff Menu====");
         System.out.println("1. View Customer Details");
         System.out.println("2. Add Movie");
-        System.out.println("3. Logout");
-        System.out.println("4. checkSchedule");
+        System.out.println("3. checkSchedule");
+        System.out.println("0. Logout");
         System.out.print("Selection: ");
     }
 

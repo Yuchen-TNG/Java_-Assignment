@@ -25,34 +25,37 @@ public class Menu {
 
             switch (selection) {
                 case 0:
-                    schedule.setSchedule();
+                System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
                     break;
                 case 1:
-                mv.choiceMovie();
+                    customer.Register();
                     break;
                 case 2:
                     customer.loginCustAcc();
                     break;
                 case 3:
-                    staff.staffLogin();
+                Customer.showAllCustomer();
                     break;
                 case 4:
-                    System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
+                    schedule.setSchedule();
                     break;
                 default:
                     System.out.println("Invalid choice! Please select a number between 1 and 4.");
             }
-        } while (selection != 4);
+        } while (selection != 0);
 
         cin.close();
     }
 
     public static void displayMainMenu() {
-        System.out.println("\n======CINIME TICKET======");
-        System.out.println("1. ");
-        System.out.println("2. Login Customer");
-        System.out.println("3. Login Staff");
-        System.out.println("4. Exit");
+        System.out.println("\n+========================================================================+");
+        System.out.println("|                          CINIME TICKET SYSTEM                          |");
+        System.out.println("+========================================================================+");
+        System.out.println("| 1. Register                                                            |");
+        System.out.println("| 2. Login Customer                                                      |");
+        System.out.println("| 3. Login Staff                                                         |");
+        System.out.println("| 0. Exit                                                                |");
+        System.out.println("+========================================================================+");
         System.out.print("Selection: ");
     }
 }

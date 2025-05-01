@@ -48,7 +48,7 @@ public class User {
         this.birthday = birthday;
     }
 
-    public String getphoneNo() {
+    public String getPhoneNo() {
         return phoneNo;
     }
 
