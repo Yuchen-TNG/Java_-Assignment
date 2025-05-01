@@ -17,6 +17,8 @@ public class Schedule {
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
     Scanner cin = new Scanner(System.in); // 加上Scanner
+    String selectedTime2;
+    String selectedDate2;
 
     public Schedule() {
         addSchedule("M001", "S001", "11:00", "2025-01-28", "2 hours");
@@ -41,7 +43,7 @@ public class Schedule {
 
     // ===============================================Get
     // Schedule==============================================================
-    public String[] getSchedule(String movieID) {
+    public void getSchedule(String movieID) {
         ArrayList<String> pendingDate = new ArrayList<>();
         ArrayList<String> pendingTime = new ArrayList<>();
         Movie mv = new Movie();
@@ -111,6 +113,7 @@ public class Schedule {
 
         // Step 7: 用户选时间
         int choiceTime = 0;
+        int index = 0;
         do {
             System.out.print("Which time is preferred? ");
             choiceTime = cin.nextInt();
@@ -122,12 +125,13 @@ public class Schedule {
                 for (int i = 0; i < scheduleId.size(); i++) {
                     if (pendingTime.get(choiceTime - 1).equals(time.get(i))
                             && pendingDate.get(choiceDate - 1).equals(date.get(i))) {
-                        se.showSeat(scheduleId.get(i));
+                        index = i;
                     }
                 }
+
             }
         } while (wrong);
-
+        se.showSeat(scheduleId.get(index));
         String selectedTime = pendingTime.get(choiceTime - 1);
 
         for (int i = 0; i < this.movieID.size(); i++) {
@@ -137,7 +141,7 @@ public class Schedule {
                 break;
             }
         }
-        return new String[] { selectedDate, selectedTime };
+        setDate_Time(selectedDate, selectedTime);
     }
 
     // =================================================Set
@@ -281,4 +285,22 @@ public class Schedule {
         }
         System.out.println("==============================================================");
     }
+
+
+    public void setDate_Time(String selectedDate,String selectedTime){
+        this.selectedDate2=selectedDate;
+        this.selectedTime2=selectedTime;
+    }
+
+    public String[] getDateAndTime(){
+        return new String[]{selectedDate2,selectedTime2};
+    }
+
+    public String getDateAndTime2(){
+        return selectedDate2+selectedTime2;
+    }
+
+    
+
 }
+
