@@ -176,7 +176,6 @@ public class Movie {
         String selectedTime = schedule[1];
 
         Booking booking = new Booking(movieName, selectedDate, selectedTime);
-        booking.displayticket();
     }
 
     public String getMovieNameById(String movieId){
