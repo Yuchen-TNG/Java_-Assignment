@@ -8,36 +8,16 @@ import java.util.Scanner;
 public class Seat {
 
     ArrayList<String> scheduleId = new ArrayList<>();
-    ArrayList<String> id = new ArrayList<>();
+    ArrayList<String> seatId = new ArrayList<>();
     ArrayList<Integer> row = new ArrayList<>();
     ArrayList<Integer> column = new ArrayList<>();
     ArrayList<String> bookedSeat = new ArrayList<>();
     Scanner cin = new Scanner(System.in);
-    String totalPendingSeat;
-    String pendingScheduleId;
-    public Seat() {
-        //for method
-        addSeat("S001", "SE001", 10, 9, "A1,A2,A3");
-        addSeat("S002", "SE002", 10, 9, "B1,B2,B3");
-        addSeat("S003", "SE003", 10, 9, "C1,C2,C3");
-        addSeat("S004", "SE004", 10, 9, "D1,D2,D3");
-        addSeat("S005", "SE001", 10, 9, "E1,E2,E3");
-        addSeat("S006", "SE002", 10, 9, "F1,F2,F3");
-        addSeat("S007", "SE003", 10, 9, "G1,G2,G3");
-        addSeat("S008", "SE004", 10, 9, "H1,H2,H3");
-        addSeat("S009", "SE003", 10, 9, "I1,I2,I3");
-        addSeat("S010", "SE004", 10, 9, "J1,J2,J3");
 
-    }
+    public Seat() {}
 
-    public void addSeat(String scheduleId, String id, int column, int row, String bookedSeat) {
+    public Seat(String scheduleId, String seatId, int column, int row, String bookedSeat) {}
 
-        this.scheduleId.add(scheduleId);
-        this.id.add(id);
-        this.row.add(row);
-        this.column.add(column);
-        this.bookedSeat.add(bookedSeat);
-    }
 
     public void showSeat(String scheduleId) {
         int index = -1;
@@ -107,16 +87,12 @@ public class Seat {
             }
         }
         cin.nextLine();
-        String totalPendingSeat="";
         if (index != -1 && bookedSeat.size() > index) {
             for (int i = 0; i < people; i++) {
                 do {
                     String pendingSeat = cin.nextLine();
                     if (pendingSeat.matches("[A-J][1-9]")) {
                         bookedSeat.set(index, bookedSeat.get(index) + "," + pendingSeat);
-                        totalPendingSeat+=","+pendingSeat;
-                        pendingSeat="";
-                        setPendingSeat(totalPendingSeat,scheduleId);
                         bool = false;
                     } else {
                         bool = true;
@@ -131,14 +107,4 @@ public class Seat {
         }
     }
 
-    
-    public void setPendingSeat(String totalPendingSeat,String scheduleId){
-        this.totalPendingSeat=totalPendingSeat;
-        this.pendingScheduleId=scheduleId;
-    }
-
-    public String[] storeAllValue(){
-        Schedule sc=new Schedule();
-        return new String[]{pendingScheduleId,totalPendingSeat,sc.getDateAndTime2()};
-    }
 }

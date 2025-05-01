@@ -9,53 +9,57 @@ import java.util.Scanner;
 
 public class Schedule {
 
-    ArrayList<String> scheduleId = new ArrayList<>();
-    ArrayList<String> movieID = new ArrayList<>();
-    ArrayList<String> time = new ArrayList<>();
-    ArrayList<String> date = new ArrayList<>();
-    ArrayList<Double> duration = new ArrayList<>();
+    String scheduleId;
+    String movieID;
+    String time;
+    String date;
+    String duration;
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
     Scanner cin = new Scanner(System.in); // 加上Scanner
-    String selectedTime2;
-    String selectedDate2;
+    private String selectedTime2;
+    private String selectedDate2;
+    Database db = new Database();
 
     public Schedule() {
-        addSchedule("M001", "S001", "11:00", "2025-01-28", 2);
-        addSchedule("M001", "S002", "09:00", "2025-01-28", 2);
-        addSchedule("M001", "S003", "08:00", "2025-01-28", 2);
-        addSchedule("M001", "S004", "01:00", "2025-01-28", 2);
-        addSchedule("M001", "S005", "12:00", "2025-02-27", 2);
-        addSchedule("M001", "S006", "13:00", "2025-01-21", 2);
-        addSchedule("M001", "S007", "14:00", "2025-02-01", 2);
-        addSchedule("M002", "S008", "15:00", "2025-03-28", 1.5);
-        addSchedule("M002", "S009", "13:00", "2025-04-28", 2);
-        addSchedule("M003", "S010", "15:00", "2025-05-28", 1.5);
     }
 
-    public void addSchedule(String movieID, String scheduleId, String time, String date, double duration) {
-        this.movieID.add(movieID);
-        this.scheduleId.add(scheduleId);
-        this.time.add(time);
-        this.date.add(date);
-        this.duration.add(duration);
+    public Schedule(String movieID, String scheduleId, String date, String time, String duration) {
+        this.movieID = movieID;
+        this.scheduleId = scheduleId;
+        this.date = date;
+        this.duration = duration;
     }
 
-    // ===============================================Get
-    // Schedule==============================================================
+    public String getScheduleId() {
+        return scheduleId;
+    }
+
+    public String getMovieId() {
+        return movieID;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
     public void getSchedule(String movieID) {
         ArrayList<String> pendingDate = new ArrayList<>();
         ArrayList<String> pendingTime = new ArrayList<>();
         Movie mv = new Movie();
         Seat se = new Seat();
-        System.out.println("\nSchedule for: " + mv.getMovieNameById(movieID));
+        System.out.println("\nSchedule for: " + db.getMovieNameByMovieId(movieID));
 
-        for (int i = 0; i < this.date.size(); i++) {
-            if (this.movieID.get(i).equals(movieID)) {
-                if (!pendingDate.contains(date.get(i))) {
-                    pendingDate.add(date.get(i));
-                }
+        for (int i = 0; i < db.scheduleIdSize(); i++) {
+
+            if (db.getPendingDateByMovieID(movieID, i) == null) {
+
+            } else {
+                int e = 0;
+                pendingDate.set(e, db.getPendingDateByMovieID(movieID, i));
+                e++;
             }
+
         }
 
         // Step 2: 日期排序
