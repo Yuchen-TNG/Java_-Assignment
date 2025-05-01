@@ -13,7 +13,7 @@ public class Schedule {
     ArrayList<String> movieID = new ArrayList<>();
     ArrayList<String> time = new ArrayList<>();
     ArrayList<String> date = new ArrayList<>();
-    ArrayList<String> duration = new ArrayList<>();
+    ArrayList<Double> duration = new ArrayList<>();
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
     Scanner cin = new Scanner(System.in); // 加上Scanner
@@ -21,19 +21,19 @@ public class Schedule {
     String selectedDate2;
 
     public Schedule() {
-        addSchedule("M001", "S001", "11:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "S002", "09:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "S003", "08:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "S004", "01:00", "2025-01-28", "2 hours");
-        addSchedule("M001", "S005", "12:00", "2025-02-27", "2 hours");
-        addSchedule("M001", "S006", "13:00", "2025-01-21", "2 hours");
-        addSchedule("M001", "S007", "14:00", "2025-02-01", "2 hours");
-        addSchedule("M002", "S008", "15:00", "2025-03-28", "1.5 hours");
-        addSchedule("M002", "S009", "13:00", "2025-04-28", "2 hours");
-        addSchedule("M003", "S010", "15:00", "2025-05-28", "1.5 hours");
+        addSchedule("M001", "S001", "11:00", "2025-01-28", 2);
+        addSchedule("M001", "S002", "09:00", "2025-01-28", 2);
+        addSchedule("M001", "S003", "08:00", "2025-01-28", 2 );
+        addSchedule("M001", "S004", "01:00", "2025-01-28", 2 );
+        addSchedule("M001", "S005", "12:00", "2025-02-27", 2 );
+        addSchedule("M001", "S006", "13:00", "2025-01-21", 2 );
+        addSchedule("M001", "S007", "14:00", "2025-02-01", 2 );
+        addSchedule("M002", "S008", "15:00", "2025-03-28", 1.5 );
+        addSchedule("M002", "S009", "13:00", "2025-04-28", 2 );
+        addSchedule("M003", "S010", "15:00", "2025-05-28", 1.5 );
     }
 
-    public void addSchedule(String movieID, String scheduleId, String time, String date, String duration) {
+    public void addSchedule(String movieID, String scheduleId, String time, String date, double duration) {
         this.movieID.add(movieID);
         this.scheduleId.add(scheduleId);
         this.time.add(time);
@@ -153,7 +153,7 @@ public class Schedule {
         String time = "";
         String movieID = "";
         String scheduleID = "";
-        String duration;
+        double duration;
 
         showSchedule();
         while (true) {
@@ -254,7 +254,7 @@ public class Schedule {
                     while (true) {
                         System.out.print("Duration: ");
                         if (cin.hasNextDouble() || cin.hasNextInt()) {
-                            duration = cin.next();
+                            duration = cin.nextDouble();
                             break;
                         } else {
                             System.out.println("Invalid, please input the number");
@@ -280,7 +280,7 @@ public class Schedule {
         System.out.println("--------------------------------------------------------------");
 
         for (int i = 0; i < scheduleId.size(); i++) {
-            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2s hours\n", (i + 1), this.scheduleId.get(i),
+            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2.1f hours\n", (i + 1), this.scheduleId.get(i),
                     this.movieID.get(i), this.date.get(i), this.time.get(i), this.duration.get(i));
         }
         System.out.println("==============================================================");
