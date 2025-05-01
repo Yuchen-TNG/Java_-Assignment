@@ -103,6 +103,25 @@ public class Schedule {
             }
         }
 
+        for (int i = 0; i < db.scheduleIdSize(); i++) {
+
+            if (db.getPendingDateByMovieIDAndSelectedDate(movieID, i) == null) {
+
+            } else {
+                int e = 0;
+                pendingDate.set(e, db.getPendingDateByMovieID(movieID, i));
+                e++;
+            }
+
+        }
+
+
+
+
+
+
+
+
         pendingTime.sort((t1, t2) -> {
             LocalTime time1 = LocalTime.parse(t1, timeFormat);
             LocalTime time2 = LocalTime.parse(t2, timeFormat);
