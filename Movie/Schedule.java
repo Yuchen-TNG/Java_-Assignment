@@ -39,12 +39,13 @@ public class Schedule {
         this.duration.add(duration);
     }
 
-    // ===============================================Get Schedule==============================================================
+    // ===============================================Get
+    // Schedule==============================================================
     public String[] getSchedule(String movieID) {
         ArrayList<String> pendingDate = new ArrayList<>();
         ArrayList<String> pendingTime = new ArrayList<>();
         Movie mv = new Movie();
-        Seat se=new Seat();
+        Seat se = new Seat();
         System.out.println("\nSchedule for: " + mv.getMovieNameById(movieID));
 
         for (int i = 0; i < this.date.size(); i++) {
@@ -109,31 +110,25 @@ public class Schedule {
         }
 
         // Step 7: 用户选时间
-        int choiceTime=0;
+        int choiceTime = 0;
         do {
             System.out.print("Which time is preferred? ");
-            try {
-                choiceTime = cin.nextInt();
-                if (choiceTime < 1 || choiceTime > pendingTime.size()) {
-                    System.out.println("Out of range. Try again.");
-                    wrong = true;
-                } else {
-                    wrong = false;
-                    for(int i=0;i<scheduleId.size();i++){
-                        if(pendingTime.get(choiceTime-1).equals(time.get(i)) && pendingDate.get(choiceDate-1).equals(date.get(i))){
-                            se.showSeat(scheduleId.get(i));
-                        }
+            choiceTime = cin.nextInt();
+            if (choiceTime < 1 || choiceTime > pendingTime.size()) {
+                System.out.println("Out of range. Try again.");
+                wrong = true;
+            } else {
+                wrong = false;
+                for (int i = 0; i < scheduleId.size(); i++) {
+                    if (pendingTime.get(choiceTime - 1).equals(time.get(i))
+                            && pendingDate.get(choiceDate - 1).equals(date.get(i))) {
+                        se.showSeat(scheduleId.get(i));
                     }
                 }
-            } catch (InputMismatchException e) {
-                cin.next(); // clear buffer
-                System.out.println("Only numbers are allowed. Try again.");
-                wrong = true;
             }
         } while (wrong);
 
         String selectedTime = pendingTime.get(choiceTime - 1);
-
 
         for (int i = 0; i < this.movieID.size(); i++) {
             if (this.movieID.get(i).equals(movieID)
@@ -142,10 +137,11 @@ public class Schedule {
                 break;
             }
         }
-        return new String[]{selectedDate, selectedTime};
+        return new String[] { selectedDate, selectedTime };
     }
 
-    // =================================================Set Schedule=======================================================
+    // =================================================Set
+    // Schedule=======================================================
     public void setSchedule() {
         int selection;
         int choice;
@@ -182,11 +178,7 @@ public class Schedule {
             while (true) {
                 System.out.print("Choice: ");
                 if (cin.hasNextInt()) {
-                    choice = cin.nextInt();//-------------------------------------
-                    
-
-
-
+                    choice = cin.nextInt();// -------------------------------------
 
                     if (choice <= 6 && choice > 0) {
                         break;
@@ -274,7 +266,8 @@ public class Schedule {
         showSchedule();
 
     }
-    // ================================================Schedule Display==========================================================
+    // ================================================Schedule
+    // Display==========================================================
 
     public void showSchedule() {
         System.out.println("\n========================SCHEDULE LISTS========================");

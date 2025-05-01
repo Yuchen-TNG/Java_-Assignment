@@ -79,12 +79,26 @@ public class Seat {
 
     public void selectSeat(String scheduleId) {
         int index = -1;
-        System.out.print("How many seat you want to choose?");
-        int people = cin.nextInt();
-        Booking booking = new Booking();
-        booking.setnumberofperson(people);
-        System.out.print("Which seat you want?");
+        int people=0;
+        boolean bool = true;
+        Scanner cin = new Scanner(System.in);
         
+        // 获取用户输入座位数
+        do {
+            System.out.print("How many seats do you want to choose? ");
+            try {
+                people = cin.nextInt();
+                cin.nextLine();  // 清除换行符
+                bool = false;  // 继续下一步，因为输入是有效数字
+            } catch (Exception e) {
+                System.out.print("Enter a valid number, please try again: ");
+                cin.next();  // 清除无效输入
+                bool = true;  // 继续循环
+            }
+        } while (bool);
+
+        // 查找对应的排期
+        System.out.print("Which seat you want? ");
         for (int i = 0; i < this.scheduleId.size(); i++) {
             if (this.scheduleId.get(i).equals(scheduleId)) {
                 index = i;
@@ -92,15 +106,18 @@ public class Seat {
             }
         }
 
-        for (int i = 0; i < people; i++) {
-            String pendingSeat = cin.nextLine();
-            booking.setseatnumber(pendingSeat);
-
-            cin.nextLine();
-            bookedSeat.add(index, "," + pendingSeat);
+        if (index != -1 && bookedSeat.size() > index) {
+            System.out.print(bookedSeat.get(index));
+            // 选择座位
+            for (int i = 0; i < people; i++) {
+                String pendingSeat = cin.nextLine();
+                // 如果想要添加到座位字符串中，应该是拼接而不是插入
+                bookedSeat.set(index, bookedSeat.get(index) + "," + pendingSeat);
+            }
+            System.out.print(bookedSeat.get(index)); // 打印更新后的座位信息
+        } else {
+            System.out.println("Invalid schedule or no seats available.");
         }
-
-        System.out.print(bookedSeat.get(index));
     }
 
 }
