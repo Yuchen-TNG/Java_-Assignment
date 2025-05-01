@@ -28,7 +28,7 @@ public class Menu {
                     System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
                     break;
                 case 1:
-                    staff.showAllStaff();
+                    customer.Register();
                     break;
                 case 2:
                     customer.loginCustAcc();
