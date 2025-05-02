@@ -216,6 +216,7 @@ public class Customer extends User implements Interface {
                     break;
                 case 2:
                     mv.choiceMovie();
+                    break;
                 case 3:
                     cin.nextLine(); 
                     System.out.print("Enter Booking ID to cancel (e.g. B001): ");

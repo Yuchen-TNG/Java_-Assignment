@@ -157,8 +157,12 @@ public class Seat {
                             e--;
                             bool = true;
                         }else{
-                        db.setUserSeatNumber(existing+"," + pendingSeat);
-                        selectBookedSeat.setBookedSeat("," + pendingSeat);
+                            if (i == 0) {
+                                db.setUserSeatNumber(pendingSeat); // 第一个直接设定
+                            } else {
+                                db.setUserSeatNumber(db.getUserSeatNumber() + "," + pendingSeat); // 之后累加
+                            }
+                        selectBookedSeat.setBookedSeat(existing+"," + pendingSeat);
                         bool = false;}
                     } else {
                         bool = true;
