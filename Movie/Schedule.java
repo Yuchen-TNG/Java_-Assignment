@@ -26,6 +26,7 @@ public class Schedule {
     public Schedule(String movieID, String scheduleId, String time, String date, String duration) {
         this.movieID = movieID;
         this.scheduleId = scheduleId;
+        this.time=time;
         this.date = date;
         this.duration = duration;
     }
@@ -130,10 +131,10 @@ public class Schedule {
             boolean bool=false;
             if (bool=db.getPendingDateByMovieIDAndSelectedDate(movieID, i, selectedDate)) {
                 pendingTime.add(db.getPendingTimeByMovieIDFromSchedule(movieID, i));
-                System.out.print(pendingTime.get(e));
                 e++;
-            } 
+            }
         }
+
 
         pendingTime.sort((t1, t2) -> {
             LocalTime time1 = LocalTime.parse(t1, timeFormat);
@@ -142,7 +143,7 @@ public class Schedule {
         });
 
         // Step 6: 输出时间选项
-        System.out.println("Available times:");
+        System.out.println("Available Dates:");
         for (int i = 0; i < pendingTime.size(); i++) {
             System.out.println((i + 1) + ". " + pendingTime.get(i));
         }
@@ -159,15 +160,6 @@ public class Schedule {
             } else {
                 wrong = false;
                 for (int i = 0; i < db.scheduleIdSize(); i++) {
-
-                    
-                    System.out.println(pendingTime.get(choiceTime - 1));
-                    System.out.println(db.getTimeBySomthingFromSchedule(i));
-                    System.out.println(pendingDate.get(choiceDate - 1));
-                    System.out.println(db.getDateBySomthingFromSchedule(i));
-
-
-
                     if (pendingTime.get(choiceTime - 1).equals(db.getTimeBySomthingFromSchedule(i))
                             && pendingDate.get(choiceDate - 1).equals(db.getDateBySomthingFromSchedule(i))) {
                         index = i;
@@ -176,7 +168,7 @@ public class Schedule {
 
             }
         } while (wrong);
-        System.out.println(index);
+
         se.showSeat(db.getScheduleIdBySomthingFromSchedule(index));
         String selectedTime = pendingTime.get(choiceTime - 1);
 

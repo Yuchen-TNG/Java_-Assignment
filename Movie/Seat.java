@@ -70,23 +70,23 @@ public class Seat {
     Database db = new Database();
         int index = -1;
         char letter = 'A';
-        System.out.println(scheduleId);
 
-        // 找到对应的 schedule index
+
         for (int i = 0; i < db.scheduleIdSize(); i++) {
+
             if (db.getScheduleIdBySomthingFromSeat(i).equals(scheduleId)) {
                 pendingScheduleId=db.getScheduleIdBySomthingFromSeat(i);
                 index = i;
+
                 break;
             }
         }
 
-        // 把 "A1,B3,D6" 变成 List<String>
-        ArrayList<String> bookedList = new ArrayList<>(
-                Arrays.asList(db.getBookedSeatBySomthingFromSeat(index).split(",")));
 
-        for (int j = 0; j < getColumn(); j++) {
-            for (int e = 0; e < getRow(); e++) {
+        ArrayList<String> bookedList = new ArrayList<>(
+        Arrays.asList(db.getBookedSeatBySomthingFromSeat(index).split(",")));
+        for (int j = 0; j < db.getColumnBySomethingFromSeat(1); j++) {
+            for (int e = 0; e < db.getRowBySomethingFromSeat(1); e++) {
                 String seatCode = "" + letter + (e + 1); // 生成座位编号，如 A1, A2, B1...
                 if (bookedList.contains(seatCode)) {
                     System.out.print("[X]");
@@ -99,7 +99,7 @@ public class Seat {
         }
 
         // 输出列号
-        for (int r = 0; r < getRow(); r++) {
+        for (int r = 0; r < db.getRowBySomethingFromSeat(5); r++) {
             System.out.print(" " + (r + 1) + " ");
         }
         System.out.println();

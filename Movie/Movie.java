@@ -144,7 +144,7 @@ public class Movie {
         String selectedTime2 = schedule[1];
    
 
-        String[] seatInfo = se.storeAllValue();
+        /*String[] seatInfo = se.storeAllValue();
         String scheduleId = seatInfo[0];
         String totalPendingSeat = seatInfo[1]; // 格式为 ,A1,A2,...
         String[] seats = totalPendingSeat.split(",");
@@ -158,7 +158,7 @@ public class Movie {
         booking.setnumberofperson(numberOfPeople);
         booking.setseatnumber(totalPendingSeat);
             
-        
+        */
     }
 
 }

@@ -3,19 +3,21 @@ package Movie;
 import java.util.ArrayList;
 
 public class Database {
+    
     ArrayList<Movie> movieData;
     ArrayList<Schedule> scheduleData;
     ArrayList<Seat> seatData;
-    Movie mv = new Movie();
 
+    
     public Database() {
         movieData = new ArrayList<>();
         scheduleData = new ArrayList<>();
         seatData = new ArrayList<>();
         loadMovieData();
         loadScheduleData();
+        loadSeatData();
     }
-
+    
     public void loadMovieData() {
         movieData.add(new Movie("Godzilla", "M001", "Action", "English"));
         movieData.add(new Movie("Titanic", "M002", "Romance", "English"));
@@ -121,15 +123,20 @@ public class Database {
     }
 
     public String getPendingTimeByMovieIDFromSchedule(String movieID, int index) {
+        
+        System.out.println(scheduleData.get(index).getMovieId());
+        System.out.println(scheduleData.get(index).getTime());
+   
         if (scheduleData.get(index).getMovieId().equals(movieID)) {
             String pendingTime = "";
             pendingTime = scheduleData.get(index).getTime();
             return pendingTime;
         } else
-            return null;
+            return "Date";
     }
 
     public boolean getPendingDateByMovieIDAndSelectedDate(String movieID, int index, String selectedDate) {
+
         if (getMovieIdBySomthingFromSchedule(index).equals(movieID)
                 && scheduleData.get(index).getDate().equals(selectedDate)) {
             return true;
@@ -171,5 +178,13 @@ public class Database {
 
     public String getBookedSeatBySomthingFromSeat(int something) {
         return seatData.get(something).getBookedSeat();
+    }
+
+    public int getColumnBySomethingFromSeat(int something){
+        return seatData.get(something).getColumn();
+    }
+    
+    public int getRowBySomethingFromSeat(int something){
+        return seatData.get(something).getRow();
     }
 }
