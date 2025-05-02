@@ -70,6 +70,10 @@ public class Database {
         sc.setSchedule();
     }
 
+    public int seatIdSize() {
+        return seatData.size();
+    }
+
     public int movieIdSize() {
         return movieData.size();
     }
@@ -248,6 +252,18 @@ public class Database {
     
     public int getUserNumberOfPerson() {
         return Database.numberofperson2;
+    }
+
+    public String getSeatId(int index){
+        return seatData.get(index).getSeatId();
+    }
+
+    public int getColumn(int index){
+        return seatData.get(index).getColumn();
+    }
+
+    public int getRow(int index){
+        return seatData.get(index).getRow();
     }
     
 }

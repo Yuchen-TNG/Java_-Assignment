@@ -229,8 +229,16 @@ public class Schedule {
             switch (choice) {
                 case 1:
                     System.out.println("\n=====Edit Schedule Id=====");
-                    System.out.print("Schedule Id: ");
-                    scheduleID = cin.next();
+                    while (true) {
+                        System.out.print("Schedule Id: ");
+                        scheduleID = cin.next();
+                        if (scheduleID.matches("^[S]\\d{3}")) {
+                            break;
+                        } else {
+                            System.out.println(
+                                    "inavalid please follow the format : (S000),first character must be S and Uppercase");
+                        }
+                    }
                     slectionSchdule.setScheduleId(scheduleID);
                     break;
                 case 2:
@@ -253,7 +261,13 @@ public class Schedule {
                         System.out.print("Date: ");
                         date = cin.next();
                         if (date.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                            int month = Integer.parseInt(date.split("-")[1]);
+                            int day = Integer.parseInt(date.split("-")[2]);
+                            if(month<12&&day<31){
                             break;
+                            }else{
+                                System.out.println("invalid, please input the correct month and day");
+                            }
                         } else {
                             System.out.println("invalid please follow the format(yyyy-mm-dd)");
                         }
@@ -321,7 +335,7 @@ public class Schedule {
 
         for (int i = 0; i < db.scheduleIdSize(); i++) {
             System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2s \n", (i + 1),
-                    db.getDateBySomthingFromSchedule(i),
+                    db.getScheduleIdBySomthingFromSchedule(i),
                     db.getMovieIdBySomthingFromSchedule(i), db.getDateBySomthingFromSchedule(i),
                     db.getTimeBySomthingFromSchedule(i), db.getDurationBySomthingFromSchedule(i));
         }
