@@ -168,11 +168,14 @@ public class Seat {
                 } while (bool);
                 
                 booking.setTicket(db.getUserMovie(),db.getUserDate(),db.getUserTime(),db.getUserSeatNumber(),db.getUserNumberOfPerson());
+                
             }
         } else {
             System.out.println("Invalid schedule or no seats available.");
         }
+        booking.displayticket();
     }
+
 
     public String[] storeAllValue() {
         Schedule sc = new Schedule();
