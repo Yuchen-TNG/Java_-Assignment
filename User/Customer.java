@@ -1,4 +1,5 @@
 import Payment.Booking;
+import Movie.Movie;
 
 
 public class Customer extends User implements Interface {
@@ -11,6 +12,7 @@ public class Customer extends User implements Interface {
     private boolean checkLogin;
     private String loggedInEmail;
 
+    Movie mv = new Movie();
     Booking booking = new Booking();
 
     public Customer() {
@@ -48,7 +50,7 @@ public class Customer extends User implements Interface {
         }
 
         System.out.print("Gender(M/F): ");
-        String gender = cin.next();
+        String gender = cin.next().toUpperCase();
         cin.nextLine();
 
         while (true) {
@@ -213,12 +215,13 @@ public class Customer extends User implements Interface {
                     viewProfile();
                     break;
                 case 2:
-                cin.nextLine(); // 清掉换行
-                System.out.print("Enter Booking ID to cancel (e.g. B001): ");
-                String cancelID = cin.nextLine();
-                booking.cancelBookingByID(cancelID,Booking.confirm);
+                    mv.choiceMovie();
                     break;
                 case 3:
+                    cin.nextLine(); 
+                    System.out.print("Enter Booking ID to cancel (e.g. B001): ");
+                    String cancelID = cin.nextLine();
+                    booking.cancelBookingByID(cancelID,Booking.confirm);
                     break;
                 default:
                     System.out.println("Invalid choice! Please select a number 0 to 3.");
@@ -244,7 +247,7 @@ public class Customer extends User implements Interface {
         System.out.println("|=======================|");
         System.out.println("| 1. View Profile       |");
         System.out.println("| 2. View Movie         |");
-        System.out.println("| 3. Booking Ticket     |");
+        System.out.println("| 3. Cancel Booking     |");
         System.out.println("| 0. Logout             |");
         System.out.println("+=======================+");
         System.out.print("Selection(0-3): ");

@@ -88,9 +88,16 @@ public class Seat {
                 break;
             }
         }
-
+        System.out.println(" __________________________");
+        System.out.println("/          Screen          \\");
+        System.out.println("");
         ArrayList<String> bookedList = new ArrayList<>(
-                Arrays.asList(db.getBookedSeatBySomthingFromSeat(index).split(",")));
+        Arrays.asList(db.getBookedSeatBySomthingFromSeat(index).split(",")));
+        for (int r = 0; r < db.getRowBySomethingFromSeat(5); r++) {
+            System.out.print(" " + (r + 1) + " ");
+        }
+        System.out.println();
+
         for (int j = 0; j < db.getColumnBySomethingFromSeat(1); j++) {
             for (int e = 0; e < db.getRowBySomethingFromSeat(1); e++) {
                 String seatCode = "" + letter + (e + 1); // 生成座位编号，如 A1, A2, B1...
@@ -105,9 +112,6 @@ public class Seat {
         }
 
         // 输出列号
-        for (int r = 0; r < db.getRowBySomethingFromSeat(5); r++) {
-            System.out.print(" " + (r + 1) + " ");
-        }
         System.out.println();
 
         selectSeat(scheduleId);
@@ -175,7 +179,9 @@ public class Seat {
         } else {
             System.out.println("Invalid schedule or no seats available.");
         }
+        booking.displayticket();
     }
+
 
     public String[] storeAllValue() {
         Schedule sc = new Schedule();
