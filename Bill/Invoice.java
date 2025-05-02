@@ -11,9 +11,10 @@ public class Invoice {
     private Payment payment;
     private Ticket ticket; 
     private Movie movie; 
+    static private String seatNumber;
     static private String movieName; 
 
-    public Invoice() {}
+
 
     public Invoice(Payment payment, Ticket ticket, Movie movie) {
         this.payment = payment;
@@ -35,6 +36,8 @@ public class Invoice {
         return invoiceDate;
     }
 
+
+
     public void addMovieName(String movieName){
         Invoice.movieName=movieName;
     }
@@ -54,11 +57,8 @@ public class Invoice {
         System.out.println("Movie Details :");
         System.out.println("Movie Name : " + movieName);
         System.out.println("-----------------------------");
-        System.out.println("Ticket Details :");
-        System.out.println("Ticket ID : " + ticket.getTicketID());
-        System.out.println("-----------------------------");
         System.out.println("Payment Details : ");
-        System.out.println("Total Amount : RM " + String.format("%.2f", payment.getpaymentamount()));
+        System.out.println("Total Amount : RM " + String.format("%.2f", Payment.getpaymentamount()));
         System.out.println("Total Price : RM " + String.format("%.2f", payment.gettotalprice()));
         System.out.println("-----------------------------");
         System.out.println("Lucky Draw Result : " + generateLuckyDraw());

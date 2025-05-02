@@ -43,7 +43,7 @@ public class Payment {
         return totalprice;
     }
 
-    public double getpaymentamount(){
+    public static double getpaymentamount(){
         return paymentamount;
     }
     
@@ -53,7 +53,7 @@ public class Payment {
 
 
     Ticket ticket = new Ticket(booking); 
-    Invoice invoice = new Invoice(); 
+    Invoice invoice = new Invoice(null, null, null); 
 
     public boolean validExpiredMonth(){
             YearMonth now = YearMonth.now(); // Get the current month and year

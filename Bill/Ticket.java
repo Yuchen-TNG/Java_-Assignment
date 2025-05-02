@@ -9,7 +9,11 @@ public class Ticket {
     private Booking booking;
     private static int ticketCounter = 1;
     private int ticketNo;
+    private static String seatNumber; 
 
+    public Ticket(){
+
+    }
     public Ticket(Booking booking) {
         this.booking = booking;
         this.ticketID = generateTicketID(); // 自动生成 Ticket ID
@@ -20,6 +24,14 @@ public class Ticket {
         return "TICKET-" + UUID.randomUUID().toString().substring(0, 16); // 生成唯一 ID
     }
 
+    public String getSeatNumbers(){
+        return seatNumber;
+    }
+
+    public void addSeatNumbers(String seatNumber){
+        this.seatNumber=seatNumber;
+    }
+
     public String getTicketID() {
         return ticketID;
     }
@@ -28,13 +40,13 @@ public class Ticket {
         return ticketNo;
     }
 
+
     public void printTicket() {
         System.out.println("========== TICKET ==========");
         System.out.println("Ticket Details : ");
         System.out.println("Ticket ID : " + getTicketID());
         System.out.println("Ticket No : " + getTicketNo());
-        System.out.println("hahahaahahahah3");
-        System.out.println("Seat : " + booking.getseatnumber());
+        System.out.println("Seat : " + getSeatNumbers());
         System.out.println("-----------------------------");
         System.out.println("Thank you for your purchase!");
         System.out.println("=============================");
