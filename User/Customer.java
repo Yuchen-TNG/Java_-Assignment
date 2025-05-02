@@ -197,6 +197,8 @@ public class Customer extends User implements Interface {
             System.out.println(
                     "+=========================================================================================================================+");
         }
+        System.out.println("Press Key[enter] to exit");
+        cin.nextLine();
     }
 
     public void getMenu() {

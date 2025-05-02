@@ -1,24 +1,28 @@
 package Payment;
 import java.util.ArrayList;
 
+import Bill.Invoice;
+import Bill.Ticket;
+
 public class Booking {
 
     private String bookingID;
     private static int bookingidCount = 1;
 
         private String movie;
-        private int numofhall= 3;
         private String seatNumbers; 
         private String email;
         private int numberofperson;
         private String date;
         private String time;
+        Payment payment = new Payment();
 
         public static ArrayList<Booking> confirm = new ArrayList<>();
 
 
         public Booking(){
             this.bookingID = generateBookingID();
+            this.payment = new Payment(this);
         }
 
         public Booking(String movie, String date, String time, int numberofperson) {
@@ -27,8 +31,9 @@ public class Booking {
             this.date = date;
             this.time = time;
             this.numberofperson = numberofperson;
-            this.seatNumbers = seatNumbers;
+            this.payment = new Payment(this); // ✅ 加上这一句
         }
+        
         public void setTicket(String movie,String date,String time,String seatNumber,int numberOfPerson){
             this.movie=movie;
             this.date=date;
@@ -52,9 +57,6 @@ public class Booking {
             this.numberofperson = numberofperson;
         }
 
-        public void setseatnumber(String seatnumber){
-            seatNumbers=seatnumber;
-        }
 
         public String getseatnumber(){
             return String.join(",", seatNumbers);
@@ -75,6 +77,8 @@ public class Booking {
         public void setMovie(String movie) {
             this.movie = movie;
         }
+
+
 
         public String generateBookingID(){
             String id = String.format("B%03d",bookingidCount);
@@ -131,13 +135,20 @@ public class Booking {
 }
     
  public void displayticket(){
+    payment.calculatetotalprice();
+    Ticket tk=new Ticket();
+    Invoice iv=new Invoice(null, null, null);
+
     System.out.println("==============================================");
     System.out.println("The title movie: " + movie);
     System.out.println("Date: " + date);
     System.out.println("Time: " + time);
     System.out.println("Your seat number: " + seatNumbers);
     System.out.println("Number of Person: " + numberofperson);
-
+    System.out.println("Your total price: " + payment.gettotalprice());
+    iv.addMovieName(movie);
+    tk.addSeatNumbers(seatNumbers);
+    
 }
 
 }

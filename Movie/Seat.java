@@ -179,6 +179,44 @@ public class Seat {
             System.out.println("Invalid schedule or no seats available.");
         }
         booking.displayticket();
+        // 创建 Payment 对象，并传入当前的 booking
+Payment.Payment payment = new Payment.Payment(booking);
+
+// 计算总价
+payment.calculatetotalprice();
+
+// 选择支付方式
+
+Scanner payInput = new Scanner(System.in);
+System.out.println("=========================");
+System.out.println("Choose payment method: ");
+System.out.println("1. Cash");
+System.out.println("2. Credit Card");
+System.out.println("3. Touch n Go / QR Code");
+
+int method = 0;
+boolean valid = false;
+do {
+    try {
+        System.out.print("Enter method (1-3): ");
+        method = payInput.nextInt();
+        if (method >= 1 && method <= 3) {
+            valid = true;
+        } else {
+            System.out.println("Please enter a number between 1 and 3.");
+        }
+    } catch (Exception ex) {
+        System.out.println("Invalid input. Please enter a number.");
+        payInput.nextLine(); // 清掉错误输入
+    }
+} while (!valid);
+
+// 设置支付方式
+payment.setmethod(method);
+
+// 执行付款流程
+payment.paymentmethod();
+
     }
 
     public String[] storeAllValue() {

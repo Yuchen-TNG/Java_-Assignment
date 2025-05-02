@@ -1,6 +1,7 @@
 import Movie.Database;
 import Movie.Movie;
 import Movie.Schedule;
+import Movie.Seat;
 import Payment.Booking;
 
 public class Staff extends User implements Interface {
@@ -15,10 +16,12 @@ public class Staff extends User implements Interface {
     Schedule schedule = new Schedule();
     Customer customer = new Customer();
     Booking booking = new Booking();
+    Seat seat = new Seat();
 
     static {
         try {
-            staff[0] = new Staff("Leon Chang Rui Hern", 19, "M", "18/06/2006", "011-1073-8155", "leon@cinema.my","leon123",
+            staff[0] = new Staff("Leon Chang Rui Hern", 19, "M", "18/06/2006", "011-1073-8155", "leon@cinema.my",
+                    "leon123",
                     "S001", 99999);
             staff[1] = new Staff("LeBron James", 40, "M", "30/12/1984", "012-233-4146", "james@cinema.my", "james123",
                     "S002", 4000);
@@ -26,7 +29,8 @@ public class Staff extends User implements Interface {
                     "S003", 3000);
             staff[3] = new Staff("Chris Evans", 44, "M", "13/06/1981", "011-2730-2323", "chris@cinema.my", "chris123",
                     "S004", 4200);
-            staff[4] = new Staff("Zendaya Coleman", 28, "F", "01/09/1996", "013-329-9223", "zendaya@cinema.my","zendaya123",
+            staff[4] = new Staff("Zendaya Coleman", 28, "F", "01/09/1996", "013-329-9223", "zendaya@cinema.my",
+                    "zendaya123",
                     "S005", 2600);
 
         } catch (Exception e) {
@@ -162,8 +166,13 @@ public class Staff extends User implements Interface {
                     schedule.getSchedule(movieId);
                     break;
                 case 5:
+                    schedule.setSchedule();
+                    break;
+                case 6:
+                    seat.editSeat();
+                    break;
+                case 7:
                     System.out.println("Booking");
-                    
                     booking.autoshowbooking(Booking.confirm);
                     break;
                 default:
@@ -181,7 +190,9 @@ public class Staff extends User implements Interface {
         System.out.println("| 2. View Staff Details      |");
         System.out.println("| 3. Add Movie               |");
         System.out.println("| 4. Check Schedule          |");
-        System.out.println("| 5. View Customer Booking   |");
+        System.out.println("| 5. Edit Schedule           |");
+        System.out.println("| 6. Edit Seat               |");
+        System.out.println("| 7. View Customer Booking   |");
         System.out.println("| 0. Logout                  |");
         System.out.println("+============================+");
         System.out.print("Selection(0-3): ");
