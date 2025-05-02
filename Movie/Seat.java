@@ -322,8 +322,128 @@ public class Seat {
         }
         System.out.println("===================================================================");
     }
-    public void setSeat(String scheduleId){
-        
-    }
+
 }
 
+public void setSeat(String scheduleId){
+    setDb();
+    String SeatId = "";
+    System.out.println("\n\nHow many seat you want add?");
+    int addSeat = cin.nextInt();
+    cin.nextLine();
+
+    int check = 0;
+    if (addSeat >= 1) {
+        boolean bool = false;
+        for (int i = 0; i < addSeat; i++) {
+
+            do {
+              System.out.print("\n\nSeatId : ");
+              SeatId = cin.nextLine();
+                bool = false; 
+            
+                if (SeatId.length() == 4 &&
+                    Character.isUpperCase(SeatId.charAt(0)) &&
+                    Character.isDigit(SeatId.charAt(1)) &&
+                    Character.isDigit(SeatId.charAt(2)) &&
+                    Character.isDigit(SeatId.charAt(3))) {
+            
+                 
+                    for (int t = 0; t < db.bookedSeatSize(); t++) {
+                        String existingId = db.getSeatIdBySomthingFromSeat(t);
+                        if (existingId != null && existingId.equals(SeatId)) {
+                            System.out.println("Movie ID is duplicate");
+                            bool = true;
+                            break; 
+                        }
+                    }
+            
+                } else {
+                    System.out.println("Your Movie ID is wrong format");
+                    bool = true;
+                }
+            
+            } while (bool);
+
+            System.out.println("How many Column you want to add?");
+            while(true){
+                System.out.print("Column: ");
+                column = cin.nextInt();
+                if(column <= 10){
+                    break;
+                }else{
+                    System.out.println("Invalid, the hall is not enough space to add the seat");
+                }
+            }
+            System.out.println("How many Row you want to add?");
+            while(true){
+                System.out.print("Row: ");
+                row = cin.nextInt();
+                if(row <= 9){
+                    break;
+                }else{
+                    System.out.println("Invalid, the hall is not enough space to add the seat");
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            System.out.print("Movie Type : ");
+            String MovieType = cin.nextLine();
+
+            System.out.print("Movie Language : ");
+            String MovieLan = cin.nextLine();
+
+            Movie newMovie = new Movie(MovieName, SeatId, MovieType, MovieLan);
+
+            do {
+                for (int r = 0; r < db.movieIdSize(); r++) {
+                    if (db.getMovieIdBySomethingIntFromMovie(r) == null) {
+                        db.showMovieFromMovie(r);
+                    }
+                }
+                System.out.println("\n\nAre you sure you want to add into Library? (Yes / No)");
+                String choice = cin.nextLine().trim();
+                if (choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")) {
+                    db.addMovieFromMovie(newMovie);
+                    check++;
+
+                    System.out.println("\n\nYour Movie has been add");
+                    sc.setSchedule(SeatId);
+                    bool = false;
+                } else if (choice.equalsIgnoreCase("no") || choice.equalsIgnoreCase("n")) {
+                    bool = false;
+                } else {
+                    System.err.println("\n\nWe can't understand your input, please try again");
+                    bool = true;
+                }
+            } while (bool);
+        }
+    } else {
+        return;
+    }
+}
+}
+
+
+seatData.add(new Seat("S001", "SE001", 10, 9, "A1,A2,A3"));
