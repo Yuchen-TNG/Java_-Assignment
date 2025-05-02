@@ -7,18 +7,19 @@ public class Booking {
     private static int bookingidCount = 1;
 
         private String movie;
-        private int numofhall= 3;
         private String seatNumbers; 
         private String email;
         private int numberofperson;
         private String date;
         private String time;
+        Payment payment = new Payment();
 
         public static ArrayList<Booking> confirm = new ArrayList<>();
 
 
         public Booking(){
             this.bookingID = generateBookingID();
+            this.payment = new Payment(this);
         }
 
         public Booking(String movie, String date, String time, int numberofperson) {
@@ -27,8 +28,9 @@ public class Booking {
             this.date = date;
             this.time = time;
             this.numberofperson = numberofperson;
-            this.seatNumbers = seatNumbers;
+            this.payment = new Payment(this); // ✅ 加上这一句
         }
+        
         public void setTicket(String movie,String date,String time,String seatNumber,int numberOfPerson){
             this.movie=movie;
             this.date=date;
@@ -131,12 +133,15 @@ public class Booking {
 }
     
  public void displayticket(){
+    payment.calculatetotalprice();
+
     System.out.println("==============================================");
     System.out.println("The title movie: " + movie);
     System.out.println("Date: " + date);
     System.out.println("Time: " + time);
     System.out.println("Your seat number: " + seatNumbers);
     System.out.println("Number of Person: " + numberofperson);
+    System.out.println("Your total price: " + payment.gettotalprice());
 
 }
 
