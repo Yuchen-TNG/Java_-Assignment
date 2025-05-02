@@ -138,7 +138,6 @@ public class Movie {
         String selectedDate2 = schedule[0];
         String selectedTime2 = schedule[1];
    
-
         String[] seatInfo = se.storeAllValue();
         String scheduleId = seatInfo[0];
         String totalPendingSeat = seatInfo[1]; // 格式为 ,A1,A2,...

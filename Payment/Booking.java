@@ -15,6 +15,9 @@ public class Booking {
         private String date;
         private String time;
 
+        public static ArrayList<Booking> confirm = new ArrayList<>();
+
+
         public Booking(){
             this.bookingID = generateBookingID();
         }
@@ -105,6 +108,24 @@ public class Booking {
                 System.out.println("==============================================\n");
             }
  } 
+
+ public void cancelBookingByID(String id, ArrayList<Booking> confirm) {
+    boolean removed = false;
+
+    for (int i = 0; i < confirm.size(); i++) {
+        Booking b = confirm.get(i);
+        if (b.getbookingID().equalsIgnoreCase(id)) {
+            confirm.remove(i);
+            removed = true;
+            System.out.println("Booking with ID " + id + " has been cancelled.");
+            break;
+        }
+    }
+
+    if (!removed) {
+        System.out.println("No booking found with ID: " + id);
+    }
+}
     
  public void displayticket(){
     System.out.println("==============================================");

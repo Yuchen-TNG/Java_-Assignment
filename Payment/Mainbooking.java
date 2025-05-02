@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Mainbooking {
     public static void main(String[] args){
         //confirm = Array名字
-        ArrayList<Booking> confirm = new ArrayList<>();
+        
         Scanner input = new Scanner(System.in);
         
 
@@ -13,8 +13,8 @@ public class Mainbooking {
         String choice = input.nextLine().toLowerCase();
 
         Booking show = new Booking();
-        show.userchoice(choice, confirm);
-        show.autoshowbooking(confirm);
+        show.userchoice(choice, Booking.confirm);
+        show.autoshowbooking(Booking.confirm);
         Payment payment = new Payment(show); //call payment function
 
         payment.calculatetotalprice();

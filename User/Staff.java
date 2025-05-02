@@ -1,5 +1,6 @@
 import Movie.Movie;
 import Movie.Schedule;
+import Payment.Booking;
 
 public class Staff extends User implements Interface {
 
@@ -8,6 +9,7 @@ public class Staff extends User implements Interface {
     private boolean checkLogin;
     private static Staff[] staff = new Staff[5];
     private static int staffCount = 0;
+    Booking booking = new Booking();
     Movie movie = new Movie();
     Schedule schedule = new Schedule();
     Customer customer = new Customer();
@@ -157,6 +159,11 @@ public class Staff extends User implements Interface {
                     String movieId = cin.next();
                     schedule.getSchedule(movieId);
                     break;
+                case 5:
+                    System.out.println("Booking");
+                    
+                    booking.autoshowbooking(Booking.confirm);
+                    break;
                 default:
                     System.out.println("Invalid choice! Please select a number 0 to 3.");
             }
@@ -172,6 +179,7 @@ public class Staff extends User implements Interface {
         System.out.println("| 2. View Staff Details      |");
         System.out.println("| 3. Add Movie               |");
         System.out.println("| 4. Check Schedule          |");
+        System.out.println("| 5. View Customer Booking   |");
         System.out.println("| 0. Logout                  |");
         System.out.println("+============================+");
         System.out.print("Selection(0-3): ");

@@ -11,6 +11,8 @@ public class Customer extends User implements Interface {
     private boolean checkLogin;
     private String loggedInEmail;
 
+    Booking booking = new Booking();
+
     public Customer() {
     }
 
@@ -211,6 +213,10 @@ public class Customer extends User implements Interface {
                     viewProfile();
                     break;
                 case 2:
+                cin.nextLine(); // 清掉换行
+                System.out.print("Enter Booking ID to cancel (e.g. B001): ");
+                String cancelID = cin.nextLine();
+                booking.cancelBookingByID(cancelID,Booking.confirm);
                     break;
                 case 3:
                     break;
