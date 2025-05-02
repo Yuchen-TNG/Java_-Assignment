@@ -1,3 +1,4 @@
+import Movie.Database;
 import Movie.Movie;
 import Movie.Schedule;
 import Payment.Booking;
@@ -9,8 +10,8 @@ public class Staff extends User implements Interface {
     private boolean checkLogin;
     private static Staff[] staff = new Staff[5];
     private static int staffCount = 0;
-    Booking booking = new Booking();
-    Movie movie = new Movie();
+    Database db = new Database();
+    Movie mv = new Movie();
     Schedule schedule = new Schedule();
     Customer customer = new Customer();
 
@@ -152,7 +153,7 @@ public class Staff extends User implements Interface {
                     break;
                 case 3:
                     System.out.println("Select Your Movie");
-                    movie.setMovie();
+                    mv.setMovie();
                     break;
                 case 4:
                     System.out.println("Select Your MovieId: ");

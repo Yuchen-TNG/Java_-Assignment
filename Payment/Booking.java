@@ -9,7 +9,7 @@ public class Booking {
 
         private String movie;
         private int numofhall= 3;
-        private List<String> seatNumbers; 
+        private String seatNumbers; 
         private String email;
         private int numberofperson;
         private String date;
@@ -28,9 +28,15 @@ public class Booking {
             this.date = date;
             this.time = time;
             this.numberofperson = numberofperson;
-            this.seatNumbers = new ArrayList<>();
+            this.seatNumbers = seatNumbers;
         }
-
+        public void setTicket(String movie,String date,String time,String seatNumber,int numberOfPerson){
+            this.movie=movie;
+            this.date=date;
+            this.time=time;
+            this.seatNumbers=seatNumber;
+            this.numberofperson=numberOfPerson;
+        }
         public void setEmail(String email) {
             this.email = email;
         }
@@ -48,7 +54,7 @@ public class Booking {
         }
 
         public void setseatnumber(String seatnumber){
-            seatNumbers.add(seatnumber);
+            seatNumbers=seatnumber;
         }
 
         public String getseatnumber(){
@@ -89,9 +95,7 @@ public class Booking {
                 newbooking.setMovie(this.movie);
                 newbooking.setEmail(this.email);
                 newbooking.setnumberofperson(this.numberofperson); // 复制 numberofperson
-                for (String seat : seatNumbers) {
-                    newbooking.setseatnumber(seat); // 复制所有座位
-                }
+                newbooking.setnumberofperson(this.numberofperson);
                 confirm.add(newbooking);
                 System.out.println("Make payment successfully");
     
@@ -129,12 +133,10 @@ public class Booking {
     
  public void displayticket(){
     System.out.println("==============================================");
-    System.out.println("Email: " + email); //d
     System.out.println("The title movie: " + movie);
     System.out.println("Date: " + date);
     System.out.println("Time: " + time);
-    System.out.println("Number of Hall: " + numofhall);
-    System.out.println("Your seat number: " + getseatnumber());
+    System.out.println("Your seat number: " + seatNumbers);
     System.out.println("Number of Person: " + numberofperson);
 
 }

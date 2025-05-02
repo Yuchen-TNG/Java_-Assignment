@@ -1,9 +1,6 @@
 package Movie;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-
-import Payment.Booking;
 
 public class Movie {
 
@@ -13,8 +10,7 @@ public class Movie {
     private String MovieId;
     private String Type;
     private String Language;
-
-    Database db = new Database();
+    private Database db;
 
     public Movie() {
     }
@@ -24,6 +20,10 @@ public class Movie {
         this.MovieId = MovieId;
         this.Type = Type;
         this.Language = Language;
+    }
+
+    public void setDb() {
+        db = new Database(); // 在这里 new，而不是构造器
     }
 
     public String getName() {
@@ -43,6 +43,7 @@ public class Movie {
     }
 
     public void setMovie() {
+    
         String movieID = "";
         System.out.println("\n\nHow many movie you want add?");
         int addMovie = cin.nextInt();
@@ -100,6 +101,8 @@ public class Movie {
     }
 
     public void clearMovie() {
+        Database db =new Database();
+
         boolean check = true;
         System.out.println("\n\nDelete Movie List");
         System.out.print("Movie ID delete:");
@@ -124,21 +127,23 @@ public class Movie {
     }
 
     public void choiceMovie() {
-        Seat se=new Seat();
+        setDb();
         db.showAllMovieFromMovie();
-        System.out.println("Select Your Movie");
+        System.out.println("Select Your Movie Number");
         int choice = cin.nextInt();
         choice += -1;
 
         String movieName = db.getMovieNameBySomethingIntFromMovie(choice);
         String movieID = db.getMovieIdBySomethingIntFromMovie(choice);
+        db.setUserMovie(movieName);
+        db.setUserMovie(movieID);
         Schedule sc = new Schedule();
         sc.getSchedule(movieID);
         String[] schedule = sc.getDateAndTime();
         String selectedDate2 = schedule[0];
         String selectedTime2 = schedule[1];
    
-        String[] seatInfo = se.storeAllValue();
+        /*String[] seatInfo = se.storeAllValue();
         String scheduleId = seatInfo[0];
         String totalPendingSeat = seatInfo[1]; // 格式为 ,A1,A2,...
         String[] seats = totalPendingSeat.split(",");
@@ -152,7 +157,7 @@ public class Movie {
         booking.setnumberofperson(numberOfPeople);
         booking.setseatnumber(totalPendingSeat);
             
-        
+        */
     }
 
 }

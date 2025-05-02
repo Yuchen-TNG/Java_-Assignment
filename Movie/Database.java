@@ -2,18 +2,29 @@ package Movie;
 
 import java.util.ArrayList;
 
+import Payment.Booking;
+
 public class Database {
-    ArrayList<Movie> movieData;
-    ArrayList<Schedule> scheduleData;
-    ArrayList<Seat> seatData;
-    Movie mv = new Movie();
+    static String movie2;
+    static String movieId2;
+    static String date2;
+    static String time2;
+    static String seatnumber2;
+    static int numberofperson2;
+    static ArrayList<Movie> movieData = new ArrayList<>();
+    static ArrayList<Schedule> scheduleData = new ArrayList<>();
+    static ArrayList<Seat> seatData = new ArrayList<>();
+    private static boolean isMovieDataLoaded = false;
+    public Movie mv;
+    public Schedule sc;
 
     public Database() {
-        movieData = new ArrayList<>();
-        scheduleData = new ArrayList<>();
-        seatData = new ArrayList<>();
+        if (isMovieDataLoaded)
+            return;
         loadMovieData();
         loadScheduleData();
+        loadSeatData();
+        isMovieDataLoaded = true;
     }
 
     public void loadMovieData() {
@@ -51,6 +62,14 @@ public class Database {
         seatData.add(new Seat("S010", "SE004", 10, 9, "J1,J2,J3"));
     }
 
+    public void choiceMovie() {
+        mv.choiceMovie();
+    }
+
+    public void setSchedule() {
+        sc.setSchedule();
+    }
+
     public int movieIdSize() {
         return movieData.size();
     }
@@ -59,7 +78,7 @@ public class Database {
         return scheduleData.size();
     }
 
-    public int bookedSeatSize(){
+    public int bookedSeatSize() {
         return seatData.size();
     }
 
@@ -75,11 +94,12 @@ public class Database {
     }
 
     public void showAllMovieFromMovie() {
-        System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
+        System.out.printf("\n\n%-5s%-25s%-8s%-15s%-15s\n", "No", "Movie Name", "ID", "Type", "Language");
         for (int i = 0; i < movieData.size(); i++) {
             Movie movie = movieData.get(i);
 
-            System.out.printf("%-25s%-8s%-15s%-15s\n", movie.getName(), movie.getMovieId(), movie.getType(),
+            System.out.printf("%-5s%-25s%-8s%-15s%-15s\n", (i + 1), movie.getName(), movie.getMovieId(),
+                    movie.getType(),
                     movie.getLanguage());
         }
     }
@@ -112,26 +132,37 @@ public class Database {
 
     public String getPendingDateByMovieIDFromSchedule(String movieID, int index) {
         if (scheduleData.get(index).getMovieId().equals(movieID)) {
-            String pendingDate = scheduleData.get(index).getDate();
+            String pendingDate = "";
+            pendingDate = scheduleData.get(index).getDate();
             return pendingDate;
         } else
             return null;
     }
 
-    public String getPendingDateByMovieIDAndSelectedDate(String movieID, int index, String selectedDate) {
-        if (getMovieIdBySomthingFromSchedule(index).equals(movieID)
-                && scheduleData.get(index).getDate().equals(selectedDate)) {
-            String pendingTime = scheduleData.get(index).getTime();
+    public String getPendingTimeByMovieIDFromSchedule(String movieID, int index) {
+
+        if (scheduleData.get(index).getMovieId().equals(movieID)) {
+            String pendingTime = "";
+            pendingTime = scheduleData.get(index).getTime();
             return pendingTime;
         } else
-            return null;
+            return "Date";
+    }
+
+    public boolean getPendingDateByMovieIDAndSelectedDate(String movieID, int index, String selectedDate) {
+
+        if (getMovieIdBySomthingFromSchedule(index).equals(movieID)
+                && scheduleData.get(index).getDate().equals(selectedDate)) {
+            return true;
+        } else
+            return false;
     }
 
     public Schedule getSchedule(int index) {
         return scheduleData.get(index);
     }
 
-    public Schedule getSeat(int index) {
+    public Seat getSeat(int index) {
         return seatData.get(index);
     }
 
@@ -162,4 +193,61 @@ public class Database {
     public String getBookedSeatBySomthingFromSeat(int something) {
         return seatData.get(something).getBookedSeat();
     }
+
+    public int getColumnBySomethingFromSeat(int something) {
+        return seatData.get(something).getColumn();
+    }
+
+    public int getRowBySomethingFromSeat(int something) {
+        return seatData.get(something).getRow();
+    }
+
+    public void setUserMovie(String movie) {
+        Database.movie2 = movie;
+    }
+
+    public void setUserMovieId(String movieid) {
+        Database.movieId2 = movieid;
+    }
+
+    public void setUserDate(String date) {
+        Database.date2 = date;
+    }
+
+    public void setUserTime(String time) {
+        Database.time2 = time;
+    }
+
+    public void setUserSeatNumber(String seatnumber) {
+        Database.seatnumber2 = seatnumber;
+    }
+
+    public void setUserNumberOfPerson(int numberofperson) {
+        Database.numberofperson2 = numberofperson;
+    }
+
+    public String getUserMovie() {
+        return Database.movie2;
+    }
+    
+    public String getUserMovieId() {
+        return Database.movieId2;
+    }
+    
+    public String getUserDate() {
+        return Database.date2;
+    }
+    
+    public String getUserTime() {
+        return Database.time2;
+    }
+    
+    public String getUserSeatNumber() {
+        return Database.seatnumber2;
+    }
+    
+    public int getUserNumberOfPerson() {
+        return Database.numberofperson2;
+    }
+    
 }

@@ -17,7 +17,7 @@ public class Customer extends User implements Interface {
     }
 
     public Customer(String name, int age, String gender, String birthday, String phoneNo, String email,
-            String password) {
+        String password) {
         super(name, age, gender, birthday, phoneNo, email, password);
         this.customerID = nextCustomerID++;
     }

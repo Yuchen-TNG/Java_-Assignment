@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import Payment.Booking;
 
 public class Seat {
-    Database db=new Database();
     private String scheduleId;
     private String seatId;
     private int row;
     private int column;
     private String bookedSeat;
-    Seat selectBookedSeat=db.getSeat;
     Scanner cin = new Scanner(System.in);
+    String totalPendingSeat;
+    String pendingScheduleId;
+    private Booking booking=new Booking();
 
-    public Seat() {}
+    public Seat() { }
 
     public Seat(String scheduleId, String seatId, int column, int row, String bookedSeat) {
         this.scheduleId = scheduleId;
@@ -23,6 +25,11 @@ public class Seat {
         this.row = row;
         this.column = column;
         this.bookedSeat = bookedSeat;
+    }
+
+    private Database db;
+    public void setDb() {
+        db = new Database(); // 在这里 new，而不是构造器
     }
 
     public String getScheduleId() {
@@ -66,24 +73,26 @@ public class Seat {
     }
 
     public void showSeat(String scheduleId) {
+        setDb();
         int index = -1;
         char letter = 'A';
-        System.out.println(scheduleId);
 
-        // 找到对应的 schedule index
+
         for (int i = 0; i < db.scheduleIdSize(); i++) {
+
             if (db.getScheduleIdBySomthingFromSeat(i).equals(scheduleId)) {
+                pendingScheduleId=db.getScheduleIdBySomthingFromSeat(i);
                 index = i;
+
                 break;
             }
         }
 
-        // 把 "A1,B3,D6" 变成 List<String>
-        ArrayList<String> bookedList = new ArrayList<>(Arrays.asList(db.getBookedSeatBySomthingFromSeat(index).split(",")));
-        
 
-        for (int j = 0; j < getColumn(); j++) {
-            for (int e = 0; e < getRow(); e++) {
+        ArrayList<String> bookedList = new ArrayList<>(
+        Arrays.asList(db.getBookedSeatBySomthingFromSeat(index).split(",")));
+        for (int j = 0; j < db.getColumnBySomethingFromSeat(1); j++) {
+            for (int e = 0; e < db.getRowBySomethingFromSeat(1); e++) {
                 String seatCode = "" + letter + (e + 1); // 生成座位编号，如 A1, A2, B1...
                 if (bookedList.contains(seatCode)) {
                     System.out.print("[X]");
@@ -96,7 +105,7 @@ public class Seat {
         }
 
         // 输出列号
-        for (int r = 0; r < getRow(); r++) {
+        for (int r = 0; r < db.getRowBySomethingFromSeat(5); r++) {
             System.out.print(" " + (r + 1) + " ");
         }
         System.out.println();
@@ -105,17 +114,17 @@ public class Seat {
     }
 
     public void selectSeat(String scheduleId) {
+        Database db =new Database();
         int index = -1;
         int people = 0;
         Scanner cin = new Scanner(System.in);
         boolean bool = true;
 
-
-  
         do {
             try {
-                System.out.print("How many seats do you want to choose? ");
+                System.out.print("How many seats do you want to choose?\nNumber of people: ");
                 people = cin.nextInt();
+                db.setUserNumberOfPerson(people);
                 bool = false;
             } catch (Exception e) {
                 System.out.println("Enter valid number,try again");
@@ -123,9 +132,10 @@ public class Seat {
                 cin.nextLine();
             }
         } while (bool);
+        totalPendingSeat=Integer.toString(people);
 
         // 查找对应的排期
-        System.out.println("Which seat you want? ");
+        System.out.println("\nWhich seat you want?");
         for (int i = 0; i < db.scheduleIdSize(); i++) {
             if (db.getScheduleIdBySomthingFromSeat(i).equals(scheduleId)) {
                 index = i;
@@ -133,33 +143,41 @@ public class Seat {
             }
         }
         cin.nextLine();
+        int e=0;
         if (index != -1 && db.bookedSeatSize() > index) {
             for (int i = 0; i < people; i++) {
-                do {
+                do {e++;
+                    System.out.print(e+". Seat Number: ");
                     String pendingSeat = cin.nextLine();
                     if (pendingSeat.matches("[A-J][1-9]")) {
-                        bookedSeat.set(index, db.getBookedSeatBySomthingFromSeat(index) + "," + pendingSeat);
-                        bool = false;
+                        Seat selectBookedSeat = db.getSeat(index);
+                        String existing = selectBookedSeat.getBookedSeat();
+                        if (existing.contains(pendingSeat)) {
+                            System.out.println("That seat is already booked. Please choose another one.");
+                            e--;
+                            bool = true;
+                        }else{
+                        db.setUserSeatNumber(existing+"," + pendingSeat);
+                        selectBookedSeat.setBookedSeat(existing + "," + pendingSeat);
+                        bool = false;}
                     } else {
                         bool = true;
-                        System.out.println("Enter invalid,try again\nWhich seat you want?");
+                        System.out.println("\nEnter invalid,try again\nWhich seat you want?");
+                        e--;
                     }
                 } while (bool);
-
+                
+                System.out.println(db.getUserTime());
+                booking.setTicket(db.getUserMovie(),db.getUserDate(),db.getUserTime(),db.getUserSeatNumber(),db.getUserNumberOfPerson());
+                booking.displayticket();
             }
-            System.out.print(getBookedSeat()); // 打印更新后的座位信息
         } else {
             System.out.println("Invalid schedule or no seats available.");
         }
     }
 
-    public void setPendingSeat(String totalPendingSeat,String scheduleId){
-        this.totalPendingSeat=totalPendingSeat;
-        this.pendingScheduleId=scheduleId;
-    }
-
-    public String[] storeAllValue(){
-        Schedule sc=new Schedule();
-        return new String[]{pendingScheduleId,totalPendingSeat,sc.getDateAndTime2()};
+    public String[] storeAllValue() {
+        Schedule sc = new Schedule();
+        return new String[] { pendingScheduleId, totalPendingSeat, sc.getDateAndTime2() };
     }
 }
