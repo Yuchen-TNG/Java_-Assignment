@@ -13,7 +13,7 @@ public class Invoice {
     private Movie movie; 
 
     public Invoice() {}
-    
+
     public Invoice(Payment payment, Ticket ticket, Movie movie) {
         this.payment = payment;
         this.ticket = ticket;
@@ -23,7 +23,7 @@ public class Invoice {
     }
 
     private String generateInvoiceID() { //Universally Unique Identifier 把UUID变成string substring是写提取几个就几个
-        return "INVOICE-" + UUID.randomUUID().toString().substring(0, 8); 
+        return "INVOICE-" + UUID.randomUUID().toString().substring(0, 16); 
     }
 
     public String getInvoiceID() {
