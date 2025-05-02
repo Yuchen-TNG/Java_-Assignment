@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 import Movie.Movie;
 import Movie.Schedule;
-import Movie.Seat;a
+import Movie.Seat;
 
 public class Menu {
     public static void main(String[] args) throws Exception {
