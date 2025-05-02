@@ -334,4 +334,8 @@ public class Schedule {
         return selectedDate2 + selectedTime2;
     }
 
+    public void setSchedule(String movieId){
+
+    }
+
 }
