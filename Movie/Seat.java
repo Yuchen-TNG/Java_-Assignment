@@ -1,5 +1,6 @@
 package Movie;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -178,4 +179,9 @@ public class Seat {
         Schedule sc = new Schedule();
         return new String[] { pendingScheduleId, totalPendingSeat, sc.getDateAndTime2() };
     }
+
+    public void setSeat(String scheduleId){
+        
+    }
 }
+

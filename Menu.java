@@ -28,7 +28,7 @@ public class Menu {
                     System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
                     break;
                 case 1:
-                    mv.choiceMovie();
+                    mv.setMovie();
                     break;
                 case 2:
                     customer.loginCustAcc();
