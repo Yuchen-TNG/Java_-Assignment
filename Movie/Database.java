@@ -2,17 +2,25 @@ package Movie;
 
 import java.util.ArrayList;
 
-public class Database {
+import Payment.Booking;
 
-    static ArrayList<Movie> movieData=new ArrayList<>();
+public class Database {
+    static String movie2;
+    static String movieId2;
+    static String date2;
+    static String time2;
+    static String seatnumber2;
+    static int numberofperson2;
+    static ArrayList<Movie> movieData = new ArrayList<>();
     static ArrayList<Schedule> scheduleData = new ArrayList<>();
     static ArrayList<Seat> seatData = new ArrayList<>();
     private static boolean isMovieDataLoaded = false;
     public Movie mv;
     public Schedule sc;
-    
+
     public Database() {
-        if (isMovieDataLoaded) return;
+        if (isMovieDataLoaded)
+            return;
         loadMovieData();
         loadScheduleData();
         loadSeatData();
@@ -55,10 +63,10 @@ public class Database {
     }
 
     public void choiceMovie() {
-        mv.choiceMovie(); 
+        mv.choiceMovie();
     }
 
-    public void setSchedule(){
+    public void setSchedule() {
         sc.setSchedule();
     }
 
@@ -133,7 +141,6 @@ public class Database {
 
     public String getPendingTimeByMovieIDFromSchedule(String movieID, int index) {
 
-
         if (scheduleData.get(index).getMovieId().equals(movieID)) {
             String pendingTime = "";
             pendingTime = scheduleData.get(index).getTime();
@@ -194,4 +201,53 @@ public class Database {
     public int getRowBySomethingFromSeat(int something) {
         return seatData.get(something).getRow();
     }
+
+    public void setUserMovie(String movie) {
+        Database.movie2 = movie;
+    }
+
+    public void setUserMovieId(String movieid) {
+        Database.movieId2 = movieid;
+    }
+
+    public void setUserDate(String date) {
+        Database.date2 = date;
+    }
+
+    public void setUserTime(String time) {
+        Database.time2 = time;
+    }
+
+    public void setUserSeatNumber(String seatnumber) {
+        Database.seatnumber2 = seatnumber;
+    }
+
+    public void setUserNumberOfPerson(int numberofperson) {
+        Database.numberofperson2 = numberofperson;
+    }
+
+    public String getUserMovie() {
+        return Database.movie2;
+    }
+    
+    public String getUserMovieId() {
+        return Database.movieId2;
+    }
+    
+    public String getUserDate() {
+        return Database.date2;
+    }
+    
+    public String getUserTime() {
+        return Database.time2;
+    }
+    
+    public String getUserSeatNumber() {
+        return Database.seatnumber2;
+    }
+    
+    public int getUserNumberOfPerson() {
+        return Database.numberofperson2;
+    }
+    
 }

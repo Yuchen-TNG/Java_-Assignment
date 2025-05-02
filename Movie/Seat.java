@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import Payment.Booking;
+
 public class Seat {
     private String scheduleId;
     private String seatId;
@@ -13,6 +15,7 @@ public class Seat {
     Scanner cin = new Scanner(System.in);
     String totalPendingSeat;
     String pendingScheduleId;
+    private Booking booking=new Booking();
 
     public Seat() { }
 
@@ -119,8 +122,9 @@ public class Seat {
 
         do {
             try {
-                System.out.print("How many seats do you want to choose? ");
+                System.out.print("How many seats do you want to choose?\nNumber of people: ");
                 people = cin.nextInt();
+                db.setUserNumberOfPerson(people);
                 bool = false;
             } catch (Exception e) {
                 System.out.println("Enter valid number,try again");
@@ -131,7 +135,7 @@ public class Seat {
         totalPendingSeat=Integer.toString(people);
 
         // 查找对应的排期
-        System.out.println("Which seat you want? ");
+        System.out.println("\nWhich seat you want?");
         for (int i = 0; i < db.scheduleIdSize(); i++) {
             if (db.getScheduleIdBySomthingFromSeat(i).equals(scheduleId)) {
                 index = i;
@@ -139,28 +143,38 @@ public class Seat {
             }
         }
         cin.nextLine();
+        int e=0;
         if (index != -1 && db.bookedSeatSize() > index) {
             for (int i = 0; i < people; i++) {
-                do {
+                do {e++;
+                    System.out.print(e+". Seat Number: ");
                     String pendingSeat = cin.nextLine();
                     if (pendingSeat.matches("[A-J][1-9]")) {
                         Seat selectBookedSeat = db.getSeat(index);
                         String existing = selectBookedSeat.getBookedSeat();
+                        if (existing.contains(pendingSeat)) {
+                            System.out.println("That seat is already booked. Please choose another one.");
+                            e--;
+                            bool = true;
+                        }else{
+                        db.setUserSeatNumber(existing+"," + pendingSeat);
                         selectBookedSeat.setBookedSeat(existing + "," + pendingSeat);
-                        bool = false;
+                        bool = false;}
                     } else {
                         bool = true;
-                        System.out.println("Enter invalid,try again\nWhich seat you want?");
+                        System.out.println("\nEnter invalid,try again\nWhich seat you want?");
+                        e--;
                     }
                 } while (bool);
-
+                
+                System.out.println(db.getUserTime());
+                booking.setTicket(db.getUserMovie(),db.getUserDate(),db.getUserTime(),db.getUserSeatNumber(),db.getUserNumberOfPerson());
+                booking.displayticket();
             }
-            System.out.print(getBookedSeat()); // 打印更新后的座位信息
         } else {
             System.out.println("Invalid schedule or no seats available.");
         }
     }
-
 
     public String[] storeAllValue() {
         Schedule sc = new Schedule();

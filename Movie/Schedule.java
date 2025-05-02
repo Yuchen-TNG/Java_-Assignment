@@ -109,7 +109,7 @@ public class Schedule {
         int choiceDate = 0;
         boolean wrong;
         do {
-            System.out.print("Which date is preferred? ");
+            System.out.print("Which date is preferred? \nSelect Date:");
             try {
                 choiceDate = cin.nextInt();
                 if (choiceDate < 1 || choiceDate > pendingDate.size()) {
@@ -126,7 +126,7 @@ public class Schedule {
         } while (wrong);
 
         String selectedDate = pendingDate.get(choiceDate - 1);
-
+        db.setUserDate(selectedDate);
         // Step 5: 找出该日期对应的时间
         e = 0;
         for (int i = 0; i < db.scheduleIdSize(); i++) {
@@ -144,7 +144,7 @@ public class Schedule {
         });
 
         // Step 6: 输出时间选项
-        System.out.println("Available Dates:");
+        System.out.println("\n\nAvailable Dates:");
         for (int i = 0; i < pendingTime.size(); i++) {
             System.out.println((i + 1) + ". " + pendingTime.get(i));
         }
@@ -153,7 +153,7 @@ public class Schedule {
         int choiceTime = 0;
         int index = 0;
         do {
-            System.out.print("Which time is preferred? ");
+            System.out.print("\nWhich time is preferred?\nSelect Time: ");
             choiceTime = cin.nextInt();
             if (choiceTime < 1 || choiceTime > pendingTime.size()) {
                 System.out.println("Out of range. Try again.");
@@ -170,17 +170,12 @@ public class Schedule {
             }
         } while (wrong);
 
-        se.showSeat(db.getScheduleIdBySomthingFromSchedule(index));
+        
         String selectedTime = pendingTime.get(choiceTime - 1);
+        db.setUserTime(selectedTime);
 
-        for (int i = 0; i < db.movieIdSize(); i++) {
-            if (db.getMovieIdBySomethingIntFromMovie(i).equals(movieID)
-                    && db.getDateBySomthingFromSchedule(i).equals(selectedDate)
-                    && db.getTimeBySomthingFromSchedule(i).equals(selectedTime)) {
-                break;
-            }
-        }
-        setDate_Time(selectedDate, selectedTime);
+        se.showSeat(db.getScheduleIdBySomthingFromSchedule(index));
+
     }
 
     // =================================================Set

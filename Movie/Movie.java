@@ -135,6 +135,8 @@ public class Movie {
 
         String movieName = db.getMovieNameBySomethingIntFromMovie(choice);
         String movieID = db.getMovieIdBySomethingIntFromMovie(choice);
+        db.setUserMovie(movieName);
+        db.setUserMovie(movieID);
         Schedule sc = new Schedule();
         sc.getSchedule(movieID);
         String[] schedule = sc.getDateAndTime();
