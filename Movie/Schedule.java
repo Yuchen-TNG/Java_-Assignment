@@ -8,7 +8,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Schedule {
-
+    int pL=0;
     String scheduleId;
     String movieID;
     String time;
@@ -229,8 +229,16 @@ public class Schedule {
             switch (choice) {
                 case 1:
                     System.out.println("\n=====Edit Schedule Id=====");
-                    System.out.print("Schedule Id: ");
-                    scheduleID = cin.next();
+                    while (true) {
+                        System.out.print("Schedule Id: ");
+                        scheduleID = cin.next();
+                        if (scheduleID.matches("^[S]\\d{3}")) {
+                            break;
+                        } else {
+                            System.out.println(
+                                    "inavalid please follow the format : (S000),first character must be S and Uppercase");
+                        }
+                    }
                     slectionSchdule.setScheduleId(scheduleID);
                     break;
                 case 2:
@@ -253,7 +261,13 @@ public class Schedule {
                         System.out.print("Date: ");
                         date = cin.next();
                         if (date.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                            int month = Integer.parseInt(date.split("-")[1]);
+                            int day = Integer.parseInt(date.split("-")[2]);
+                            if(month<12&&day<31){
                             break;
+                            }else{
+                                System.out.println("invalid, please input the correct month and day");
+                            }
                         } else {
                             System.out.println("invalid please follow the format(yyyy-mm-dd)");
                         }
@@ -289,8 +303,9 @@ public class Schedule {
                             int second = Integer.parseInt(duration.split(":")[2]);
                             if (hour < 60 && second < 60) {
                                 break;
-                            }else{
-                                System.out.println("Invalid please enter the time correctly cannot exceed 60 minite and second");
+                            } else {
+                                System.out.println(
+                                        "Invalid please enter the time correctly cannot exceed 60 minite and second");
                             }
                         } else {
                             System.out.println("Invalid, please follow the time format (01:59:59)");
@@ -321,7 +336,7 @@ public class Schedule {
 
         for (int i = 0; i < db.scheduleIdSize(); i++) {
             System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2s \n", (i + 1),
-                    db.getDateBySomthingFromSchedule(i),
+                    db.getScheduleIdBySomthingFromSchedule(i),
                     db.getMovieIdBySomthingFromSchedule(i), db.getDateBySomthingFromSchedule(i),
                     db.getTimeBySomthingFromSchedule(i), db.getDurationBySomthingFromSchedule(i));
         }
@@ -341,7 +356,124 @@ public class Schedule {
         return selectedDate2 + selectedTime2;
     }
 
-    public void setSchedule(String movieId){
+    public void setSchedule(String movieId) {
+        setDb();
+        System.out.println("\n\nHow many schedule you want add?");
+        int addSchedule = cin.nextInt();
+        cin.nextLine();
+
+        int check = 0;
+        if (addSchedule >= 1) {
+            boolean bool = false;
+            for (int i = 0; i < addSchedule; i++) {
+
+                do {
+                    System.out.print("Schdule ID : ");
+                    scheduleId = cin.nextLine();
+                    bool = false;
+
+                    if (scheduleId.matches("^[S]\\d{3}")) {
+                        for (int t = 0; t < db.scheduleIdSize(); t++) {
+                            String existingId = db.getScheduleIdBySomthingFromSchedule(t);
+                            if (existingId != null && existingId.equals(scheduleId)) {
+                                System.out.println("Schedule ID is duplicate");
+                                bool = true;
+                                break;
+                            }
+                        }
+
+                    } else {
+                        System.out.println("Your Schedule ID is wrong format");
+                        bool = true;
+                    }
+
+                } while (bool);
+
+                System.out.println("How many time you want to add? ");
+                int ChoiceTimes = cin.nextInt();
+                for (int u = 0; u < ChoiceTimes; u++) {
+                    while (true) {
+                        System.out.print("Time: ");
+                        time = cin.next();
+                        if (time.matches("\\d{2}:\\d{2}")) {
+                            int hour = Integer.parseInt(time.split(":")[0]);
+                            int minute = Integer.parseInt(time.split(":")[1]);
+                            if (hour < 24 && minute < 60) {
+                                System.out.println("How many date you want to add? ");
+                                int ChoiceDate = cin.nextInt();
+                                for (int o = 0; o < ChoiceDate; o++) {
+                                    while (true) {
+                                        System.out.print("Date: ");
+                                        date = cin.next();
+                                        if (date.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                                            while (true) {
+                                                System.out.print("Duration: ");
+                                                duration = cin.next();
+                                                cin.next();
+                                                if (duration.matches("\\d{2}:\\d{2}:\\d{2}")) {
+                                                    int hour2 = Integer.parseInt(duration.split(":")[1]);
+                                                    int second2 = Integer.parseInt(duration.split(":")[2]);
+                                                    if (hour2 < 60 && second2 < 60) {
+                                                        
+                                                        do {
+                                                            
+                                                            System.out.println(pL);
+                                                            pL++;
+                                                            System.out.println(
+                                                                    "\n\nAre you sure you want to add into Library? (Yes / No)");
+                                                            String choice = cin.nextLine().trim();
+                                                            if (choice.equalsIgnoreCase("yes")
+                                                                    || choice.equalsIgnoreCase("y")) {
+                                                                        Schedule newSchedule = new Schedule(movieId, scheduleId, time,
+                                                                date, duration);
+                                                                db.addScheduleFromMovie(newSchedule);
+                                                                System.out.println("\n\nYour Schedule has been add");
+                                                                Seat se = new Seat();
+                                                                se.setSeat(scheduleId);
+                                                                bool = false;
+                                                                break;
+                                                            } else if (choice.equalsIgnoreCase("no")
+                                                                    || choice.equalsIgnoreCase("n")) {
+                                                                bool = false;
+                                                            } else {
+                                                                System.err.println(
+                                                                        "\n\nWe can't understand your input, please try again");
+                                                                bool = true;
+                                                            }
+                                                        } while (bool);
+
+                                                        break;
+                                                    } else {
+                                                        System.out.println(
+                                                                "Invalid please enter the time correctly cannot exceed 60 minite and second");
+                                                    }
+                                                } else {
+                                                    System.out.println(
+                                                            "Invalid, please follow the time format (01:59:59)");
+
+                                                }
+                                            }
+                                            break;
+                                        } else {
+                                            System.out.println("invalid please follow the format(yyyy-mm-dd)");
+                                            
+                                        }
+                                    }
+                                }
+                                break;
+                            } else {
+                                System.out.println("Invalid please enter the time correctly");
+                            }
+                        } else {
+                            System.out.println("invalid please follow the format(00:00)");
+                        }
+                    }
+                }
+
+            }
+        } else {
+            return;
+        }
 
     }
 

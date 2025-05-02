@@ -70,6 +70,10 @@ public class Database {
         sc.setSchedule();
     }
 
+    public int seatIdSize() {
+        return seatData.size();
+    }
+
     public int movieIdSize() {
         return Database.movieData.size();
     }
@@ -86,7 +90,18 @@ public class Database {
         movieData.add(movie);
     }
 
+    public void addScheduleFromMovie(Schedule movie) {
+        scheduleData.add(movie);
+    }
+
     public void showMovieFromMovie(int count) {
+        System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
+        Movie movie = movieData.get(count);
+        System.out.printf("%-25s%-8s%-15s%-15s\n", movie.getName(), movie.getMovieId(), movie.getType(),
+                movie.getLanguage());
+    }
+
+    public void showSchduleFromSchedule(int count) {
         System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
         Movie movie = movieData.get(count);
         System.out.printf("%-25s%-8s%-15s%-15s\n", movie.getName(), movie.getMovieId(), movie.getType(),
@@ -180,6 +195,10 @@ public class Database {
         return scheduleData.get(something).getMovieId();
     }
 
+    public String getSeatIdBySomthingFromSeat(int something) {
+        return seatData.get(something).getSeatId();
+    }
+    
     public String getDateBySomthingFromSchedule(int something) {
         return scheduleData.get(something).getDate();
     }
@@ -254,6 +273,18 @@ public class Database {
     
     public int getUserNumberOfPerson() {
         return Database.numberofperson2;
+    }
+
+    public String getSeatId(int index){
+        return seatData.get(index).getSeatId();
+    }
+
+    public int getColumn(int index){
+        return seatData.get(index).getColumn();
+    }
+
+    public int getRow(int index){
+        return seatData.get(index).getRow();
     }
     
 }
