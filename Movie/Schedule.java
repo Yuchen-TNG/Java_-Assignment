@@ -19,7 +19,9 @@ public class Schedule {
     Scanner cin = new Scanner(System.in); // 加上Scanner
     private String selectedTime2;
     private String selectedDate2;
-    public Schedule() {    }
+
+    public Schedule() {
+    }
 
     public Schedule(String movieID, String scheduleId, String time, String date, String duration) {
         this.movieID = movieID;
@@ -30,6 +32,7 @@ public class Schedule {
     }
 
     private Database db;
+
     public void setDb() {
         db = new Database(); // 在这里 new，而不是构造器
     }
@@ -170,7 +173,6 @@ public class Schedule {
             }
         } while (wrong);
 
-        
         String selectedTime = pendingTime.get(choiceTime - 1);
         db.setUserTime(selectedTime);
 
@@ -281,12 +283,17 @@ public class Schedule {
                     System.out.println("\n=====Edit Duration=====");
                     while (true) {
                         System.out.print("Duration: ");
-                        if (cin.hasNextDouble() || cin.hasNextInt()) {
-                            duration = cin.next();
-                            break;
+                        duration = cin.next();
+                        if (duration.matches("\\d{2}:\\d{2}:\\d{2}")) {
+                            int hour = Integer.parseInt(duration.split(":")[1]);
+                            int second = Integer.parseInt(duration.split(":")[2]);
+                            if (hour < 60 && second < 60) {
+                                break;
+                            }else{
+                                System.out.println("Invalid please enter the time correctly cannot exceed 60 minite and second");
+                            }
                         } else {
-                            System.out.println("Invalid, please input the number");
-                            cin.next();
+                            System.out.println("Invalid, please follow the time format (01:59:59)");
                         }
                     }
                     slectionSchdule.setDuration(duration);
@@ -305,7 +312,7 @@ public class Schedule {
     // Display==========================================================
 
     public void showSchedule() {
-        setDb();    
+        setDb();
 
         System.out.println("\n========================SCHEDULE LISTS========================");
         System.out.printf("%-4s %-12s %-10s %-12s %-8s %-10s\n", "No", "ScheduleId", "Movie ID", "Date", "Time",
@@ -313,7 +320,7 @@ public class Schedule {
         System.out.println("--------------------------------------------------------------");
 
         for (int i = 0; i < db.scheduleIdSize(); i++) {
-            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2.1f hours\n", (i + 1),
+            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2s \n", (i + 1),
                     db.getDateBySomthingFromSchedule(i),
                     db.getMovieIdBySomthingFromSchedule(i), db.getDateBySomthingFromSchedule(i),
                     db.getTimeBySomthingFromSchedule(i), db.getDurationBySomthingFromSchedule(i));

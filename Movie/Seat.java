@@ -167,9 +167,7 @@ public class Seat {
                     }
                 } while (bool);
                 
-                System.out.println(db.getUserTime());
                 booking.setTicket(db.getUserMovie(),db.getUserDate(),db.getUserTime(),db.getUserSeatNumber(),db.getUserNumberOfPerson());
-                booking.displayticket();
             }
         } else {
             System.out.println("Invalid schedule or no seats available.");
