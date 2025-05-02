@@ -321,6 +321,7 @@ public class Seat {
                     db.getRow(i), db.getBookedSeatBySomthingFromSeat(i));
         }
         System.out.println("===================================================================");
+    }
     public void setSeat(String scheduleId){
         
     }
