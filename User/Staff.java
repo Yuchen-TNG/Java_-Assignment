@@ -161,17 +161,12 @@ public class Staff extends User implements Interface {
                     mv.setMovie();
                     break;
                 case 4:
-                    System.out.println("Select Your MovieId: ");
-                    String movieId = cin.next();
-                    schedule.getSchedule(movieId);
-                    break;
-                case 5:
                     schedule.setSchedule();
                     break;
-                case 6:
+                case 5:
                     seat.editSeat();
                     break;
-                case 7:
+                case 6:
                     System.out.println("Booking");
                     booking.autoshowbooking(Booking.confirm);
                     break;
@@ -189,17 +184,16 @@ public class Staff extends User implements Interface {
         System.out.println("| 1. View Customer Details   |");
         System.out.println("| 2. View Staff Details      |");
         System.out.println("| 3. Add Movie               |");
-        System.out.println("| 4. Check Schedule          |");
-        System.out.println("| 5. Edit Schedule           |");
-        System.out.println("| 6. Edit Seat               |");
-        System.out.println("| 7. View Customer Booking   |");
+        System.out.println("| 4. Edit Schedule           |");
+        System.out.println("| 5. Edit Seat               |");
+        System.out.println("| 6. View Customer Booking   |");
         System.out.println("| 0. Logout                  |");
         System.out.println("+============================+");
         System.out.print("Selection(0-3): ");
         while (!cin.hasNextInt()) {
             System.out.println("Invalid choice! Please select a number 0 to 3.");
             cin.next();
-            System.out.print("Selection(0-3): ");
+            System.out.print("Selection(0-7): ");
         }
     }
 
