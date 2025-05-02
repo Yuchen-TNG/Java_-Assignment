@@ -147,7 +147,7 @@ public class Schedule {
         });
 
         // Step 6: 输出时间选项
-        System.out.println("\n\nAvailable Dates:");
+        System.out.println("\n\nAvailable Times:");
         for (int i = 0; i < pendingTime.size(); i++) {
             System.out.println((i + 1) + ". " + pendingTime.get(i));
         }
