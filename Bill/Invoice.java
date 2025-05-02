@@ -22,10 +22,11 @@ public class Invoice {
         this.movie = movie;
         this.invoiceID = generateInvoiceID(); 
         this.invoiceDate = LocalDate.now();
+        
     }
 
     private String generateInvoiceID() { //Universally Unique Identifier 把UUID变成string substring是写提取几个就几个
-        return "INVOICE-" + UUID.randomUUID().toString().substring(0, 16); 
+        return "INVOICE-" + UUID.randomUUID().toString().substring(0, 8); 
     }
 
     public String getInvoiceID() {
@@ -49,17 +50,19 @@ public class Invoice {
         return prizes[index];
     }
 
+    
+
     public void printInvoice() {
         System.out.println("========== INVOICE ==========");
         System.out.println("Invoice ID : " + getInvoiceID());
         System.out.println("Date : " + getInvoiceDate());
         System.out.println("-----------------------------");
-        System.out.println("Movie Details :");
+        System.out.println("Movie Details ");
         System.out.println("Movie Name : " + movieName);
         System.out.println("-----------------------------");
-        System.out.println("Payment Details : ");
+        System.out.println("Payment Details  ");
         System.out.println("Total Amount : RM " + String.format("%.2f", Payment.getpaymentamount()));
-        System.out.println("Total Price : RM " + String.format("%.2f", payment.gettotalprice()));
+        System.out.println("Total Price : RM " + String.format("%.2f", Payment.gettotalprice()));
         System.out.println("-----------------------------");
         System.out.println("Lucky Draw Result : " + generateLuckyDraw());
         System.out.println("-----------------------------");

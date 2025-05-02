@@ -10,7 +10,7 @@ public class Payment {
     private static double paymentamount = 12.00; // number of price of ticket
     private int method; // touch n go, cash, credit card
     private static double tax = 0.06;
-    private double totalprice;
+    private static double totalprice;
     private YearMonth expiredMonth;
 
     public Payment(){
@@ -36,10 +36,10 @@ public class Payment {
 
     public void calculatetotalprice(){
         double subtotal = paymentamount * booking.getnumberofperson();
-        this.totalprice = subtotal + (subtotal * tax);
+        totalprice = subtotal + (subtotal * tax);
     }
 
-    public double gettotalprice(){
+    public static double gettotalprice(){
         return totalprice;
     }
 

@@ -21,7 +21,7 @@ public class Ticket {
     }
 
     private String generateTicketID() {
-        return "TICKET-" + UUID.randomUUID().toString().substring(0, 16); // 生成唯一 ID
+        return "TICKET-" + UUID.randomUUID().toString().substring(0, 8); // 生成唯一 ID
     }
 
     public String getSeatNumbers(){
@@ -43,7 +43,7 @@ public class Ticket {
 
     public void printTicket() {
         System.out.println("========== TICKET ==========");
-        System.out.println("Ticket Details : ");
+        System.out.println("Ticket Details ");
         System.out.println("Ticket ID : " + getTicketID());
         System.out.println("Ticket No : " + getTicketNo());
         System.out.println("Seat : " + getSeatNumbers());

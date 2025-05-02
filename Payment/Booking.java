@@ -145,7 +145,7 @@ public class Booking {
     System.out.println("Time: " + time);
     System.out.println("Your seat number: " + seatNumbers);
     System.out.println("Number of Person: " + numberofperson);
-    System.out.println("Your total price: " + payment.gettotalprice());
+    System.out.println("Your total price: " + Payment.gettotalprice());
     iv.addMovieName(movie);
     tk.addSeatNumbers(seatNumbers);
     

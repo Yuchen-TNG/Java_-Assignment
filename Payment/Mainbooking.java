@@ -18,7 +18,7 @@ public class Mainbooking {
 
         payment.calculatetotalprice();
 
-        System.out.print("Price: " + payment.gettotalprice() + "\n");
+        System.out.print("Price: " + Payment.gettotalprice() + "\n");
 
 
     System.out.println("Please choose a method to complete your booking: (1/2/3)"); //做table比较好看
