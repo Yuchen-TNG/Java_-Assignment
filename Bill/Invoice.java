@@ -11,6 +11,7 @@ public class Invoice {
     private Payment payment;
     private Ticket ticket; 
     private Movie movie; 
+    static private String movieName; 
 
     public Invoice() {}
 
@@ -34,6 +35,9 @@ public class Invoice {
         return invoiceDate;
     }
 
+    public void addMovieName(String movieName){
+        Invoice.movieName=movieName;
+    }
     private String generateLuckyDraw() { //生成幸运抽奖
         // 这里可以根据需要生成不同的奖品
         String[] prizes = {"Free Popcorn", "Free Movie Ticket", "Discount Voucher","Free Drink", "Gift Card"};
@@ -48,7 +52,7 @@ public class Invoice {
         System.out.println("Date : " + getInvoiceDate());
         System.out.println("-----------------------------");
         System.out.println("Movie Details :");
-        System.out.println("Movie Name : " + movie.getName());
+        System.out.println("Movie Name : " + movieName);
         System.out.println("-----------------------------");
         System.out.println("Ticket Details :");
         System.out.println("Ticket ID : " + ticket.getTicketID());

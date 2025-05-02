@@ -33,6 +33,7 @@ public class Ticket {
         System.out.println("Ticket Details : ");
         System.out.println("Ticket ID : " + getTicketID());
         System.out.println("Ticket No : " + getTicketNo());
+        System.out.println("hahahaahahahah3");
         System.out.println("Seat : " + booking.getseatnumber());
         System.out.println("-----------------------------");
         System.out.println("Thank you for your purchase!");

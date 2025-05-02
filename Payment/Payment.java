@@ -75,8 +75,9 @@ public class Payment {
         
                         if (userpay >= totalprice) {
                             System.out.println("Payment successful. Remaining money: " + df.format(userpay - totalprice));
+                            ticket.printTicket();
                             invoice.printInvoice();
-                            ticket.printTicket(); 
+
                             return; // 退出方法
                         } else {
                             System.out.println("Payment unsuccessful, please try again.");
@@ -101,8 +102,8 @@ public class Payment {
                                     expiredMonth = YearMonth.parse(exp, DateTimeFormatter.ofPattern("MM/yy"));
                                     if (validExpiredMonth()) {
                                         System.out.println("Payment successful");
-                                        invoice.printInvoice();
                                         ticket.printTicket();
+                                        invoice.printInvoice();
                                         return;
                                     } else {
                                         System.out.println("Payment unsuccessful, your card is expired.");
@@ -139,8 +140,9 @@ public class Payment {
         
                         if (answer.equals("y") || answer.equals("yes")) {
                             System.out.println("Payment successful");
-                            invoice.printInvoice();
                             ticket.printTicket();
+                            invoice.printInvoice();
+
                             return;
                         } else {
                             System.out.println("Payment failed! Please try again.");

@@ -1,6 +1,8 @@
 package Payment;
 import java.util.ArrayList;
 
+import Bill.Invoice;
+
 public class Booking {
 
     private String bookingID;
@@ -78,6 +80,8 @@ public class Booking {
             this.movie = movie;
         }
 
+
+
         public String generateBookingID(){
             String id = String.format("B%03d",bookingidCount);
             bookingidCount++;
@@ -134,6 +138,7 @@ public class Booking {
     
  public void displayticket(){
     payment.calculatetotalprice();
+    Invoice iv=new Invoice();
 
     System.out.println("==============================================");
     System.out.println("The title movie: " + movie);
@@ -142,7 +147,8 @@ public class Booking {
     System.out.println("Your seat number: " + seatNumbers);
     System.out.println("Number of Person: " + numberofperson);
     System.out.println("Your total price: " + payment.gettotalprice());
-
+    iv.addMovieName(movie);
+    
 }
 
 }
