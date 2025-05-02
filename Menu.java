@@ -30,7 +30,7 @@ public class Menu {
                     System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
                     break;
                 case 1:
-                    mv.setMovie();
+                    customer.Register();
                     break;
                 case 2:
                     customer.loginCustAcc();
@@ -39,7 +39,7 @@ public class Menu {
                     staff.staffLogin();
                     break;
                 case 4:
-                    seat.editSeat();
+                    schedule.setSchedule();
                     break;
                 default:
                     System.out.println("Invalid choice! Please select a number 0 to 3.");
