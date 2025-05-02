@@ -14,8 +14,7 @@ public class Seat {
     String totalPendingSeat;
     String pendingScheduleId;
 
-    public Seat() {
-    }
+    public Seat() { }
 
     public Seat(String scheduleId, String seatId, int column, int row, String bookedSeat) {
         this.scheduleId = scheduleId;
@@ -23,6 +22,11 @@ public class Seat {
         this.row = row;
         this.column = column;
         this.bookedSeat = bookedSeat;
+    }
+
+    private Database db;
+    public void setDb() {
+        db = new Database(); // 在这里 new，而不是构造器
     }
 
     public String getScheduleId() {
@@ -66,8 +70,7 @@ public class Seat {
     }
 
     public void showSeat(String scheduleId) {
-        
-    Database db = new Database();
+        setDb();
         int index = -1;
         char letter = 'A';
 
@@ -108,8 +111,7 @@ public class Seat {
     }
 
     public void selectSeat(String scheduleId) {
-        
-    Database db = new Database();
+        Database db =new Database();
         int index = -1;
         int people = 0;
         Scanner cin = new Scanner(System.in);
@@ -143,7 +145,8 @@ public class Seat {
                     String pendingSeat = cin.nextLine();
                     if (pendingSeat.matches("[A-J][1-9]")) {
                         Seat selectBookedSeat = db.getSeat(index);
-                        selectBookedSeat.setBookedSeat(pendingSeat);
+                        String existing = selectBookedSeat.getBookedSeat();
+                        selectBookedSeat.setBookedSeat(existing + "," + pendingSeat);
                         bool = false;
                     } else {
                         bool = true;

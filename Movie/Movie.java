@@ -1,9 +1,6 @@
 package Movie;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-
-import Payment.Booking;
 
 public class Movie {
 
@@ -13,7 +10,7 @@ public class Movie {
     private String MovieId;
     private String Type;
     private String Language;
-
+    private Database db;
 
     public Movie() {
     }
@@ -23,6 +20,10 @@ public class Movie {
         this.MovieId = MovieId;
         this.Type = Type;
         this.Language = Language;
+    }
+
+    public void setDb() {
+        db = new Database(); // 在这里 new，而不是构造器
     }
 
     public String getName() {
@@ -42,8 +43,7 @@ public class Movie {
     }
 
     public void setMovie() {
-        
-    Database db = new Database();
+    
         String movieID = "";
         System.out.println("\n\nHow many movie you want add?");
         int addMovie = cin.nextInt();
@@ -101,8 +101,8 @@ public class Movie {
     }
 
     public void clearMovie() {
-        
-    Database db = new Database();
+        Database db =new Database();
+
         boolean check = true;
         System.out.println("\n\nDelete Movie List");
         System.out.print("Movie ID delete:");
@@ -127,9 +127,7 @@ public class Movie {
     }
 
     public void choiceMovie() {
-        
-    Database db = new Database();
-        Seat se=new Seat();
+        setDb();
         db.showAllMovieFromMovie();
         System.out.println("Select Your Movie Number");
         int choice = cin.nextInt();

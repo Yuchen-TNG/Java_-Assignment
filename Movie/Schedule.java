@@ -19,16 +19,19 @@ public class Schedule {
     Scanner cin = new Scanner(System.in); // 加上Scanner
     private String selectedTime2;
     private String selectedDate2;
-
-    public Schedule() {
-    }
+    public Schedule() {    }
 
     public Schedule(String movieID, String scheduleId, String time, String date, String duration) {
         this.movieID = movieID;
         this.scheduleId = scheduleId;
-        this.time=time;
+        this.time = time;
         this.date = date;
         this.duration = duration;
+    }
+
+    private Database db;
+    public void setDb() {
+        db = new Database(); // 在这里 new，而不是构造器
     }
 
     public String getScheduleId() {
@@ -73,11 +76,10 @@ public class Schedule {
 
     public void getSchedule(String movieID) {
         int e = 0;
+        setDb();
 
-        Database db = new Database();
         ArrayList<String> pendingDate = new ArrayList<>();
         ArrayList<String> pendingTime = new ArrayList<>();
-        Movie mv = new Movie();
         Seat se = new Seat();
         System.out.println("\nSchedule for: " + db.getMovieNameByMovieIdFromMovie(movieID));
         System.out.println("This is available date");
@@ -128,13 +130,12 @@ public class Schedule {
         // Step 5: 找出该日期对应的时间
         e = 0;
         for (int i = 0; i < db.scheduleIdSize(); i++) {
-            boolean bool=false;
-            if (bool=db.getPendingDateByMovieIDAndSelectedDate(movieID, i, selectedDate)) {
+            boolean bool = false;
+            if (bool = db.getPendingDateByMovieIDAndSelectedDate(movieID, i, selectedDate)) {
                 pendingTime.add(db.getPendingTimeByMovieIDFromSchedule(movieID, i));
                 e++;
             }
         }
-
 
         pendingTime.sort((t1, t2) -> {
             LocalTime time1 = LocalTime.parse(t1, timeFormat);
@@ -185,8 +186,8 @@ public class Schedule {
     // =================================================Set
     // Schedule=======================================================
     public void setSchedule() {
+        setDb();
 
-        Database db = new Database();
         int selection = 0;
         int choice;
         String date = "";
@@ -309,8 +310,8 @@ public class Schedule {
     // Display==========================================================
 
     public void showSchedule() {
+        setDb();    
 
-        Database db = new Database();
         System.out.println("\n========================SCHEDULE LISTS========================");
         System.out.printf("%-4s %-12s %-10s %-12s %-8s %-10s\n", "No", "ScheduleId", "Movie ID", "Date", "Time",
                 "Duration");

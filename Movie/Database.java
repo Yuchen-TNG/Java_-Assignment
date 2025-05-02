@@ -3,21 +3,22 @@ package Movie;
 import java.util.ArrayList;
 
 public class Database {
-    
-    ArrayList<Movie> movieData;
-    ArrayList<Schedule> scheduleData;
-    ArrayList<Seat> seatData;
 
+    static ArrayList<Movie> movieData=new ArrayList<>();
+    static ArrayList<Schedule> scheduleData = new ArrayList<>();
+    static ArrayList<Seat> seatData = new ArrayList<>();
+    private static boolean isMovieDataLoaded = false;
+    public Movie mv;
+    public Schedule sc;
     
     public Database() {
-        movieData = new ArrayList<>();
-        scheduleData = new ArrayList<>();
-        seatData = new ArrayList<>();
+        if (isMovieDataLoaded) return;
         loadMovieData();
         loadScheduleData();
         loadSeatData();
+        isMovieDataLoaded = true;
     }
-    
+
     public void loadMovieData() {
         movieData.add(new Movie("Godzilla", "M001", "Action", "English"));
         movieData.add(new Movie("Titanic", "M002", "Romance", "English"));
@@ -51,6 +52,14 @@ public class Database {
         seatData.add(new Seat("S008", "SE004", 10, 9, "H1,H2,H3"));
         seatData.add(new Seat("S009", "SE003", 10, 9, "I1,I2,I3"));
         seatData.add(new Seat("S010", "SE004", 10, 9, "J1,J2,J3"));
+    }
+
+    public void choiceMovie() {
+        mv.choiceMovie(); 
+    }
+
+    public void setSchedule(){
+        sc.setSchedule();
     }
 
     public int movieIdSize() {
@@ -123,10 +132,8 @@ public class Database {
     }
 
     public String getPendingTimeByMovieIDFromSchedule(String movieID, int index) {
-        
-        System.out.println(scheduleData.get(index).getMovieId());
-        System.out.println(scheduleData.get(index).getTime());
-   
+
+
         if (scheduleData.get(index).getMovieId().equals(movieID)) {
             String pendingTime = "";
             pendingTime = scheduleData.get(index).getTime();
@@ -180,11 +187,11 @@ public class Database {
         return seatData.get(something).getBookedSeat();
     }
 
-    public int getColumnBySomethingFromSeat(int something){
+    public int getColumnBySomethingFromSeat(int something) {
         return seatData.get(something).getColumn();
     }
-    
-    public int getRowBySomethingFromSeat(int something){
+
+    public int getRowBySomethingFromSeat(int something) {
         return seatData.get(something).getRow();
     }
 }

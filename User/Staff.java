@@ -10,7 +10,7 @@ public class Staff extends User implements Interface {
     private static Staff[] staff = new Staff[5];
     private static int staffCount = 0;
     Database db = new Database();
-    Movie mv = new Movie(db);
+    Movie mv = new Movie();
     Schedule schedule = new Schedule();
     Customer customer = new Customer();
 
