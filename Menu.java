@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 import Movie.Movie;
 import Movie.Schedule;
+import Movie.Seat;
 
 public class Menu {
     public static void main(String[] args) throws Exception {
@@ -12,6 +13,7 @@ public class Menu {
         Movie mv = new Movie();
         int selection;
         Schedule schedule = new Schedule();
+        Seat seat = new Seat();
 
         do {
             displayMainMenu();
@@ -37,7 +39,7 @@ public class Menu {
                     staff.staffLogin();
                     break;
                 case 4:
-                    schedule.setSchedule();
+                    seat.editSeat();
                     break;
                 default:
                     System.out.println("Invalid choice! Please select a number 0 to 3.");
