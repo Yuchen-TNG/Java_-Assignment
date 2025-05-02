@@ -90,7 +90,18 @@ public class Database {
         movieData.add(movie);
     }
 
+    public void addScheduleFromMovie(Schedule movie) {
+        scheduleData.add(movie);
+    }
+
     public void showMovieFromMovie(int count) {
+        System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
+        Movie movie = movieData.get(count);
+        System.out.printf("%-25s%-8s%-15s%-15s\n", movie.getName(), movie.getMovieId(), movie.getType(),
+                movie.getLanguage());
+    }
+
+    public void showSchduleFromSchedule(int count) {
         System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
         Movie movie = movieData.get(count);
         System.out.printf("%-25s%-8s%-15s%-15s\n", movie.getName(), movie.getMovieId(), movie.getType(),

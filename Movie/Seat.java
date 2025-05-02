@@ -1,5 +1,6 @@
 package Movie;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -320,5 +321,8 @@ public class Seat {
                     db.getRow(i), db.getBookedSeatBySomthingFromSeat(i));
         }
         System.out.println("===================================================================");
+    public void setSeat(String scheduleId){
+        
     }
 }
+

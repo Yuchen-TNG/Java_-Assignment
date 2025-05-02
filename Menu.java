@@ -30,7 +30,7 @@ public class Menu {
                     System.out.println("Thank you for using Cinema Ticket System. Goodbye!");
                     break;
                 case 1:
-                    customer.Register();
+                    mv.setMovie();
                     break;
                 case 2:
                     customer.loginCustAcc();
