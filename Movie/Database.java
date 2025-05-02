@@ -35,16 +35,16 @@ public class Database {
     }
 
     public void loadScheduleData() {
-        scheduleData.add(new Schedule("M001", "S001", "11:00", "2025-01-28", "2 hours"));
-        scheduleData.add(new Schedule("M001", "S002", "09:00", "2025-01-28", "2 hours"));
-        scheduleData.add(new Schedule("M001", "S003", "08:00", "2025-01-28", "2 hours"));
-        scheduleData.add(new Schedule("M001", "S004", "01:00", "2025-01-28", "2 hours"));
-        scheduleData.add(new Schedule("M001", "S005", "12:00", "2025-02-27", "2 hours"));
-        scheduleData.add(new Schedule("M001", "S006", "13:00", "2025-01-21", "2 hours"));
-        scheduleData.add(new Schedule("M001", "S007", "14:00", "2025-02-01", "2 hours"));
-        scheduleData.add(new Schedule("M002", "S008", "15:00", "2025-03-28", "1.5 hours"));
-        scheduleData.add(new Schedule("M002", "S009", "13:00", "2025-04-28", "2 hours"));
-        scheduleData.add(new Schedule("M003", "S010", "15:00", "2025-05-28", "1.5 hours"));
+        scheduleData.add(new Schedule("M001", "S001", "11:00", "2025-01-28", "02:32:10"));
+        scheduleData.add(new Schedule("M001", "S002", "09:00", "2025-01-28", "01:47:20"));
+        scheduleData.add(new Schedule("M001", "S003", "08:00", "2025-01-28", "03:32:17"));
+        scheduleData.add(new Schedule("M001", "S004", "01:00", "2025-01-28", "02:22:12"));
+        scheduleData.add(new Schedule("M001", "S005", "12:00", "2025-02-27", "02:42:10"));
+        scheduleData.add(new Schedule("M001", "S006", "13:00", "2025-01-21", "01:32:10"));
+        scheduleData.add(new Schedule("M001", "S007", "14:00", "2025-02-01", "02:52:44"));
+        scheduleData.add(new Schedule("M002", "S008", "15:00", "2025-03-28", "01:52:11"));
+        scheduleData.add(new Schedule("M002", "S009", "13:00", "2025-04-28", "02:33:42"));
+        scheduleData.add(new Schedule("M003", "S010", "15:00", "2025-05-28", "03:01:33"));
     }
 
     public void loadSeatData() {
