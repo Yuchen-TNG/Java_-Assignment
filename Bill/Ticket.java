@@ -1,3 +1,8 @@
+//Author: DEVON EU YONG CHENG
+//Module: Ticket
+//System: Cinema Ticket System
+//Group: DFT1S3G11
+
 package Bill;
 
 import java.util.UUID;
@@ -29,7 +34,7 @@ public class Ticket {
     }
 
     public void addSeatNumbers(String seatNumber){
-        this.seatNumber=seatNumber;
+        seatNumber=seatNumber;
     }
 
     public String getTicketID() {
@@ -43,7 +48,7 @@ public class Ticket {
 
     public void printTicket() {
         System.out.println("========== TICKET ==========");
-        System.out.println("Ticket Details ");
+        System.out.println("Ticket Details : ");
         System.out.println("Ticket ID : " + getTicketID());
         System.out.println("Ticket No : " + getTicketNo());
         System.out.println("Seat : " + getSeatNumbers());

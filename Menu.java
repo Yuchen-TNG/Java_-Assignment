@@ -1,3 +1,8 @@
+//Author: LEON CHANG RUI HERN,DEVON EU YONG CHENG,TNG YU CHEN,TAN KAI ZHEN
+//Module: MENU
+//System: Cinema Ticket System
+//Group: DFT1S3G11
+
 import java.util.Scanner;
 
 import Movie.Movie;

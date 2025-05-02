@@ -1,3 +1,8 @@
+//Author: TAN KAI ZHEN
+//Module: Movie
+//System: Cinema Ticket System
+//Group: DFT1S3G11
+
 package Movie;
 
 import java.util.Scanner;

@@ -1,3 +1,9 @@
+//Author: TAN KAI ZHEN
+//Module: Seat
+//System: Cinema Ticket System
+//Group: DFT1S3G11
+
+
 package Movie;
 
 import java.util.ArrayList;

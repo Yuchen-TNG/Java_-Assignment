@@ -1,3 +1,8 @@
+//Author: LEON CHANG RUI HERN
+//Module: Staff
+//System: Cinema Ticket System
+//Group: DFT1S3G11
+
 import Movie.Database;
 import Movie.Movie;
 import Movie.Schedule;

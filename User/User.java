@@ -1,3 +1,8 @@
+//Author: LEON CHANG RUI HERN
+//Module: User
+//System: Cinema Ticket System
+//Group: DFT1S3G11
+
 import java.util.Scanner;
 
 public class User {

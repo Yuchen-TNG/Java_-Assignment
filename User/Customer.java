@@ -1,3 +1,8 @@
+//Author: LEON CHANG RUI HERN
+//Module: Customer
+//System: Cinema Ticket System
+//Group: DFT1S3G11
+
 import Payment.Booking;
 import Movie.Movie;
 

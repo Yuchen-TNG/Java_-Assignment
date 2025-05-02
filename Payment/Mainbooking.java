@@ -1,3 +1,8 @@
+//Author: TNGYUCHEN
+//Module: Main booking
+//System: Cinema Ticket System
+//Group: DFT1S3G11
+
 package Payment;
 import java.util.Scanner;
 

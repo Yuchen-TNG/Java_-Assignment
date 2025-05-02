@@ -1,3 +1,11 @@
+//Author: TNGYUCHEN
+//Module: Payment
+//System: Cinema Ticket System
+//Group: DFT1S3G11
+
+
+
+
 package Payment;
 import java.text.DecimalFormat;
 import java.time.YearMonth;

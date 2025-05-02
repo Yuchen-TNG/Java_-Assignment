@@ -1,3 +1,8 @@
+//Author: TAN KAI ZHEN
+//Module: Schedule
+//System: Cinema Ticket System
+//Group: DFT1S3G11
+
 package Movie;
 
 import java.time.LocalDate;
