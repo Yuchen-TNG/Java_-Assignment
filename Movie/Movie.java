@@ -111,6 +111,7 @@ public class Movie {
                         check++;
 
                         System.out.println("\n\nYour Movie has been add");
+                        db.showMovieFromMovie(check);
                         sc.setSchedule(movieID);
                         bool = false;
                     } else if (choice.equalsIgnoreCase("no") || choice.equalsIgnoreCase("n")) {

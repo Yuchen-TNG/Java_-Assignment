@@ -2,8 +2,6 @@ package Movie;
 
 import java.util.ArrayList;
 
-import Payment.Booking;
-
 public class Database {
     static String movie2;
     static String movieId2;
@@ -95,6 +93,13 @@ public class Database {
     }
 
     public void showMovieFromMovie(int count) {
+        System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
+        Movie movie = movieData.get(count);
+        System.out.printf("%-25s%-8s%-15s%-15s\n", movie.getName(), movie.getMovieId(), movie.getType(),
+                movie.getLanguage());
+    }
+
+    public void showMovieByMovieIdFromMovie(int count) {
         System.out.printf("\n\n%-25s%-8s%-15s%-15s\n", "Movie Name", "ID", "Type", "Language");
         Movie movie = movieData.get(count);
         System.out.printf("%-25s%-8s%-15s%-15s\n", movie.getName(), movie.getMovieId(), movie.getType(),

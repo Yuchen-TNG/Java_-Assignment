@@ -1,6 +1,5 @@
 package Payment;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Mainbooking {
     public static void main(String[] args){
