@@ -3,6 +3,8 @@ import java.text.DecimalFormat;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import Bill.Ticket;
+import Bill.Invoice;
 
 public class Payment {
     private static double paymentamount = 12.00; // number of price of ticket
@@ -44,6 +46,10 @@ public class Payment {
         this.expiredMonth = expiredMonth;
     }
 
+
+    Ticket ticket = new Ticket(booking); 
+    Invoice invoice = new Invoice(); 
+
     public boolean validExpiredMonth(){
             YearMonth now = YearMonth.now(); // Get the current month and year
             System.out.println("Current date: " + now);  // Add this to debug
@@ -64,6 +70,8 @@ public class Payment {
         
                         if (userpay >= totalprice) {
                             System.out.println("Payment successful. Remaining money: " + df.format(userpay - totalprice));
+                            invoice.printInvoice();
+                            ticket.printTicket(); 
                             return; // 退出方法
                         } else {
                             System.out.println("Payment unsuccessful, please try again.");
@@ -88,6 +96,8 @@ public class Payment {
                                     expiredMonth = YearMonth.parse(exp, DateTimeFormatter.ofPattern("MM/yy"));
                                     if (validExpiredMonth()) {
                                         System.out.println("Payment successful");
+                                        invoice.printInvoice();
+                                        ticket.printTicket();
                                         return;
                                     } else {
                                         System.out.println("Payment unsuccessful, your card is expired.");
@@ -124,6 +134,8 @@ public class Payment {
         
                         if (answer.equals("y") || answer.equals("yes")) {
                             System.out.println("Payment successful");
+                            invoice.printInvoice();
+                            ticket.printTicket();
                             return;
                         } else {
                             System.out.println("Payment failed! Please try again.");
