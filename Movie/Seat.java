@@ -16,9 +16,10 @@ public class Seat {
     Scanner cin = new Scanner(System.in);
     String totalPendingSeat;
     String pendingScheduleId;
-    private Booking booking=new Booking();
+    private Booking booking = new Booking();
 
-    public Seat() { }
+    public Seat() {
+    }
 
     public Seat(String scheduleId, String seatId, int column, int row, String bookedSeat) {
         this.scheduleId = scheduleId;
@@ -29,6 +30,7 @@ public class Seat {
     }
 
     private Database db;
+
     public void setDb() {
         db = new Database(); // 在这里 new，而不是构造器
     }
@@ -78,11 +80,10 @@ public class Seat {
         int index = -1;
         char letter = 'A';
 
-
         for (int i = 0; i < db.scheduleIdSize(); i++) {
 
             if (db.getScheduleIdBySomthingFromSeat(i).equals(scheduleId)) {
-                pendingScheduleId=db.getScheduleIdBySomthingFromSeat(i);
+                pendingScheduleId = db.getScheduleIdBySomthingFromSeat(i);
                 index = i;
 
                 break;
@@ -118,7 +119,7 @@ public class Seat {
     }
 
     public void selectSeat(String scheduleId) {
-        Database db =new Database();
+        Database db = new Database();
         int index = -1;
         int people = 0;
         Scanner cin = new Scanner(System.in);
@@ -136,7 +137,7 @@ public class Seat {
                 cin.nextLine();
             }
         } while (bool);
-        totalPendingSeat=Integer.toString(people);
+        totalPendingSeat = Integer.toString(people);
 
         // 查找对应的排期
         System.out.println("\nWhich seat you want?");
@@ -147,11 +148,12 @@ public class Seat {
             }
         }
         cin.nextLine();
-        int e=0;
+        int e = 0;
         if (index != -1 && db.bookedSeatSize() > index) {
             for (int i = 0; i < people; i++) {
-                do {e++;
-                    System.out.print(e+". Seat Number: ");
+                do {
+                    e++;
+                    System.out.print(e + ". Seat Number: ");
                     String pendingSeat = cin.nextLine();
                     if (pendingSeat.matches("[A-J][1-9]")) {
                         Seat selectBookedSeat = db.getSeat(index);
@@ -160,28 +162,63 @@ public class Seat {
                             System.out.println("That seat is already booked. Please choose another one.");
                             e--;
                             bool = true;
-                        }else{
-                            if (i == 0) {
-                                db.setUserSeatNumber(pendingSeat); // 第一个直接设定
-                            } else {
-                                db.setUserSeatNumber(db.getUserSeatNumber() + "," + pendingSeat); // 之后累加
-                            }
-                        selectBookedSeat.setBookedSeat(existing+"," + pendingSeat);
-                        bool = false;}
+                        } else {
+                            db.setUserSeatNumber(existing + "," + pendingSeat);
+                            selectBookedSeat.setBookedSeat(existing + "," + pendingSeat);
+                            bool = false;
+                        }
                     } else {
                         bool = true;
                         System.out.println("\nEnter invalid,try again\nWhich seat you want?");
                         e--;
                     }
                 } while (bool);
-                
-                booking.setTicket(db.getUserMovie(),db.getUserDate(),db.getUserTime(),db.getUserSeatNumber(),db.getUserNumberOfPerson());
-                
+
+                booking.setTicket(db.getUserMovie(), db.getUserDate(), db.getUserTime(), db.getUserSeatNumber(),
+                        db.getUserNumberOfPerson());
             }
         } else {
             System.out.println("Invalid schedule or no seats available.");
         }
         booking.displayticket();
+        // 创建 Payment 对象，并传入当前的 booking
+Payment.Payment payment = new Payment.Payment(booking);
+
+// 计算总价
+payment.calculatetotalprice();
+
+// 选择支付方式
+
+Scanner payInput = new Scanner(System.in);
+System.out.println("=========================");
+System.out.println("Choose payment method: ");
+System.out.println("1. Cash");
+System.out.println("2. Credit Card");
+System.out.println("3. Touch n Go / QR Code");
+
+int method = 0;
+boolean valid = false;
+do {
+    try {
+        System.out.print("Enter method (1-3): ");
+        method = payInput.nextInt();
+        if (method >= 1 && method <= 3) {
+            valid = true;
+        } else {
+            System.out.println("Please enter a number between 1 and 3.");
+        }
+    } catch (Exception ex) {
+        System.out.println("Invalid input. Please enter a number.");
+        payInput.nextLine(); // 清掉错误输入
+    }
+} while (!valid);
+
+// 设置支付方式
+payment.setmethod(method);
+
+// 执行付款流程
+payment.paymentmethod();
+
     }
 
 
@@ -190,6 +227,139 @@ public class Seat {
         return new String[] { pendingScheduleId, totalPendingSeat, sc.getDateAndTime2() };
     }
 
+    public void editSeat() {
+        setDb();
+
+        int selection = 0;
+        int choice;
+        String scheduleID = "";
+        String seatId = "";
+        int row = 0;
+        int column = 0;
+        String bookedSeat = "";
+
+        showSeatDetails();
+        while (true) {
+            System.out.print("Selection(No): ");
+            if (cin.hasNextInt()) {
+                selection = cin.nextInt();
+                if (selection <= db.seatIdSize() && selection > 0) {
+                    break;
+                } else {
+                    System.out.println("Invalid, please input the range of schedule lists");
+                }
+            } else {
+                System.out.println("Invalid, please enter the number");
+                cin.next();
+            }
+        }
+        Seat slectionSeat = db.getSeat(selection - 1);
+        do {
+            System.out.println("\n======Edit Seat======");
+            System.out.println("1. Schedule Id");
+            System.out.println("2. Seat Id");
+            System.out.println("3. Row");
+            System.out.println("4. Column");
+            System.out.println("5. BookedSeat");
+            System.out.println("6. Save");
+            System.out.println("=======================");
+            System.out.print("Choice(1-6): ");
+            while (!cin.hasNextInt()) {
+                System.out.println("Invalid, please enter the number");
+                cin.next();
+                System.out.print("Choice: ");
+            }
+            choice = cin.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("\n=====Edit Schedule Id=====");
+                    while (true) {
+                        System.out.print("Schedule Id: ");
+                        scheduleID = cin.next();
+                        if (scheduleID.matches("^[S]\\d{3}")) {
+                            break;
+                        } else {
+                            System.out.println(
+                                    "inavalid please follow the format : (S000),first character must be S and Uppercase");
+                        }
+                    }
+                    slectionSeat.setScheduleId(scheduleID);
+                    break;
+                case 2:
+                    System.out.println("\n=====Edit Seat Id=====");
+                    while (true) {
+                        System.out.print("Seat Id: ");
+                        seatId = cin.next();
+                        if (seatId.matches("^[S][E]\\d{3}")) {
+                            break;
+                        } else {
+                            System.out.println(
+                                    "inavalid please follow the format : (SE000),first character must be SE and Uppercase");
+                        }
+                    }
+                    slectionSeat.setSeatId(seatId);
+                    break;
+                case 3:
+                    System.out.println("\n=====Edit Row=====");
+                    while(true){
+                        System.out.print("Row: ");
+                        row = cin.nextInt();
+                        if(row <= 9){
+                            break;
+                        }else{
+                            System.out.println("Invalid, the hall is not enough space to add the seat");
+                        }
+                    }
+                    slectionSeat.setRow(row);
+                    break;
+                case 4:
+                    System.out.println("\n=====Edit Column=====");
+                    while(true){
+                        System.out.print("Column: ");
+                        column = cin.nextInt();
+                        if(column <= 10){
+                            break;
+                        }else{
+                            System.out.println("Invalid, the hall is not enough space to add the seat");
+                        }
+                    }
+                    slectionSeat.setColumn(column);
+                    break;
+                case 5:
+                    System.out.println("\n=====Edit BookedSeat=====");
+                    
+                        System.out.print("BookedSeat: ");
+                        bookedSeat = cin.next();
+                       
+                    slectionSeat.setBookedSeat(bookedSeat);
+                    break;
+                case 6:
+                    System.out.println("Save successfully");
+                    break;
+                default:
+                    System.out.println("Invalid, please input the range of the choice ");
+            }
+        } while (choice != 6);
+        showSeatDetails();
+    }
+
+    public void showSeatDetails() {
+        setDb();
+
+        System.out.println("\n============================SEATS LISTS============================");
+        System.out.printf("%-4s %-12s %-10s %-12s %-8s %-10s\n", "No", "ScheduleId", "Seat Id", "Column", "Row",
+                "Booked Seat");
+        System.out.println("-------------------------------------------------------------------");
+
+        for (int i = 0; i < db.seatIdSize(); i++) {
+            System.out.printf("%-4d %-12s %-10s %-12s %-8s %-2s \n", (i + 1),
+                    db.getScheduleIdBySomthingFromSeat(i),
+                    db.getSeatId(i), db.getColumn(i),
+                    db.getRow(i), db.getBookedSeatBySomthingFromSeat(i));
+        }
+        System.out.println("===================================================================");
+    }
     public void setSeat(String scheduleId){
         
     }

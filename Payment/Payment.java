@@ -13,6 +13,10 @@ public class Payment {
     private double totalprice;
     private YearMonth expiredMonth;
 
+    public Payment(){
+
+    }
+
     private Booking booking;
     private double userpay;
     private long cardnumber;
@@ -31,7 +35,8 @@ public class Payment {
     }
 
     public void calculatetotalprice(){
-        this.totalprice = paymentamount + (paymentamount * booking.getnumberofperson()) * tax; //(12.00 x 3.00)* 0.06;
+        double subtotal = paymentamount * booking.getnumberofperson();
+        this.totalprice = subtotal + (subtotal * tax);
     }
 
     public double gettotalprice(){
