@@ -8,7 +8,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Schedule {
-    int pL=0;
+    int pL = 0;
     String scheduleId;
     String movieID;
     String time;
@@ -389,19 +389,26 @@ public class Schedule {
 
                 } while (bool);
 
-                System.out.println("How many time you want to add? ");
-                int ChoiceTimes = cin.nextInt();
-                for (int u = 0; u < ChoiceTimes; u++) {
-                    while (true) {
-                        System.out.print("Time: ");
-                        time = cin.next();
-                        if (time.matches("\\d{2}:\\d{2}")) {
-                            int hour = Integer.parseInt(time.split(":")[0]);
-                            int minute = Integer.parseInt(time.split(":")[1]);
-                            if (hour < 24 && minute < 60) {
-                                System.out.println("How many date you want to add? ");
-                                int ChoiceDate = cin.nextInt();
-                                for (int o = 0; o < ChoiceDate; o++) {
+                System.out.println("How many date you want to add?");
+int ChoiceDate = cin.nextInt();
+
+for (int o = 0; o < ChoiceDate; o++) {
+    while (true) {
+        System.out.print("Date: ");
+        date = cin.next();
+        if (date.matches("\\d{4}-\\d{2}-\\d{2}")) {
+
+            System.out.println("How many time you want to add?");
+            int ChoiceTimes = cin.nextInt();
+
+            for (int u = 0; u < ChoiceTimes; u++) {
+                while (true) {
+                    System.out.print("Time: ");
+                    time = cin.next();
+                    if (time.matches("\\d{2}:\\d{2}")) {
+                        int hour = Integer.parseInt(time.split(":")[0]);
+                        int minute = Integer.parseInt(time.split(":")[1]);
+                        if (hour < 24 && minute < 60) 
                                     while (true) {
                                         System.out.print("Date: ");
                                         date = cin.next();
