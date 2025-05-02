@@ -48,7 +48,7 @@ public class Customer extends User implements Interface {
         }
 
         System.out.print("Gender(M/F): ");
-        String gender = cin.next();
+        String gender = cin.next().toUpperCase();
         cin.nextLine();
 
         while (true) {
