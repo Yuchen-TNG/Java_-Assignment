@@ -71,15 +71,15 @@ public class Database {
     }
 
     public int movieIdSize() {
-        return movieData.size();
+        return Database.movieData.size();
     }
 
     public int scheduleIdSize() {
-        return scheduleData.size();
+        return Database.scheduleData.size();
     }
 
     public int bookedSeatSize() {
-        return seatData.size();
+        return Database.seatData.size();
     }
 
     public void addMovieFromMovie(Movie movie) {
@@ -127,7 +127,13 @@ public class Database {
     }
 
     public String getMovieIdBySomethingIntFromMovie(int choice) {
-        return movieData.get(choice).getMovieId();
+        if (choice >= 0 && choice < movieData.size()) {
+            Movie m = movieData.get(choice);
+            if (m != null) {
+                return m.getMovieId();
+            }
+        }
+        return null;
     }
 
     public String getPendingDateByMovieIDFromSchedule(String movieID, int index) {
