@@ -161,7 +161,7 @@ public class Seat {
                             bool = true;
                         }else{
                         db.setUserSeatNumber(existing+"," + pendingSeat);
-                        selectBookedSeat.setBookedSeat(existing + "," + pendingSeat);
+                        selectBookedSeat.setBookedSeat("," + pendingSeat);
                         bool = false;}
                     } else {
                         bool = true;
