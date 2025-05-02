@@ -14,6 +14,7 @@ public class Staff extends User implements Interface {
     Movie mv = new Movie();
     Schedule schedule = new Schedule();
     Customer customer = new Customer();
+    Booking booking = new Booking();
 
     static {
         try {
