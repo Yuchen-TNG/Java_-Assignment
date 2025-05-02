@@ -190,8 +190,3 @@ public class Seat {
         return new String[] { pendingScheduleId, totalPendingSeat, sc.getDateAndTime2() };
     }
 
-    public void setSeat(String scheduleId){
-        
-    }
-}
-

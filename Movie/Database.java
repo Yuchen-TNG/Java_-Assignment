@@ -191,6 +191,10 @@ public class Database {
         return scheduleData.get(something).getMovieId();
     }
 
+    public String getSeatIdBySomthingFromSeat(int something) {
+        return seatData.get(something).getSeatId();
+    }
+    
     public String getDateBySomthingFromSchedule(int something) {
         return scheduleData.get(something).getDate();
     }

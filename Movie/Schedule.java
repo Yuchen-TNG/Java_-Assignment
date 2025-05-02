@@ -400,8 +400,7 @@ public class Schedule {
                                                     int hour2 = Integer.parseInt(duration.split(":")[1]);
                                                     int second2 = Integer.parseInt(duration.split(":")[2]);
                                                     if (hour2 < 60 && second2 < 60) {
-                                                        Schedule newSchedule = new Schedule(movieId, scheduleId, time,
-                                                                date, duration);
+                                                        
                                                         do {
                                                             
                                                             System.out.println(pL);
@@ -411,6 +410,8 @@ public class Schedule {
                                                             String choice = cin.nextLine().trim();
                                                             if (choice.equalsIgnoreCase("yes")
                                                                     || choice.equalsIgnoreCase("y")) {
+                                                                        Schedule newSchedule = new Schedule(movieId, scheduleId, time,
+                                                                date, duration);
                                                                 db.addScheduleFromMovie(newSchedule);
                                                                 System.out.println("\n\nYour Schedule has been add");
                                                                 Seat se = new Seat();
