@@ -12,6 +12,8 @@ public class Invoice {
     private Ticket ticket; 
     private Movie movie; 
 
+    public Invoice() {}
+    
     public Invoice(Payment payment, Ticket ticket, Movie movie) {
         this.payment = payment;
         this.ticket = ticket;
