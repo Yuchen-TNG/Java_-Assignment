@@ -83,8 +83,6 @@ public class Booking {
             this.movie = movie;
         }
 
-
-
         public String generateBookingID(){
             String id = String.format("B%03d",bookingidCount);
             bookingidCount++;
